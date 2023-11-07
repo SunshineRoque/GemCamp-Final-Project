@@ -5,20 +5,27 @@ Rails.application.routes.draw do
   # Defines the root path route ("/")
   # root "articles#index"
 
-  devise_for :users, as: :client, path: 'client', controllers: {
-    sessions: 'client/users/sessions'
-  }
 
   # Routes for admin authentication
-  devise_for :users, as: :admin, path: 'admin', controllers: {
-    sessions: 'admin/users/sessions'
-  }, skip: [:registrations]
 
-  namespace :admin do
-    root "home#index"
+
+  constraints(AdminDomainConstraint.new) do
+    namespace :admin do
+      root "home#index"
+    end
+
+    devise_for :users, as: :admin, path: 'admin', controllers: {
+      sessions: 'admin/users/sessions'
+    }, skip: [:registrations]
   end
 
-  namespace :client do
-    root "home#index"
+  constraints(ClientDomainConstraint.new) do
+    namespace :client do
+      root "home#index"
+    end
+
+    devise_for :users, as: :client, path: 'client', controllers: {
+      sessions: 'client/users/sessions'
+    }
   end
 end
