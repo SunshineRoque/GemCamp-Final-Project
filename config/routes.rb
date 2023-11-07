@@ -12,7 +12,7 @@ Rails.application.routes.draw do
   # Routes for admin authentication
   devise_for :users, as: :admin, path: 'admin', controllers: {
     sessions: 'admin/users/sessions'
-  }
+  }, skip: [:registrations]
 
   namespace :admin do
     root "home#index"
