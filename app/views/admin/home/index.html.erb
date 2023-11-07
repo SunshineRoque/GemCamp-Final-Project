@@ -1,7 +1,16 @@
-<h1>Admin::Home#index</h1>
-<p>Find me in app/views/admin/home/index.html.erb</p>
+<div class="box" style="border: 1px solid black;">
+  <div class="vh-100 vw-100">
+    <%= render 'admin/partial/header_nav' %>
+
+    <div class="d-flex flex-row h-100 w-100">
+      <%= render 'admin/partial/left_nav' %>
+
+      <div class="p-4">
+        <h3>Hi, <%= current_admin_user.username %></h3>
+      </div>
+    </div>
+  </div>
+</div>
 
 
 
-
-<%= link_to 'Sign Out', destroy_admin_user_session_path, data: { 'turbo-method': :delete }, class: "nav-link #{'active' if action_name == 'sign in' }", 'aria-current': 'page' %>
