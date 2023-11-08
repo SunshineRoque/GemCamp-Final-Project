@@ -1,26 +1,101 @@
-<h2>Log in</h2>
-
 <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
-  <div class="field">
-    <%= f.label :email %><br />
-    <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
-  </div>
-
-  <div class="field">
-    <%= f.label :password %><br />
-    <%= f.password_field :password, autocomplete: "current-password" %>
-  </div>
-
-  <% if devise_mapping.rememberable? %>
-    <div class="field">
-      <%= f.check_box :remember_me %>
-      <%= f.label :remember_me %>
+  <div class="container-fluid border border-black">
+    <div class="row ">
+      <div class="col-2 border border-black"></div>
+      <div class="col-1 border border-black d-inline-flex p-2 text-center">Brand Image</div>
+      <div class="col-4 border border-black"></div>
+      <div class="col-3 border border-black">
+        <div class="row ">
+          <div class="col-3 border border-black d-inline-flex p-2 text-center">Coins</div>
+          <div class="col-3 border border-black d-inline-flex p-2 text-center">Claim</div>
+          <div class="col-3 border border-black d-inline-flex p-2 text-center">Language</div>
+          <div class="col-3 border border-black d-inline-flex p-2 text-center">---</div>
+        </div>
+      </div>
+      <div class="col-2 border border-black"></div>
     </div>
-  <% end %>
 
-  <div class="actions">
-    <%= f.submit "Log in" %>
+    <div class="row mb-4"></div>
+    <div class="row mb-4"></div>
+
+    <div class="row" style="height: 50px;">
+      <div class="col-2"></div>
+      <div class="col-4" style="padding:0;"><%= link_to 'Log in', new_client_user_session_path, class: "btn btn-primary #{'active' if action_name == 'index' }", 'aria-current': 'page',
+                                                         style:"border: 1px solid black; border-radius: 0%; width: 100%; height: 50px; " %>
+      </div>
+      <div class="col-4" style="padding:0;"><%= link_to 'Register', new_client_user_registration_path, class: "btn btn-primary-light #{'active' if action_name == 'index' }", 'aria-current': 'page',
+                                                        style:"border: 1px solid black; border-radius: 0%; width: 100%; height: 50px;" %>
+      </div>
+      <div class="col-2"></div>
+    </div>
+
+    <div class="row mb-4"></div>
+    <div class="row mb-4"></div>
+
+    <div class="row" style="height: 50px;">
+      <div class="col-2"></div>
+      <div class="col-8" style="padding:0;"><%= f.email_field :email, autofocus: true, autocomplete: "email", class: "form-control", placeholder: "Email",
+                                                               style:"border: 1px solid black; border-radius: 0%; width: 100%; height: 50px; " %>
+      </div>
+      <div class="col-2"></div>
+    </div>
+
+    <div class="row mb-4"></div>
+    <div class="row mb-4"></div>
+
+    <div class="row" style="height: 50px;">
+      <div class="col-2"></div>
+      <div class="col-8" style="padding:0;"><%= f.password_field :password, autocomplete: "current-password", class: "form-control", placeholder: "Password",
+                                                                  style:"border: 1px solid black; border-radius: 0%; width: 100%; height: 50px; " %></div>
+      <div class="col-2"></div>
+    </div>
+
+    <div class="row mb-4"></div>
+    <div class="row mb-4"></div>
+
+    <div class="row" style="height: 50px;">
+      <div class="col-2"></div>
+      <div class="col-8" style="padding:0;"><%= f.submit "Log in", class: "form-control", placeholder: "LOG IN",
+                                                                      style:"border: 1px solid black; width: 100%; height: 50px; "  %></div>
+      <div class="col-2"></div>
+    </div>
+
+    <div class="row mb-4"></div>
+    <div class="row mb-4"></div>
+    <div class="row mb-4"></div>
+    <div class="row mb-4"></div>
+    <div class="row mb-4"></div>
+    <div class="row mb-4"></div>
+    <div class="row mb-4"></div>
+    <div class="row mb-4"></div>
+    <div class="row mb-4"></div>
+    <div class="row mb-4"></div>
+    <div class="row mb-4"></div>
+    <div class="row mb-4"></div>
+    <div class="row mb-4"></div>
+    <div class="row mb-4"></div>
+    <div class="row mb-4"></div>
+    <div class="row mb-4"></div>
+    <div class="row mb-4"></div>
+    <div class="row mb-4"></div>
+    <div class="row mb-4"></div>
+    <div class="row mb-4"></div>
+    <div class="row mb-4"></div>
+    <div class="row mb-4"></div>
+
+    <div class="row border border-black">
+      <div class="col-2"></div>
+      <div class="col-8">
+        <div class="row d-flex ">
+          <div class="col border border-black text-center">Share</div>
+          <div class="col border border-black text-center">Invite</div>
+          <div class="col border border-black text-center">Lottery</div>
+          <div class="col border border-black text-center">Shop</div>
+          <div class="col border border-black text-center">Me</div>
+        </div>
+      </div>
+      <div class="col-2"></div>
+    </div>
+
   </div>
 <% end %>
-
-<%= render "client/users/shared/links" %>
