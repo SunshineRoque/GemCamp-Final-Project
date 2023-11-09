@@ -10,5 +10,11 @@ class User < ApplicationRecord
     countries: [:ph]
   }
 
+
   enum role: { client: 0, admin: 1 }
+
+  mount_uploader :image, ImageUploader
+
+
+
 end
