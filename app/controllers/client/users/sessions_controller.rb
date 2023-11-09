@@ -24,4 +24,8 @@ class Client::Users::SessionsController < Devise::SessionsController
   # def configure_sign_in_params
   #   devise_parameter_sanitizer.permit(:sign_in, keys: [:attribute])
   # end
+
+  def after_sign_out_path_for(_resource_or_scope)
+    client_root_path # Change this to the desired path
+  end
 end

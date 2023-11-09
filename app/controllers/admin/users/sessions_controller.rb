@@ -16,4 +16,8 @@ class Admin::Users::SessionsController < Devise::SessionsController
       redirect_to new_admin_user_session_path
     end
   end
+
+  def after_sign_out_path_for(_resource_or_scope)
+    admin_root_path # Change this to the desired path
+  end
 end
