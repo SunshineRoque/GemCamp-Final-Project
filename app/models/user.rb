@@ -17,4 +17,12 @@ class User < ApplicationRecord
 
   has_many :address
 
+  validate :validate_address_limit, on: :create
+
+  private
+
+  def validate_address_limit
+    errors.add(:base, 'Exceeded maximum address limit') if address.count >= 5
+  end
+
 end
