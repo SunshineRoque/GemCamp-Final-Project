@@ -20,6 +20,7 @@ Rails.application.routes.draw do
   constraints(ClientDomainConstraint.new) do
     namespace :client do
       root "home#index"
+      resources :me
     end
 
     devise_for :users, as: :client, path: 'client', controllers: {
