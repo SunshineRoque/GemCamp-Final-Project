@@ -1,5 +1,8 @@
 <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
   <%= render "client/users/shared/error_messages", resource: resource %>
+  <% if cookies[:promoter].present? %>
+    <p>Referred by: <%= cookies[:promoter] %></p>
+  <% end %>
   <div class="container-fluid border border-black">
     <div class="row">
       <div class="col-2 border border-black"></div>
