@@ -21,6 +21,7 @@ Rails.application.routes.draw do
     namespace :client do
       root "home#index"
       resources :me, only: [:index]
+      resources :addresses
     end
 
     devise_for :users, as: :client, path: 'client', controllers: {
@@ -30,4 +31,22 @@ Rails.application.routes.draw do
   end
 
   resources :menu , only: :index
+
+  namespace :api do
+    namespace :v1 do
+      resources :regions, only: [:index, :show] do
+        resources :provinces, only: :index
+      end
+
+      resources :provinces, only: [:index, :show] do
+        resources :cities, only: :index
+      end
+
+      resources :cities, only: [:index, :show] do
+        resources :barangays, only: :index
+      end
+
+      resources :barangays, only: [:index, :show]
+    end
+  end
 end

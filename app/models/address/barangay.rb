@@ -3,4 +3,9 @@ class Address::Barangay < ApplicationRecord
   validates :code, uniqueness: true
 
   belongs_to :city
+
+  def self.table_name_prefix
+    "address_"
+  end
+
 end

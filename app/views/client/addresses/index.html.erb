@@ -1,0 +1,18 @@
+<% @addresses.each do |address| %>
+  <p>Name: <%= address.name %></p>
+  <p>Remark: <%= address.remark %></p>
+  <p>Is_default?: <%= address.is_default? ? 'Yes' : 'No' %></p>
+
+  <p>Address: </p>
+  <%= "#{address&.region&.name}, #{address&.province&.name}, #{address&.city&.name}, #{address&.barangay&.name}, #{address.street_address}" %>
+
+  <p>Genre: <%=  address.genre %></p>
+
+  <div>
+    <%= link_to '+', new_client_address_path %>
+    <%= button_to '-', client_address_path(address), method: :delete %>
+  </div>
+<% end %>
+
+
+<%= link_to 'Back', client_me_index_path %>

@@ -7,11 +7,11 @@ class CreateAddresses < ActiveRecord::Migration[7.0]
       t.string :phone_number
       t.string :remark
       t.boolean :is_default
-      t.references :user_id
-      t.references :region_id
-      t.references :province_id
-      t.references :city_id
-      t.references :barangay_id
+      t.references :user
+      t.references :region
+      t.references :province
+      t.references :city
+      t.references :barangay
       t.timestamps
     end
   end

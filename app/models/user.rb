@@ -15,7 +15,7 @@ class User < ApplicationRecord
 
   mount_uploader :image, ImageUploader
 
-  has_many :address
+  has_many :addresses
 
   validate :validate_address_limit, on: :create
 
