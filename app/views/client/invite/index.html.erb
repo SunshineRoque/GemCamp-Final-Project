@@ -45,13 +45,14 @@
           <div class="col-12">
             <div class="row mb-4"></div>
             <div class="row d-flex flex-row justify-content-center align-items-center" style="margin: auto ">
-              <div class="btn btn-primary-light border border-black m-0 d-inline-flex p-2" style="margin:auto; width: 30vh; height:21vh; text-align: center; justify-content: center; align-items: center">QR
-                Code
+              <div class="mb-4" style="margin:auto; text-align: center; justify-content: center; align-items: center">
+                <%= raw @svg %>
               </div>
               <div class="row mb-4"></div>
               <div class="row" style="padding:0; margin: auto; text-align: center; align-items: center; justify-content: center ">
-                <%= link_to "Promoter's link", client_me_index_path, class: "btn btn-primary-light #{'active' if action_name == 'index' }", 'aria-current': 'page',
-                            style: "border: 1px solid black; width: 95%; height: 30px; margin: auto; padding: 0;" %>
+                <div class="row" style="padding:0; margin: auto; text-align: center; align-items: center; justify-content: center ">
+                  <p>http://client.com:3000/client/sign_up?promoter=<%= current_client_user.email %></p>
+                </div>
               </div>
               <div class="row mb-4"></div>
               <div class="row mb-4"></div>
@@ -85,7 +86,7 @@
         <div class="row d-flex ">
           <div class="col border border-black d-inline-flex p-2" style="text-align: center; align-items: center; justify-content: center;">Share</div>
           <div class="col border border-black d-inline-flex p-2" style="text-align: center; align-items: center; justify-content: center;">
-            <%= link_to 'Invite', client_invite_index_path, class: "nav-link #{'active'}", 'aria-current': 'page' %>
+            <%= link_to 'Invite', client_invite_index_path, class: "nav-link #{'active' if action_name == 'sign in'}", 'aria-current': 'page' %>
           </div>
           <div class="col border border-black d-inline-flex p-2" style="text-align: center; align-items: center; justify-content: center;">Lottery</div>
           <div class="col border border-black d-inline-flex p-2" style="text-align: center; align-items: center; justify-content: center;">Shop</div>

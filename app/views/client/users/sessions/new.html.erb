@@ -108,7 +108,7 @@
         <div class="row d-flex ">
           <div class="col border border-black d-inline-flex p-2" style="text-align: center; align-items: center; justify-content: center;">Share</div>
           <div class="col border border-black d-inline-flex p-2" style="text-align: center; align-items: center; justify-content: center;">
-            <%= link_to 'Invite', client_invite_index_path, class: "nav-link #{'active'}", 'aria-current': 'page' %>           </div>
+            <%= link_to 'Invite', client_invite_index_path, class: "nav-link #{'active' if action_name == 'sign in'}", 'aria-current': 'page' %></div>
           <div class="col border border-black d-inline-flex p-2" style="text-align: center; align-items: center; justify-content: center;">Lottery</div>
           <div class="col border border-black d-inline-flex p-2" style="text-align: center; align-items: center; justify-content: center;">Shop</div>
           <div class="col border border-black d-inline-flex p-2" style="text-align: center; align-items: center; justify-content: center;">
