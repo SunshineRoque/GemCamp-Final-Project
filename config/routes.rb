@@ -21,6 +21,7 @@ Rails.application.routes.draw do
     namespace :client do
       root "home#index"
       resources :me, only: [:index]
+      resources :invite, only: [:index]
       resources :addresses
     end
 
