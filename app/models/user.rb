@@ -12,7 +12,7 @@ class User < ApplicationRecord
 
   mount_uploader :image, ImageUploader
   belongs_to :parent, class_name: 'User', foreign_key: 'parent_id', optional: true, counter_cache: :children_members
-  has_many :children, class_name: 'User', foreign_key: 'parent_id'
+  has_many :users, class_name: 'User', foreign_key: 'parent_id'
   has_many :addresses
 
   validate :validate_address_limit, on: :create
@@ -26,7 +26,9 @@ class User < ApplicationRecord
   end
 
   def increment_parent_children_members
-    parent.increment!(:children_members)
+    if parent
+      parent.increment!(:children_members)
+    end
   end
 
 end

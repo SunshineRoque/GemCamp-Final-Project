@@ -10,11 +10,8 @@ class Client::Users::RegistrationsController < Devise::RegistrationsController
   def create
     super do |resource|
       # Assign the value of the promoter cookie to parent_id
-       if cookies[:promoter].present?
-         promoter = User.find_by_email(cookies.delete(:promoter))
-         resource.parent = promoter
-         resource.save
-       end
+      resource.parent_id = cookies[:promoter] if cookies[:promoter].present?
+      resource.save
     end
   end
 
