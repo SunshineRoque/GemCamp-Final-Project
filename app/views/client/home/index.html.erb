@@ -1,39 +1,5 @@
-<%= link_to 'Sign Out', destroy_client_user_session_path, data: { 'turbo-method': :delete }, class: "nav-link #{'active' if action_name == 'sign in' }", 'aria-current': 'page' %>
-
 <div class="container-fluid border border-black">
-  <div class="row ">
-    <div class="col-2 border border-black"></div>
-    <div class="col-1 border border-black d-inline-flex p-2" style="text-align: center; align-items: center; justify-content: center;">Logo</div>
-    <div class="col-4 border border-black"></div>
-    <div class="col-3 border border-black">
-      <div class="row ">
-        <div class="col-3 border border-black d-inline-flex p-2" style="text-align: center; align-items: center; justify-content: center;">Coins</div>
-        <div class="col-3 border border-black d-inline-flex p-2 " style="text-align: center; align-items: center; justify-content: center;">Claim</div>
-        <div class="col-3 border border-black d-inline-flex p-2 " style="text-align: center; align-items: center; justify-content: center;">Language</div>
-        <div class="col-3 border border-black d-inline-flex p-2 " style="text-align: center; align-items: center; justify-content: center;">
-          <nav class="navbar navbar-light bg-light">
-            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent1" aria-controls="navbarSupportedContent1" aria-expanded="false" aria-label="Toggle navigation">
-              <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse" id="navbarSupportedContent1">
-              <ul class="navbar-nav">
-                <li class="nav-item active">
-                  <a class="nav-link" href="#"> <span class="sr-only"></span></a>
-                </li>
-                <li class="nav-item">
-                  <a class="nav-link" href="#"></a>
-                </li>
-                <li class="nav-item">
-                  <a class="nav-link" href="#"></a>
-                </li>
-              </ul>
-            </div>
-          </nav>
-        </div>
-      </div>
-    </div>
-    <div class="col-2 border border-black"></div>
-  </div>
+  <%= render 'client/partial/application_up' %>
   <div class="row ">
     <div class="col-12 border border-black">
       <div id="carouselExampleInterval" class="carousel slide" data-bs-ride="carousel">
@@ -169,26 +135,5 @@
   <div class="row mb-4"></div>
   <div class="row mb-4"></div>
 
-  <div class="row border border-black">
-    <div class="col-2"></div>
-    <div class="col-8">
-      <div class="row d-flex ">
-        <div class="col border border-black d-inline-flex p-2" style="text-align: center; align-items: center; justify-content: center;">Share</div>
-        <div class="col border border-black d-inline-flex p-2" style="text-align: center; align-items: center; justify-content: center;">
-          <%= link_to 'Invite', client_invite_index_path, class: "nav-link #{'active' if action_name == 'sign in'}", 'aria-current': 'page' %>
-        </div>
-        <div class="col border border-black d-inline-flex p-2" style="text-align: center; align-items: center; justify-content: center;">Lottery</div>
-        <div class="col border border-black d-inline-flex p-2" style="text-align: center; align-items: center; justify-content: center;">Shop</div>
-        <div class="col border border-black d-inline-flex p-2" style="text-align: center; align-items: center; justify-content: center;">
-          <%= link_to 'Me', client_me_index_path, class: "nav-link #{'active' if action_name == 'sign in' }", 'aria-current': 'page' %>
-        </div>
-      </div>
-    </div>
-    <div class="col-2"></div>
-  </div>
+  <%= render 'client/partial/application_down' %>
 </div>
-
-
-
-
-

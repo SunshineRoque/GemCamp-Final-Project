@@ -1,8 +1,6 @@
 <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
   <%= render "client/users/shared/error_messages", resource: resource %>
-  <% if cookies[:promoter].present? %>
-    <p>Referred by: <%= cookies[:promoter] %></p>
-  <% end %>
+
   <div class="container-fluid border border-black">
     <div class="row">
       <div class="col-2 border border-black"></div>
@@ -60,7 +58,9 @@
     <div class="row" style="height: 50px;">
       <div class="col-2"></div>
       <div class="col-8" style="padding: 0;">
-        <%= f.text_field :username, autofocus: true, autocomplete: "username", class: "form-control", placeholder: "Promoter Name", style: "border: 1px solid black; border-radius: 0%; width: 100%; height: 50px;" %>
+        <% if cookies[:promoter].present? %>
+          <p>Referred by: <%= cookies[:promoter] %></p>
+        <% end %>
       </div>
       <div class="col-2"></div>
     </div>

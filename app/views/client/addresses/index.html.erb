@@ -1,3 +1,5 @@
+<div class="container-fluid border border-black">
+  <%= render 'client/partial/application_up' %>
 <% @addresses.each do |address| %>
   <p>Name: <%= address.name %></p>
   <p>Remark: <%= address.remark %></p>
@@ -16,3 +18,6 @@
 
 
 <%= link_to 'Back', client_me_index_path %>
+
+  <%= render 'client/partial/application_down' %>
+</div>

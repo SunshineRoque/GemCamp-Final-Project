@@ -3,10 +3,12 @@ class Client::AddressesController < ApplicationController
   before_action :set_address, only: [:show, :edit, :update, :destroy]
 
   def index
+    @user = current_client_user
     @addresses = Address.includes(:user, :region, :province)
   end
 
   def new
+    @user = current_client_user
     @address = Address.new
   end
 

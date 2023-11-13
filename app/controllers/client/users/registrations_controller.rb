@@ -1,10 +1,15 @@
 class Client::Users::RegistrationsController < Devise::RegistrationsController
+  before_action :authenticate_client_user!
   before_action :configure_sign_up_params, only: [:create]
   before_action :configure_account_update_params, only: [:update]
   before_action :save_promoter_cookie, only: [:new]
 
   def new
     super
+  end
+
+  def edit
+    @user = current_client_user
   end
 
   def create

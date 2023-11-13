@@ -3,6 +3,7 @@ class Client::InviteController < ApplicationController
   before_action :authenticate_client_user!
 
   def index
+    @user = current_client_user
     qr_code = RQRCode::QRCode.new("client.com:3000/client/sign_up?promoter=#{current_client_user.email}") # Replace the URL with the content you want in the QR code
 
     @svg = qr_code.as_svg(
