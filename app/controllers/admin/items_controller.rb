@@ -59,6 +59,7 @@ class Admin::ItemsController < ApplicationController
       :online_at,
       :offline_at,
       :start_at,
-      :status)
+      :status,
+      :deleted_at)
   end
 end
