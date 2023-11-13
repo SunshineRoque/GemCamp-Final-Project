@@ -11,7 +11,7 @@ class User < ApplicationRecord
   enum role: { client: 0, admin: 1 }
 
   mount_uploader :image, ImageUploader
-  belongs_to :parent, class_name: 'User', foreign_key: 'parent_id', optional: true, counter_cache: :children_members
+  belongs_to :parent, class_name: 'User', optional: true, counter_cache: :children_members
   has_many :users, class_name: 'User', foreign_key: 'parent_id'
   has_many :addresses
 

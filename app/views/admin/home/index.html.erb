@@ -71,147 +71,150 @@
             <% end %></p>
           <p>Total Deposit = ₱ <%= client_user.total_deposit %>
           <div class="container" style="border:1px solid black;">
-            <% if client_user.parent && client_user.parent.users.present? %>
-              <p>Member's Total Deposit = ₱<%= client_user.parent.users.sum(:total_deposit) %></p>
-              <% client_user.parent.users.each do |children_member| %>
-                <li><%= children_member.email %> = ₱ <%= children_member.total_deposit %></li>
-              <% end %>
+            <% if client_user.users.present? %>
+              <p>Member's Total Deposit = ₱<%= client_user.users.sum(&:total_deposit) %></p>
+              <ul>
+                <% client_user.users&.each do |child| %>
+                  <li><%= child.email %> = ₱<%= child.total_deposit %></li>
+                <% end %>
+              </ul>
             <% else %>
               <li>No Members</li>
-            <% end %>
-          </div>
+            <% end %></div>
           </p>
           <p>Coins = ₱ <%= client_user.coins %></p>
           <p>Total Used Coins = </p>
+          <div> Phone Number: <%= client_user.phone %></div>
         </div>
       <% end %>
     </div>
   </div>
 </div>
 <div>
-  <div class="row">
-    <div class="col-2  border border-black border-top-0 border-bottom-0">&nbsp;</div>
-    <div class="col-10"></div>
-  </div>
-  <div class="row">
-    <div class="col-2  border border-black border-top-0 border-bottom-0">&nbsp;</div>
-    <div class="col-10"></div>
-  </div>
-  <div class="row">
-    <div class="col-2  border border-black border-top-0 border-bottom-0">&nbsp;</div>
-    <div class="col-10"></div>
-  </div>
-  <div class="row">
-    <div class="col-2  border border-black border-top-0 border-bottom-0">&nbsp;</div>
-    <div class="col-10"></div>
-  </div>
-  <div class="row">
-    <div class="col-2  border border-black border-top-0 border-bottom-0">&nbsp;</div>
-    <div class="col-10"></div>
-  </div>
-  <div class="row">
-    <div class="col-2  border border-black border-top-0 border-bottom-0">&nbsp;</div>
-    <div class="col-10"></div>
-  </div>
-  <div class="row">
-    <div class="col-2  border border-black border-top-0 border-bottom-0">&nbsp;</div>
-    <div class="col-10"></div>
-  </div>
-  <div class="row">
-    <div class="col-2  border border-black border-top-0 border-bottom-0">&nbsp;</div>
-    <div class="col-10"></div>
-  </div>
-  <div class="row">
-    <div class="col-2  border border-black border-top-0 border-bottom-0">&nbsp;</div>
-    <div class="col-10"></div>
-  </div>
-  <div class="row">
-    <div class="col-2  border border-black border-top-0 border-bottom-0">&nbsp;</div>
-    <div class="col-10"></div>
-  </div>
-  <div class="row">
-    <div class="col-2  border border-black border-top-0 border-bottom-0">&nbsp;</div>
-    <div class="col-10"></div>
-  </div>
-  <div class="row">
-    <div class="col-2  border border-black border-top-0 border-bottom-0">&nbsp;</div>
-    <div class="col-10"></div>
-  </div>
-  <div class="row">
-    <div class="col-2  border border-black border-top-0 border-bottom-0">&nbsp;</div>
-    <div class="col-10"></div>
-  </div>
-  <div class="row">
-    <div class="col-2  border border-black border-top-0 border-bottom-0">&nbsp;</div>
-    <div class="col-10"></div>
-  </div>
-  <div class="row">
-    <div class="col-2  border border-black border-top-0 border-bottom-0">&nbsp;</div>
-    <div class="col-10"></div>
-  </div>
-  <div class="row">
-    <div class="col-2  border border-black border-top-0 border-bottom-0">&nbsp;</div>
-    <div class="col-10"></div>
-  </div>
-  <div class="row">
-    <div class="col-2  border border-black border-top-0 border-bottom-0">&nbsp;</div>
-    <div class="col-10"></div>
-  </div>
-  <div class="row">
-    <div class="col-2  border border-black border-top-0 border-bottom-0">&nbsp;</div>
-    <div class="col-10"></div>
-  </div>
-  <div class="row">
-    <div class="col-2  border border-black border-top-0 border-bottom-0">&nbsp;</div>
-    <div class="col-10"></div>
-  </div>
-  <div class="row">
-    <div class="col-2  border border-black border-top-0 border-bottom-0">&nbsp;</div>
-    <div class="col-10"></div>
-  </div>
-  <div class="row">
-    <div class="col-2  border border-black border-top-0 border-bottom-0">&nbsp;</div>
-    <div class="col-10"></div>
-  </div>
-  <div class="row">
-    <div class="col-2  border border-black border-top-0 border-bottom-0">&nbsp;</div>
-    <div class="col-10"></div>
-  </div>
-  <div class="row">
-    <div class="col-2  border border-black border-top-0 border-bottom-0">&nbsp;</div>
-    <div class="col-10"></div>
-  </div>
-  <div class="row">
-    <div class="col-2  border border-black border-top-0 border-bottom-0">&nbsp;</div>
-    <div class="col-10"></div>
-  </div>
-  <div class="row">
-    <div class="col-2  border border-black border-top-0 border-bottom-0">&nbsp;</div>
-    <div class="col-10"></div>
-  </div>
-  <div class="row">
-    <div class="col-2  border border-black border-top-0 border-bottom-0">&nbsp;</div>
-    <div class="col-10"></div>
-  </div>
-  <div class="row">
-    <div class="col-2  border border-black border-top-0 border-bottom-0">&nbsp;</div>
-    <div class="col-10"></div>
-  </div>
-  <div class="row">
-    <div class="col-2  border border-black border-top-0 border-bottom-0">&nbsp;</div>
-    <div class="col-10"></div>
-  </div>
-  <div class="row">
-    <div class="col-2  border border-black border-top-0 border-bottom-0">&nbsp;</div>
-    <div class="col-10"></div>
-  </div>
-  <div class="row">
-    <div class="col-2  border border-black border-top-0 border-bottom-0">&nbsp;</div>
-    <div class="col-10"></div>
-  </div>
-  <div class="row">
-    <div class="col-12  border border-black "></div>
+  <div>
+    <div class="row">
+      <div class="col-2  border border-black border-top-0 border-bottom-0">&nbsp;</div>
+      <div class="col-10"></div>
+    </div>
+    <div class="row">
+      <div class="col-2  border border-black border-top-0 border-bottom-0">&nbsp;</div>
+      <div class="col-10"></div>
+    </div>
+    <div class="row">
+      <div class="col-2  border border-black border-top-0 border-bottom-0">&nbsp;</div>
+      <div class="col-10"></div>
+    </div>
+    <div class="row">
+      <div class="col-2  border border-black border-top-0 border-bottom-0">&nbsp;</div>
+      <div class="col-10"></div>
+    </div>
+    <div class="row">
+      <div class="col-2  border border-black border-top-0 border-bottom-0">&nbsp;</div>
+      <div class="col-10"></div>
+    </div>
+    <div class="row">
+      <div class="col-2  border border-black border-top-0 border-bottom-0">&nbsp;</div>
+      <div class="col-10"></div>
+    </div>
+    <div class="row">
+      <div class="col-2  border border-black border-top-0 border-bottom-0">&nbsp;</div>
+      <div class="col-10"></div>
+    </div>
+    <div class="row">
+      <div class="col-2  border border-black border-top-0 border-bottom-0">&nbsp;</div>
+      <div class="col-10"></div>
+    </div>
+    <div class="row">
+      <div class="col-2  border border-black border-top-0 border-bottom-0">&nbsp;</div>
+      <div class="col-10"></div>
+    </div>
+    <div class="row">
+      <div class="col-2  border border-black border-top-0 border-bottom-0">&nbsp;</div>
+      <div class="col-10"></div>
+    </div>
+    <div class="row">
+      <div class="col-2  border border-black border-top-0 border-bottom-0">&nbsp;</div>
+      <div class="col-10"></div>
+    </div>
+    <div class="row">
+      <div class="col-2  border border-black border-top-0 border-bottom-0">&nbsp;</div>
+      <div class="col-10"></div>
+    </div>
+    <div class="row">
+      <div class="col-2  border border-black border-top-0 border-bottom-0">&nbsp;</div>
+      <div class="col-10"></div>
+    </div>
+    <div class="row">
+      <div class="col-2  border border-black border-top-0 border-bottom-0">&nbsp;</div>
+      <div class="col-10"></div>
+    </div>
+    <div class="row">
+      <div class="col-2  border border-black border-top-0 border-bottom-0">&nbsp;</div>
+      <div class="col-10"></div>
+    </div>
+    <div class="row">
+      <div class="col-2  border border-black border-top-0 border-bottom-0">&nbsp;</div>
+      <div class="col-10"></div>
+    </div>
+    <div class="row">
+      <div class="col-2  border border-black border-top-0 border-bottom-0">&nbsp;</div>
+      <div class="col-10"></div>
+    </div>
+    <div class="row">
+      <div class="col-2  border border-black border-top-0 border-bottom-0">&nbsp;</div>
+      <div class="col-10"></div>
+    </div>
+    <div class="row">
+      <div class="col-2  border border-black border-top-0 border-bottom-0">&nbsp;</div>
+      <div class="col-10"></div>
+    </div>
+    <div class="row">
+      <div class="col-2  border border-black border-top-0 border-bottom-0">&nbsp;</div>
+      <div class="col-10"></div>
+    </div>
+    <div class="row">
+      <div class="col-2  border border-black border-top-0 border-bottom-0">&nbsp;</div>
+      <div class="col-10"></div>
+    </div>
+    <div class="row">
+      <div class="col-2  border border-black border-top-0 border-bottom-0">&nbsp;</div>
+      <div class="col-10"></div>
+    </div>
+    <div class="row">
+      <div class="col-2  border border-black border-top-0 border-bottom-0">&nbsp;</div>
+      <div class="col-10"></div>
+    </div>
+    <div class="row">
+      <div class="col-2  border border-black border-top-0 border-bottom-0">&nbsp;</div>
+      <div class="col-10"></div>
+    </div>
+    <div class="row">
+      <div class="col-2  border border-black border-top-0 border-bottom-0">&nbsp;</div>
+      <div class="col-10"></div>
+    </div>
+    <div class="row">
+      <div class="col-2  border border-black border-top-0 border-bottom-0">&nbsp;</div>
+      <div class="col-10"></div>
+    </div>
+    <div class="row">
+      <div class="col-2  border border-black border-top-0 border-bottom-0">&nbsp;</div>
+      <div class="col-10"></div>
+    </div>
+    <div class="row">
+      <div class="col-2  border border-black border-top-0 border-bottom-0">&nbsp;</div>
+      <div class="col-10"></div>
+    </div>
+    <div class="row">
+      <div class="col-2  border border-black border-top-0 border-bottom-0">&nbsp;</div>
+      <div class="col-10"></div>
+    </div>
+    <div class="row">
+      <div class="col-2  border border-black border-top-0 border-bottom-0">&nbsp;</div>
+      <div class="col-10"></div>
+    </div>
+    <div class="row">
+      <div class="col-12  border border-black "></div>
+    </div>
   </div>
 </div>
-
 

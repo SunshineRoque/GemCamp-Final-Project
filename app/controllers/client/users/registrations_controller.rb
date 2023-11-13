@@ -1,17 +1,25 @@
 class Client::Users::RegistrationsController < Devise::RegistrationsController
   before_action :configure_sign_up_params, only: [:create]
   before_action :configure_account_update_params, only: [:update]
-  before_action :save_promoter_cookie, only: [:new, :create]
+  before_action :save_promoter_cookie, only: [:new]
 
-  # def new
-  #   super
-  # end
+  def new
+    super
+  end
 
   def create
     super do |resource|
       # Assign the value of the promoter cookie to parent_id
-      resource.parent_id = cookies[:promoter] if cookies[:promoter].present?
-      resource.save
+
+      promoter = User.find_by_email(cookies[:promoter])
+
+      if promoter
+        resource.parent = promoter
+        resource.save
+      else
+        flash[:alert] = 'Promoter not found'
+        render :new
+      end
     end
   end
 
