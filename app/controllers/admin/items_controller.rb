@@ -1,10 +1,10 @@
 class Admin::ItemsController < ApplicationController
   before_action :authenticate_admin_user!
-  before_action :set_item, only: [:show, :edit, :update, :destroy]
+  before_action :set_item, only: [ :edit, :update, :destroy]
 
   def index
     @admin_user = current_admin_user
-    @items = Item.all
+    @items = Item.includes(:categories).all
   end
 
   def new
@@ -21,8 +21,6 @@ class Admin::ItemsController < ApplicationController
       render :new, status: :unprocessable_entity
     end
   end
-
-  def show; end
 
   def edit; end
 

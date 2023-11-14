@@ -10,7 +10,8 @@ Rails.application.routes.draw do
   constraints(AdminDomainConstraint.new) do
     namespace :admin do
       root "home#index"
-      resources :items
+      resources :items, except: :show
+      resources :categories, except: :show
     end
 
     devise_for :users, as: :admin, path: 'admin', controllers: {

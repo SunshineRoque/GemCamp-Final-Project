@@ -1,0 +1,13 @@
+<%= form_with model: category, url: path, data: { turbo: false } do |form| %>
+  <% if category.errors.any? %>
+    <ul>
+      <% category.errors.each do |error| %>
+        <li><%= error.full_message %></li>
+      <% end %>
+    </ul>
+  <% end %>
+  <%= form.label :name %>
+  <%= form.text_field :name %>
+
+  <%= form.submit %>
+<% end %>

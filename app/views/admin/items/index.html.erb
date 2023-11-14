@@ -18,6 +18,7 @@
             <p>Start at: <%= item.start_at %></p>
             <p><%= image_tag item.image.url if item.image.present? %></p>
             <p>Status: <%= item.status %></p>
+            <td><%= item.categories.pluck(:name).join(',') %></td>
             <td class="button">
               <%= link_to 'Edit', edit_admin_item_path(item), class: 'btn btn-warning' %>
               <%= button_to '-', admin_item_path(item), method: :delete, class: 'btn btn-danger' %>
