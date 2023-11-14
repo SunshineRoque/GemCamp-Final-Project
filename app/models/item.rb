@@ -5,6 +5,7 @@ class Item < ApplicationRecord
   validates :minimum_tickets, presence: true
   validates :batch_count, presence: true
   enum status: { active: 0, inactive: 1 }
+  mount_uploader :image, ImageUploader
 
   def destroy
     update(deleted_at: Time.current)

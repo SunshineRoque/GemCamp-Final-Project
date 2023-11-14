@@ -5,7 +5,22 @@
   </div>
   <div class="col-10">
     <div class="row">
-      <h1 style='text-decoration: none;' >ITEMS <%= link_to '+', class:'btn btn-primary'%></h1>
+      <h1 style='text-decoration: none;'>ITEMS <%= link_to '+', new_admin_item_path, class: 'btn btn-primary' %></h1>
+      <div class="container">
+        <% @items.each do |item| %>
+          <div class="row border border-black">
+            <p>Name: <%= item.name %></p>
+            <p>Quantity: <%= item.quantity %></p>
+            <p>Min Tickets: <%= item.minimum_tickets %></p>
+            <p>Batch_count: <%= item.batch_count %></p>
+            <p>Online at: <%= item.online_at %></p>
+            <p>Offline at: <%= item.offline_at %></p>
+            <p>Start at: <%= item.start_at %></p>
+            <p><%= image_tag item.image.url if item.image.present? %></p>
+            <p>Status: <%= item.status %></p>
+          </div>
+        <% end %>
+      </div>
     </div>
   </div>
 </div>

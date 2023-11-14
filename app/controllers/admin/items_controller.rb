@@ -60,6 +60,7 @@ class Admin::ItemsController < ApplicationController
       :offline_at,
       :start_at,
       :status,
-      :deleted_at)
+      :deleted_at,
+      category_ids: [])
   end
 end
