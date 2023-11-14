@@ -13,16 +13,35 @@
             <p>Quantity: <%= item.quantity %></p>
             <p>Min Tickets: <%= item.minimum_tickets %></p>
             <p>Batch_count: <%= item.batch_count %></p>
-            <p>Online at: <%= item.online_at %></p>
-            <p>Offline at: <%= item.offline_at %></p>
-            <p>Start at: <%= item.start_at %></p>
-            <p><%= image_tag item.image.url if item.image.present? %></p>
+            <p>Online at: <%= item.online_at&.strftime("%m/%d/%Y") %></p>
+            <p>Offline at: <%= item.offline_at&.strftime("%m/%d/%Y") %></p>
+            <p>Start at: <%= item.start_at&.strftime("%m/%d/%Y") %></p>
             <p>Status: <%= item.status %></p>
-            <td><%= item.categories.pluck(:name).join(',') %></td>
+            <p>Category: <%= item.categories.pluck(:name).join(',') %></p>
+            <p><%= image_tag item.image.url if item.image.present? %></p>
             <td class="button">
               <%= link_to 'Edit', edit_admin_item_path(item), class: 'btn btn-warning' %>
               <%= button_to '-', admin_item_path(item), method: :delete, class: 'btn btn-danger' %>
             </td>
+            <div class="container border border-black">
+            <p>State: <%= item.state %></p>
+
+            <% if item.may_start? %>
+              <%= button_to 'Start', start_admin_item_path(id: item), method: :post, class: 'btn btn-primary' %>
+            <% end %>
+
+            <% if item.may_pause? %>
+              <%= button_to 'Pause', pause_admin_item_path(id: item), method: :post, class: 'btn btn-warning' %>
+            <% end %>
+
+            <% if item.may_end? %>
+              <%= button_to 'End', end_admin_item_path(id: item), method: :post, class: 'btn btn-success' %>
+            <% end %>
+
+            <% if item.may_cancel? %>
+              <%= button_to 'Cancel', cancel_admin_item_path(id: item), method: :post, class: 'btn btn-danger' %>
+            <% end %>
+            </div>
           </div>
         <% end %>
       </div>

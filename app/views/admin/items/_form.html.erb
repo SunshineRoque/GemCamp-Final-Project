@@ -43,6 +43,18 @@
             <%= form.label 'Status' %>
             <%= form.select :status, options_for_select(Item.statuses.keys.map { |status| [status.humanize, status] }) %>
           </div>
+          <div class="field">
+            <%= form.label 'Online At' %>
+            <%= form.date_field :online_at, value: params[:online_at], class: 'form-control' %>
+          </div>
+          <div class="field">
+            <%= form.label 'Offline At' %>
+            <%= form.date_field :offline_at, value: params[:offline_at], class: 'form-control' %>
+          </div>
+          <div class="field">
+            <%= form.label 'Start At' %>
+            <%= form.date_field :start_at, value: params[:start_at], class: 'form-control' %>
+          </div>
           <div>
             <%= form.file_field :image %>
           </div>
