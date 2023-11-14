@@ -7,12 +7,12 @@
     <div class="row">
       <h1 style='text-decoration: none;'>ITEMS <%= link_to '+', class: 'btn btn-primary' %></h1>
       <div class="container">
-        <%= form_with model: @item, url: admin_items_path do |form| %>
-          <% if @item.errors.any? %>
+        <%= form_with model: item, url: url, local: true do |form| %>
+          <% if item.errors.any? %>
             <div id="error_explanation">
-              <h2><%= pluralize(@item.errors.count, "error") %> prohibited this address from being saved:</h2>
+              <h2><%= pluralize(item.errors.count, "error") %> prohibited this address from being saved:</h2>
               <ul>
-                <% @item.errors.full_messages.each do |msg| %>
+                <% item.errors.full_messages.each do |msg| %>
                   <li><%= msg %></li>
                 <% end %>
               </ul>
