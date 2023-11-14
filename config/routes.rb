@@ -10,7 +10,14 @@ Rails.application.routes.draw do
   constraints(AdminDomainConstraint.new) do
     namespace :admin do
       root "home#index"
-      resources :items, except: :show
+      resources :items, except: :show do
+        member do
+          post 'start'
+          post 'pause'
+          post 'end'
+          post 'cancel'
+        end
+      end
       resources :categories, except: :show
     end
 
@@ -23,7 +30,7 @@ Rails.application.routes.draw do
     namespace :client do
       root "home#index"
       resources :me, only: [:index]
-      resources :invite, only: [:index], constraints: { }
+      resources :invite, only: [:index], constraints: {}
       resources :addresses
     end
 
@@ -33,7 +40,7 @@ Rails.application.routes.draw do
     }
   end
 
-  resources :menu , only: :index
+  resources :menu, only: :index
 
   namespace :api do
     namespace :v1 do
