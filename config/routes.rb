@@ -32,6 +32,7 @@ Rails.application.routes.draw do
       resources :me, only: [:index]
       resources :invite, only: [:index], constraints: {}
       resources :addresses
+      resources :lottery, only: [:index]
     end
 
     devise_for :users, as: :client, path: 'client', controllers: {
