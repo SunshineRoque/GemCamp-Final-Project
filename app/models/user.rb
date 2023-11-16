@@ -14,6 +14,7 @@ class User < ApplicationRecord
   belongs_to :parent, class_name: 'User', optional: true, counter_cache: :children_members
   has_many :users, class_name: 'User', foreign_key: 'parent_id'
   has_many :addresses
+  has_many :tickets
 
   validate :validate_address_limit, on: :create
 

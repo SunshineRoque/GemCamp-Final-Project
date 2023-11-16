@@ -35,8 +35,11 @@ class Admin::ItemsController < ApplicationController
   end
 
   def destroy
-    @item.destroy
-    flash[:notice] = 'Item destroyed successfully'
+    if @item.destroy
+      flash[:notice] = 'Item destroyed successfully'
+    else
+      flash[:alert] = 'Cannot delete record of Item because it has Ticket records'
+    end
     redirect_to admin_items_path
   end
 

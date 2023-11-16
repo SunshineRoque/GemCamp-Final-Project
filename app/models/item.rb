@@ -8,15 +8,10 @@ class Item < ApplicationRecord
   enum status: { active: 0, inactive: 1 }
   mount_uploader :image, ImageUploader
 
-  def destroy
-    update(deleted_at: Time.current)
-  end
-
   has_many :item_category_ships, dependent: :restrict_with_error
   has_many :categories, through: :item_category_ships
-
+  has_many :tickets, dependent: :restrict_with_error
   include AASM
-
   aasm column: :state do
     state :pending, initial: true
     state :starting, :paused, :ended, :cancelled
@@ -35,8 +30,12 @@ class Item < ApplicationRecord
     end
 
     event :cancel do
-      transitions from: [:starting, :paused], to: :cancelled
+      transitions from: [:starting, :paused], to: :cancelled, after: :cancel_tickets
     end
+  end
+
+  def cancel_tickets
+    tickets.update_all(state: 'cancelled') if tickets.present?
   end
 
   private
