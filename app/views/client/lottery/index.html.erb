@@ -15,7 +15,7 @@
             <div class="col-1 d-flex justify-content-center">
               <div id="mySidenav" class="sidenav">
                 <div class="row">
-                  <% if @client_user_signed %>
+                  <% if @user %>
                     <div class="row">
                       <div class="col-11">
                         <%= render 'client/partial/left_side' %>
@@ -123,11 +123,13 @@
           <% @items.where("online_at < ? AND offline_at > ? AND status = ? AND state = ?", Time.current, Time.current, 'active', 'starting').each_slice(2) do |items_batch| %>
             <div class="row">
               <% items_batch.each do |item| %>
-                <div class="col-md-6" >
-                  <div class="border border-black" style="height:300px; border-radius: 0%; margin: 10px; padding: 20px;">
-                    <p style="margin-bottom: 10px; font-weight: bold;">Name: <%= item.name %></p>
-                    <%= image_tag item.image.url, style: "width: auto; height: 200px; object-fit: cover;" if item.image.present? %>
-                  </div>
+                <div class="col-md-6">
+                  <%= link_to client_lottery_path(item), class: 'text-decoration-none text-dark' do %>
+                    <div class="border border-black" style="height:300px; border-radius: 0%; margin: 10px; padding: 20px;">
+                      <p style="margin-bottom: 10px; font-weight: bold;">Name: <%= item.name %></p>
+                      <%= image_tag item.image.url, style: "width: auto; height: 200px; object-fit: cover;" if item.image.present? %>
+                    </div>
+                  <% end %>
                 </div>
               <% end %>
             </div>
