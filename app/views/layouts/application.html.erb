@@ -8,15 +8,16 @@
 
   <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
   <%= javascript_include_tag "application", "data-turbo-track": "reload", defer: true %>
+  <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
   <style>
-      .sidenav{
+      .sidenav {
           height: 100%;
           width: 0%;
           position: fixed;
           z-index: 1;
           top: 0;
           left: 0;
-          background-color: #f8f9fa!important;
+          background-color: #f8f9fa !important;
           overflow-x: hidden;
           transition: 0.5s;
           padding-top: 60px;
@@ -125,8 +126,14 @@
           top: 21px;
           left: 8px;
       }
-      button {border:none !important;}
-      button:focus{outline: none;}
+
+      button {
+          border: none !important;
+      }
+
+      button:focus {
+          outline: none;
+      }
 
       .center {
           left: 50%;
@@ -135,6 +142,7 @@
           text-align: center;
           vertical-align: middle;
       }
+
       .carousel {
           height: 300px;
       }
@@ -181,12 +189,37 @@
         if (width === "0px" || width == "") {
             document.getElementById("mySidenav").style.width = "50vw";
             $('.animated-icon').toggleClass('open');
-        }
-        else {
+        } else {
             document.getElementById("mySidenav").style.width = "0px";
             $('.animated-icon').toggleClass('open');
         }
     }
+
+
+    $(document).ready(function () {
+        $('#decrementQuantity').on('click', function () {
+            decrementQuantity();
+        });
+
+        $('#incrementQuantity').on('click', function () {
+            incrementQuantity();
+        });
+
+        function incrementQuantity() {
+            var quantityField = $('#ticket_quantity');
+            var currentValue = parseInt(quantityField.val());
+            quantityField.val(currentValue + 1);
+        }
+
+        function decrementQuantity() {
+            var quantityField = $('#ticket_quantity');
+            var currentValue = parseInt(quantityField.val());
+            if (currentValue > 0) {
+                quantityField.val(currentValue - 1);
+            }
+        }
+    });
+
 </script>
 </body>
 </html>

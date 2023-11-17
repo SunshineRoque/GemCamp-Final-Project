@@ -1,4 +1,5 @@
 class Ticket < ApplicationRecord
+  validates :coins, presence: true
   belongs_to :item
   belongs_to :user, optional: true
   before_create :check_item_state
@@ -31,7 +32,7 @@ class Ticket < ApplicationRecord
 
   def subtract_coin
     user = User.find(user_id)
-    if user.coins >= 1
+    if user.coins > 0
       user.update(coins: user.coins - 1)
     else
       errors.add(:base, "Not enough coins to create a ticket")

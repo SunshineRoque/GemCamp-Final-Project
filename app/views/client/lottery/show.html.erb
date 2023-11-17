@@ -1,3 +1,14 @@
+<% if @ticket&.errors&.any? %>
+  <div id="error_explanation">
+    <h2><%= pluralize(@ticket.errors.count, "error") %></h2>
+    <ul>
+      <% @ticket.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+    </ul>
+  </div>
+<% end %>
+
 <div class="container-fluid border border-black">
   <div class="row">
     <div class="col-2 border border-black"></div>
@@ -48,8 +59,10 @@
   </div>
 
   <div class="row mb-2"></div>
+
   <div class="row">
     <div class="col-2"></div>
+
     <div class="col-8">
       <div class="row mt-4">
         <div class="col-md-8 mx-auto">
@@ -58,52 +71,77 @@
             <div class="card-body">
               <p class="card-text"><%= @item.name %></p>
               <div class="progress">
+                <% progress_percentage = [@progress_percentage, 100].min %> <!-- Ensure it doesn't exceed 100% -->
+                <% progress_percentage = progress_percentage.to_i %> <!-- Remove decimal points -->
                 <div class="progress-bar progress-bar-striped progress-bar-animated" role="progressbar"
-                     aria-valuenow="61" aria-valuemin="0" aria-valuemax="100" style="width:61%">
-                  61%
+                     aria-valuenow="<%= progress_percentage %>" aria-valuemin="0" aria-valuemax="100" style="width: <%= progress_percentage.to_s + '%' %>;">
+                  <%= progress_percentage.to_s + '%' %>
                 </div>
               </div>
             </div>
           </div>
         </div>
       </div>
-      <div class="row mt-4">
-        <div class="col-md-8 mx-auto">
-          <div class="container border border-gray">
-            <div class="row">
-              <div class="col border border-gray" style="background-color: lightgray; text-align: center; align-items: center; justify-content: center;">-</div>
-              <div class="col-8 border border-gray" style="text-align: center; align-items: center; justify-content: center;">0</div>
-              <div class="col border border-gray" style="background-color: lightgray; text-align: center; align-items: center; justify-content: center;">+</div>
+      <%= form_with model: @ticket, url: client_lottery_index_path, method: :post, data: { turbo: false } do |form| %>
+        <div class="row mt-4">
+          <div class="col-md-8 mx-auto">
+            <div class="container border border-gray">
+              <div class="row">
+                <div class="col border border-gray" style="background-color: lightgray; text-align: center; width:100%; height:100%; align-items: center; justify-content: center;">
+                  <button type="button" id="decrementQuantity" class="btn btn-secondary" style="background-color: lightgray; border:none; width:100%; height:100%; text-align:center; color:black;">-</button>
+                </div>
+                <div class="col-8 border border-gray" style="text-align: center; align-items: center; justify-content: center;">
+                  <%= form.number_field :quantity, value: 0, min: 0, style: "border:none; width:100%; height:100%; text-align:center; color:black;", id: "ticket_quantity" %>
+                  <%= form.hidden_field :item_id, value: @item.id %>
+                </div>
+                <div class="col border border-gray" style="background-color: lightgray; text-align: center; width:100%; height:100%; align-items: center; justify-content: center;">
+                  <button type="button" id="incrementQuantity" class="btn btn-secondary" style="background-color: lightgray; border:none; width:100%; height:100%; text-align:center; color:black;">+</button>
+                </div>
+              </div>
             </div>
           </div>
         </div>
-      </div>
-      <div class="row mt-4">
-        <div class="col-md-8 mx-auto">
-          <div class="container border border-gray">
-            <div class="row">
-              <div class="col" style="background-color: blue; text-align: center; align-items: center; justify-content: center; color:white;">Submit</div>
+
+        <div class="row mt-4">
+          <div class="col-md-8 mx-auto">
+            <div class="container border border-gray">
+              <div class="row">
+                <div class="col" style="padding: 0; text-align: center; align-items: center; justify-content: center; color:white;">
+                  <%= form.submit "Submit", style: "border:none; width:100%; height:100%; background-color: blue; text-align: center; align-items: center; justify-content: center; color:white;" %>
+                </div>
+              </div>
             </div>
           </div>
         </div>
-      </div>
+      <% end %>
       <div class="row mt-4">
         <div class="col-md-8 mx-auto">
           <div class="card w-100">
             <div class="card-body">
-              <h5 class="card-title">Serial Number</h5>
-              <ul class="list-group list-group-flush">
-                <li class="list-group-item border">*******</li>
-              </ul>
+              <h5 class="card-title">Serial Numbers</h5>
+              <% if current_client_user %>
+                <ul class="list-group list-group-flush">
+                  <% current_user_tickets = Ticket.where(user_id: current_client_user.id, item_id: @item.id, batch_count: @item.batch_count) %>
+                  <% current_user_tickets.each do |ticket| %>
+                    <li class="list-group-item border d-flex justify-content-between align-items-center">
+                      <%= ticket.serial_number %>
+                      <% if ticket.cancelled? %>
+                        <span class="badge bg-danger">Cancelled</span>
+                      <% end %>
+                    </li>
+                  <% end %>
+                </ul>
+              <% end %>
             </div>
           </div>
         </div>
       </div>
     </div>
   </div>
-  <div class="row mb-2"></div>
-  <div class="row mb-4"></div>
-
-  <%= render 'client/partial/application_down' %>
 </div>
 
+<div class="row mb-2"></div>
+<div class="row mb-4"></div>
+
+<%= render 'client/partial/application_down' %>
+</div>
