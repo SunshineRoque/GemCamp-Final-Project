@@ -5,7 +5,9 @@
   </div>
   <div class="col-10">
     <div class="row">
-      <h1>Ticket List </h1>
+      <p></p>
+      <h3 class="container" style="background-color: #8bb9fe; text-align: center; align-items: center; justify-content: center">TICKET LIST</h3>
+      <p></p>
     </div>
     <div class="row">
       <div class="container border border-black p-4">
@@ -50,9 +52,12 @@
                 <div class="d-flex h-100">
                   <div class="card w-100">
                     <div class="card-body">
-                      <h5 class="card-title">Ticket Information</h5>
+                      <h5>
+                        <div class="card-footer text-muted">
+                          <p class="card-text"><strong>ITEM: </strong><%= ticket.item&.name %></p>
+                        </div>
+                      </h5>
                       <ul class="list-group list-group-flush">
-                        <li class="list-group-item"><strong>Item:</strong> <%= ticket.item&.name %></li>
                         <li class="list-group-item"><strong>Client Email:</strong> <%= ticket.user&.email %></li>
                         <li class="list-group-item"><strong>Batch Count:</strong> <%= ticket.batch_count %></li>
                         <li class="list-group-item"><strong>Coins:</strong> <%= ticket.coins %></li>
@@ -74,4 +79,4 @@
     </div>
   </div>
 </div>
-<%= render 'admin/partial/extra' %>
+<div class="row border border-black"></div>

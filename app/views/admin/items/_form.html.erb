@@ -9,8 +9,8 @@
       <div class="container">
         <%= form_with model: item, url: url, local: true do |form| %>
           <% if item.errors.any? %>
-            <div id="error_explanation">
-              <h2><%= pluralize(item.errors.count, "error") %></h2>
+            <div id="error_explanation" class="alert alert-danger">
+              <h2><%= pluralize(item.errors.count, "error") %> prohibited this item from being saved:</h2>
               <ul>
                 <% item.errors.full_messages.each do |msg| %>
                   <li><%= msg %></li>
@@ -43,6 +43,8 @@
             <%= form.label 'Status' %>
             <%= form.select :status, options_for_select(Item.statuses.keys.map { |status| [status.humanize, status] }) %>
           </div>
+          <p></p>
+          <p></p>
           <div class="field">
             <%= form.label 'Online At' %>
             <%= form.date_field :online_at, value: params[:online_at], class: 'form-control' %>
@@ -55,16 +57,31 @@
             <%= form.label 'Start At' %>
             <%= form.date_field :start_at, value: params[:start_at], class: 'form-control' %>
           </div>
+          <p></p>
+          <p></p>
           <div>
             <%= form.file_field :image %>
           </div>
-          <div>
-            <%= form.collection_check_boxes :category_ids, Category.all, :id, :name %>
+          <p></p>
+          <p></p>
+          <div class="form-group">
+            <%= form.collection_check_boxes :category_ids, Category.all, :id, :name do |category| %>
+              <div class="form-check form-check-inline">
+                <%= category.check_box(class: 'form-check-input') %>
+                <%= category.label(class: 'form-check-label mx-2') %>
+              </div>
+            <% end %>
           </div>
-          <div><%= form.submit class: 'btn btn-primary' %></div>
+          <p></p>
+          <p></p>
+          <div style="margin-bottom: 10px;">
+            <%= form.submit class: 'btn btn-primary' %>
+            <%= link_to 'Back', admin_items_path, class: "btn btn-primary", 'aria-current': 'page', style: 'background-color: lightblue; border: none;' %>
+          </div>
         <% end %>
       </div>
     </div>
   </div>
 </div>
-<%= render 'admin/partial/extra' %>
+<div class="row border border-black"></div>
+

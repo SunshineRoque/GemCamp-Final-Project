@@ -174,12 +174,22 @@
 </head>
 
 <body>
-<% if flash[:notice] %>
-  <p class="notice"><%= flash[:notice] %></p>
-<% end %>
-<% if flash[:alert] %>
-  <p class="alert"><%= flash[:alert] %></p>
-<% end %>
+
+  <div class="d-flex justify-content-center align-items-center vh-70">
+
+    <% if flash[:notice] %>
+      <div class="alert alert-success" role="alert">
+        <%= flash[:notice] %>
+      </div>
+    <% end %>
+
+    <% if flash[:alert] %>
+      <div class="alert alert-danger d-flex justify-content-center align-items-center vh-70" role="alert">
+        <%= flash[:alert] %>
+      </div>
+    <% end %>
+  </div>
+
 
 <%= yield %>
 

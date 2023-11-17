@@ -5,18 +5,38 @@
   </div>
   <div class="col-10">
     <div class="row">
-      <h1 style='text-decoration: none;'>Categories: <p><%= link_to '+', new_admin_category_path %></p></h1>
+      <h1 style='text-decoration: none;'>CATEGORIES <%= link_to '+', new_admin_category_path, class: 'btn btn-primary' %></h1>
       <div class="container">
-        <% @categories.each do |category| %>
-          <div class="row border border-black">
-           <p><h1>Category</h1></p>
-            <p><%= category.name %></p>
-            <p><%= link_to :edit, edit_admin_category_path(category) %></p>
-            <p><%= button_to :delete, admin_category_path(category), method: :delete %></p>
+        <% @categories.each_slice(3) do |category_group| %>
+          <div class="row mb-3">
+            <% category_group.each do |category| %>
+              <div class="col-md-4">
+                <div class="card h-100">
+                  <div class="card-body">
+                    <h5>
+                      <div class="card-footer text-muted">
+                        <p class="card-text"><%= category.name %></p>
+                      </div>
+                    </h5>
+
+                    <td class="button">
+                      <div class="btn-group" role="group">
+                        <div class="row">
+                          <div class="col-1"></div>
+                          <div class="col"><%= link_to 'Edit', edit_admin_category_path(category), class: 'btn btn-warning', style:'width:80px;' %></div>
+                          <div class="col"><%= button_to 'Delete', admin_category_path(category), method: :delete, class: 'btn btn-danger', style:'width:80px;' %></div>
+                          <div class="col-1"></div>
+                        </div>
+                      </div>
+                    </td>
+                  </div>
+                </div>
+              </div>
+            <% end %>
           </div>
         <% end %>
       </div>
     </div>
   </div>
 </div>
-<%= render 'admin/partial/extra' %>
+<div class="row border border-black"></div>

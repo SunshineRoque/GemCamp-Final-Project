@@ -5,35 +5,52 @@
   </div>
   <div class="col-10">
     <div class="row">
+      <p></p>
       <h5>Hi, Admin: <%= @admin_user.email %></h5>
+      <p></p>
+      <h3 class="container" style="background-color: #8bb9fe; text-align: center; align-items: center; justify-content: center">USER LIST</h3>
+      <p></p>
     </div>
+
     <div class="row">
       <% @client_users.each do |client_user| %>
-        <div class="container" style="border:1px solid black;">
-          <p>Client: <%= client_user.email %>
-            <% if client_user.parent&.email.present? %>
-              was invited by <%= client_user.parent&.email %>
-            <% end %></p>
-          <p>Total Deposit = ₱ <%= client_user.total_deposit %>
-          <div class="container" style="border:1px solid black;">
-            <% if client_user.users.present? %>
-              <p>Member's Total Deposit = ₱<%= client_user.users.sum(&:total_deposit) %></p>
-              <ul>
-                <% client_user.users&.each do |child| %>
-                  <li><%= child.email %> = ₱<%= child.total_deposit %></li>
-                <% end %>
-              </ul>
-            <% else %>
-              <li>No Members</li>
-            <% end %></div>
-          </p>
-          <p>Coins = ₱ <%= client_user.coins %></p>
-          <p>Total Used Coins = </p>
-          <div> Phone Number: <%= client_user.phone %></div>
+        <div class="col-6 mb-4">
+          <div class="card" style="height: 100%; width: 100%;">
+            <div class="card-body">
+              <h5><div class="card-footer text-muted">
+                <p class="card-text"><%= client_user.email %></p>
+              </div></h5>
+
+              <% if client_user.parent&.email.present? %>
+                <p class="card-text">Invited by: <%= client_user.parent&.email %></p>
+              <% end %>
+
+              <p class="card-text">Total Deposit = ₱ <%= client_user.total_deposit %></p>
+
+              <div class="card">
+                <div class="card-body">
+                  <% if client_user.users.present? %>
+                    <p class="card-text">Member's Total Deposit = ₱<%= client_user.users.sum(&:total_deposit) %></p>
+                    <ul class="list-group list-group-flush">
+                      <% client_user.users&.each do |child| %>
+                        <li class="list-group-item"><%= child.email %> = ₱<%= child.total_deposit %></li>
+                      <% end %>
+                    </ul>
+                  <% else %>
+                    <p class="card-text">No Members</p>
+                  <% end %>
+                </div>
+              </div>
+
+              <p class="card-text">Coins = ₱ <%= client_user.coins %></p>
+              <p class="card-text">Total Used Coins = </p>
+              <p class="card-text">Phone Number: <%= client_user.phone %></p>
+            </div>
+          </div>
         </div>
       <% end %>
     </div>
   </div>
+  </div>
 </div>
-<%= render 'admin/partial/extra' %>
-
+<div class="row border border-black"></div>

@@ -5,7 +5,10 @@
   </div>
   <div class="col-10">
     <div class="row">
-      <h1>Winner's List </h1>
+      <p></p>
+      <h3 class="container" style="background-color: #8bb9fe; text-align: center; align-items: center; justify-content: center">WINNER
+        LIST</h3>
+      <p></p>
     </div>
     <div class="row">
       <div class="container border border-black p-4">
@@ -46,48 +49,60 @@
                 <div class="d-flex h-100">
                   <div class="card w-100">
                     <div class="card-body">
-                      <h5 class="card-title">Winner Information</h5>
+                      <h5>
+                        <div class="card-footer text-muted">
+                          <p class="card-text"><strong>Winner Information</strong></p>
+                        </div>
+                      </h5>
                       <ul class="list-group list-group-flush">
                         <li class="list-group-item"><strong>Admin Name:</strong> <%= winner.admin&.name %></li>
                         <li class="list-group-item"><strong>Item:</strong> <%= winner.item&.name %></li>
                         <li class="list-group-item"><strong>Winner's Email:</strong> <%= winner.user&.email %></li>
                         <% if winner.user.present? && winner.user&.addresses&.present? %>
-                          <li class="list-group-item"><p><strong>Address:</strong> <%= winner.user&.addresses&.full_addresses %></p></li>
+                          <li class="list-group-item">
+                            <p><strong>Address:</strong> <%= winner.user&.addresses&.full_addresses %></p></li>
                         <% else %>
                           <li class="list-group-item"><p><strong>Address:</strong> N/A</p></li>
                         <% end %>
                         <li class="list-group-item"><strong>Batch Count:</strong> <%= winner.item&.batch_count %></li>
-                        <li class="list-group-item"><strong>Ticket's Serial Number:</strong> <%= winner.ticket&.serial_number %></li>
+                        <li class="list-group-item">
+                          <strong>Ticket's Serial Number:</strong> <%= winner.ticket&.serial_number %></li>
                         <li class="list-group-item"><strong>Price:</strong> <%= winner.price %></li>
                         <li class="list-group-item"><strong>Comment:</strong> <%= winner.comment %></li>
                         <div class="container border border-black">
-                          <p>State: <%= winner.state %></p>
-                          <% if winner.may_claim? %>
-                            <%= button_to 'Claim', claim_admin_winner_path(id: winner), method: :post, class: 'btn btn-primary' %>
-                          <% end %>
-                          <% if winner.may_submit? %>
-                            <%= button_to 'Submit', submit_admin_winner_path(id: winner), method: :post, class: 'btn btn-warning' %>
-                          <% end %>
-                          <% if winner.may_pay? %>
-                            <%= button_to 'Pay', pay_admin_winner_path(id: winner), method: :post, class: 'btn btn-success' %>
-                          <% end %>
-                          <% if winner.may_ship? %>
-                            <%= button_to 'Ship', ship_admin_winner_path(id: winner), method: :post, class: 'btn btn-danger' %>
-                          <% end %>
-                          <% if winner.may_deliver? %>
-                            <%= button_to 'Deliver', deliver_admin_winner_path(id: winner), method: :post, class: 'btn btn-danger' %>
-                          <% end %>
-                          <% if winner.may_share? %>
-                            <%= button_to 'Share', share_admin_winner_path(id: winner), method: :post, class: 'btn btn-danger' %>
-                          <% end %>
-                          <% if winner.may_publish? %>
-                            <%= button_to 'Publish', publish_admin_winner_path(id: winner), method: :post, class: 'btn btn-danger' %>
-                          <% end %>
-                          <% if winner.may_remove_publish? %>
-                            <%= button_to 'Remove Publish', remove_publish_admin_winner_path(id: winner), method: :post, class: 'btn btn-danger' %>
-                          <% end %>
+                          <p></p>
+                          <div class="card-footer text-muted">
+                            <p class="card-text">State: <%= winner.state %></p>
+                          </div>
+                          <div class="card-body">
+                            <div class="btn-group justify-content-center" role="group">
+                              <% if winner.may_claim? %>
+                                <%= button_to 'Claim', claim_admin_winner_path(id: winner), method: :post, class: 'btn btn-primary mr-2' %>
+                              <% end %>
+                              <% if winner.may_submit? %>
+                                <%= button_to 'Submit', submit_admin_winner_path(id: winner), method: :post, class: 'btn btn-warning mr-2' %>
+                              <% end %>
+                              <% if winner.may_pay? %>
+                                <%= button_to 'Pay', pay_admin_winner_path(id: winner), method: :post, class: 'btn btn-success mr-2' %>
+                              <% end %>
+                              <% if winner.may_ship? %>
+                                <%= button_to 'Ship', ship_admin_winner_path(id: winner), method: :post, class: 'btn btn-danger mr-2' %>
+                              <% end %>
+                              <% if winner.may_deliver? %>
+                                <%= button_to 'Deliver', deliver_admin_winner_path(id: winner), method: :post, class: 'btn btn-danger mr-2' %>
+                              <% end %>
+                              <% if winner.may_share? %>
+                                <%= button_to 'Share', share_admin_winner_path(id: winner), method: :post, class: 'btn btn-danger mr-2' %>
+                              <% end %>
+                              <% if winner.may_publish? %>
+                                <%= button_to 'Publish', publish_admin_winner_path(id: winner), method: :post, class: 'btn btn-danger mr-2' %>
+                              <% end %>
+                              <% if winner.may_remove_publish? %>
+                                <%= button_to 'Remove Publish', remove_publish_admin_winner_path(id: winner), method: :post, class: 'btn btn-danger mr-2' %>
+                              <% end %>
+                            </div>
+                          </div>
                         </div>
-                        </li>
                       </ul>
                     </div>
                   </div>
@@ -100,4 +115,4 @@
     </div>
   </div>
 </div>
-<%= render 'admin/partial/extra' %>
+<div class="row border border-black"></div>

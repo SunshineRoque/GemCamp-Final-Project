@@ -10,8 +10,13 @@
     </h2>
     <div id="flush-collapseTwo" class="accordion-collapse collapse" aria-labelledby="flush-headingTwo" data-bs-parent="#accordionFlushExample">
       <div class="accordion-body">
-        <%= link_to 'User List', admin_root_path, class: "nav-link #{'active' if action_name == 'user list' }", 'aria-current': 'page' %>
-        <%= link_to 'Item List', admin_items_path, class: "nav-link #{'active' if action_name == 'item list' }", 'aria-current': 'page' %>
+        <ul class="list-group list-group-flush">
+          <li class="list-group-item"><strong><%= link_to 'User List', admin_root_path, class: "nav-link", 'aria-current': 'page' %></strong></li>
+          <li class="list-group-item"><strong><%= link_to 'Item List', admin_items_path, class: "nav-link", 'aria-current': 'page' %></strong></li>
+          <li class="list-group-item"><strong><%= link_to 'Category List', admin_categories_path, class: "nav-link", 'aria-current': 'page' %></strong></li>
+          <li class="list-group-item"><strong><%= link_to 'Ticket List', admin_tickets_path, class: "nav-link", 'aria-current': 'page' %></strong></li>
+          <li class="list-group-item"><strong><%= link_to 'Winner List', admin_winners_path, class: "nav-link", 'aria-current': 'page' %></strong></li>
+        </ul>
       </div>
     </div>
   </div>

@@ -1,13 +1,42 @@
-<%= form_with model: category, url: path, data: { turbo: false } do |form| %>
-  <% if category.errors.any? %>
-    <ul>
-      <% category.errors.each do |error| %>
-        <li><%= error.full_message %></li>
-      <% end %>
-    </ul>
-  <% end %>
-  <%= form.label :name %>
-  <%= form.text_field :name %>
 
-  <%= form.submit %>
-<% end %>
+
+
+<%= render 'admin/partial/top_nav' %>
+<div class="row">
+  <div class="col-2  border border-black border-top-o">
+    <%= render 'admin/partial/left_nav' %>
+  </div>
+  <div class="col-10">
+    <div class="row">
+      <h1 style='text-decoration: none;'>CATEGORIES <%= link_to '+', new_admin_category_path, class: 'btn btn-primary' %></h1>
+      <div class="container">
+        <div class="row">
+          <div class="col-md-6">
+            <%= form_with model: category, url: path, data: { turbo: false } do |form| %>
+
+              <% if category.errors.any? %>
+                <div class="alert alert-danger mb-3">
+                  <ul class="mb-0">
+                    <% category.errors.full_messages.each do |message| %>
+                      <li><%= message %></li>
+                    <% end %>
+                  </ul>
+                </div>
+              <% end %>
+
+              <div class="mb-3">
+                <%= form.label :name, class: "form-label" %>
+                <%= form.text_field :name, class: "form-control", placeholder: "Enter category name" %>
+              </div>
+              <div style="margin-bottom: 10px;">
+                <%= form.submit "Submit", class: "btn btn-primary" %>
+                <%= link_to 'Back', admin_categories_path, class: "btn btn-primary", 'aria-current': 'page', style: 'background-color: lightblue; border: none;' %>
+              </div>
+            <% end %>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="row border border-black"></div>
