@@ -9,10 +9,11 @@ class Admin::Users::SessionsController < Devise::SessionsController
   def check_user_role
     user = User.find_by(email: params[:admin_user][:email])
 
-    if user && user.admin?
-      sign_in(user, scope: :user) # Manually sign in the user
+    if user && user.admin? && user.valid_password?(params[:admin_user][:password])
+      # Use Devise's sign_in method to sign in the user
+      sign_in(user, scope: :user)
     else
-      flash[:alert] = "This login is only for admin."
+      flash[:alert] = "Invalid email, password, or you are not an admin."
       redirect_to new_admin_user_session_path
     end
   end
