@@ -24,6 +24,18 @@ Rails.application.routes.draw do
           post 'cancel'
         end
       end
+      resources :winners, only: :index do
+        member do
+          post 'claim'
+          post 'submit'
+          post 'pay'
+          post 'ship'
+          post 'deliver'
+          post 'share'
+          post 'publish'
+          post 'remove_publish'
+        end
+      end
     end
 
     devise_for :users, as: :admin, path: 'admin', controllers: {

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_11_15_061555) do
+ActiveRecord::Schema[7.0].define(version: 2023_11_17_045939) do
   create_table "address_barangays", charset: "utf8mb4", force: :cascade do |t|
     t.bigint "city_id"
     t.string "code"
@@ -127,4 +127,26 @@ ActiveRecord::Schema[7.0].define(version: 2023_11_15_061555) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
+  create_table "winners", charset: "utf8mb4", force: :cascade do |t|
+    t.bigint "item_id"
+    t.bigint "ticket_id"
+    t.bigint "user_id"
+    t.bigint "addresses_id"
+    t.bigint "admin_id"
+    t.integer "item_batch_count"
+    t.string "state"
+    t.decimal "price", precision: 8, scale: 2, default: "0.0"
+    t.datetime "paid_at"
+    t.string "picture"
+    t.text "comment"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["addresses_id"], name: "index_winners_on_addresses_id"
+    t.index ["admin_id"], name: "index_winners_on_admin_id"
+    t.index ["item_id"], name: "index_winners_on_item_id"
+    t.index ["ticket_id"], name: "index_winners_on_ticket_id"
+    t.index ["user_id"], name: "index_winners_on_user_id"
+  end
+
+  add_foreign_key "winners", "users", column: "admin_id"
 end

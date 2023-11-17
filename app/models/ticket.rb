@@ -6,7 +6,7 @@ class Ticket < ApplicationRecord
   before_create :set_batch_count
   before_create :generate_serial_number
   after_create :subtract_coin
-
+  has_many :winners
 
 
   include AASM

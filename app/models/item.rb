@@ -7,7 +7,7 @@ class Item < ApplicationRecord
   validates :offline_at, presence: true
   enum status: { active: 0, inactive: 1 }
   mount_uploader :image, ImageUploader
-
+  has_many :winners
   has_many :item_category_ships, dependent: :restrict_with_error
   has_many :categories, through: :item_category_ships
   has_many :tickets, dependent: :restrict_with_error

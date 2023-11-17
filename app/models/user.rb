@@ -15,6 +15,7 @@ class User < ApplicationRecord
   has_many :users, class_name: 'User', foreign_key: 'parent_id'
   has_many :addresses
   has_many :tickets
+  has_many :winners
 
   validate :validate_address_limit, on: :create
 
