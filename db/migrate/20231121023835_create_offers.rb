@@ -5,7 +5,7 @@ class CreateOffers < ActiveRecord::Migration[7.0]
       t.string :name
       t.integer :status
       t.integer  :coin
-      t.decimal :amount, precision: 10, scale: 2
+      t.decimal :amount
       t.timestamps
     end
   end

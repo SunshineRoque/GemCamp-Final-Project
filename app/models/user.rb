@@ -16,6 +16,7 @@ class User < ApplicationRecord
   has_many :addresses
   has_many :tickets
   has_many :winners
+  has_many :orders
 
   validate :validate_address_limit, on: :create
 

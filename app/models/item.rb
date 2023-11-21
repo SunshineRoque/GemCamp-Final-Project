@@ -18,7 +18,7 @@ class Item < ApplicationRecord
 
     event :start do
       transitions from: [:pending, :ended, :cancelled], guard: :before_start, to: :starting, after: :after_start
-      transitions from: :paused, to: :starting, after: :after_start
+      transitions from: :paused, to: :starting
     end
 
     event :pause do
