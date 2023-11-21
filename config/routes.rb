@@ -36,6 +36,7 @@ Rails.application.routes.draw do
           post 'remove_publish'
         end
       end
+      resources :offers, except: :show
     end
 
     devise_for :users, as: :admin, path: 'admin', controllers: {

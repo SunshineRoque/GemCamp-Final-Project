@@ -9,11 +9,14 @@
       <div class="container">
         <div class="row">
           <% @items.each do |item| %>
-            <div class="col-6 mb-4">
-              <div class="card" style="width: 100%;">
-                <% if item.image.present? %>
-                  <%= image_tag item.image.url, class: 'card-img-top' %>
-                <% end %>
+            <div class="col-4 mb-4">
+              <div class="card h-100" style="width: 100%;">
+                <div class="image-container" style="margin: 5px; height: 200px; background-color: #eee;">
+                  <% if item.image.present? %>
+                    <%= image_tag item.image.url, class: 'card-img-top', style: 'height: 100%; width: 100%; object-fit: cover;' %>
+                  <% end %>
+                </div>
+                <p></p>
                 <td class="button">
                   <div class="btn-group" role="group">
                     <div class="row">
