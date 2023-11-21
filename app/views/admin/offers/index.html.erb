@@ -8,6 +8,18 @@
       <h1 style='text-decoration: none;'>OFFERS <%= link_to '+', new_admin_offer_path, class: 'btn btn-primary' %></h1>
       <div class="container">
         <div class="row">
+          <%= form_with(url: admin_offers_path, method: :get, class: 'mb-3') do |f| %>
+            <div class="row mb-3">
+              <div class="col-md-4">
+                <%= f.label :status, class: 'form-label' %>
+                <%= f.select :status, Offer.statuses.keys.map { |s| [s.humanize, s] }, { include_blank: true }, class: 'form-select' %>
+              </div>
+              <div class="col-md-4">
+                <p></p>
+                <%= f.submit 'Search', class: 'btn btn-primary' %>
+              </div>
+            </div>
+          <% end %>
           <% @offers.each do |offer| %>
             <div class="col-4 mb-4">
               <div class="card h-100" style="width: 100%;">

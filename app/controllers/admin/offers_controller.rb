@@ -5,6 +5,7 @@ class Admin::OffersController < ApplicationController
   def index
     @admin_user = current_admin_user
     @offers = Offer.all
+    @offers = @offers.where(status: params[:status]) if params[:status].present?
   end
 
   def new
