@@ -78,7 +78,10 @@ class Item < ApplicationRecord
 
   def update_other_tickets(winning_ticket)
     # Update other tickets in the current batch
-    tickets.where.not(id: winning_ticket.id).update_all(state: 'lost')
+    tickets
+      .where.not(id: winning_ticket.id)
+      .where(batch_count: winning_ticket.batch_count) # Add this condition
+      .update_all(state: 'lost')
   end
 
   def create_winner_record(winning_ticket)
