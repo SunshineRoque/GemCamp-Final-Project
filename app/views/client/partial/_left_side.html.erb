@@ -18,21 +18,21 @@
 <div class="row">
   <div class="col-1"></div>
 
-  <div class="col-11" style="text-align: left">Username: <%= @user.username %></div>
+  <div class="col-11" style="text-align: left">Username: <%= @user&.username if client_user_signed_in?%></div>
 </div>
 
 <div class="row mb-2"></div>
 
 <div class="row">
   <div class="col-1"></div>
-  <div class="col-11" style="text-align: left">Email: <%= @user.email %></div>
+  <div class="col-11" style="text-align: left">Email: <%= @user&.email if client_user_signed_in?%></div>
 </div>
 
 <div class="row mb-2"></div>
 
 <div class="row">
   <div class="col-1"></div>
-  <div class="col-11" style="text-align: left">Coins: <%= @user.coins %></div>
+  <div class="col-11" style="text-align: left">Coins: <%= @user&.coins if client_user_signed_in?%></div>
 </div>
 
 <div class="row mb-4"></div>
