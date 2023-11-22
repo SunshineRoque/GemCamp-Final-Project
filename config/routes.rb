@@ -37,6 +37,7 @@ Rails.application.routes.draw do
         end
       end
       resources :offers, except: :show
+      resources :orders, only: :index
     end
 
     devise_for :users, as: :admin, path: 'admin', controllers: {
