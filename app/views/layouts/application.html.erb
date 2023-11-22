@@ -9,6 +9,8 @@
   <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
   <%= javascript_include_tag "application", "data-turbo-track": "reload", defer: true %>
   <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
   <style>
       .sidenav {
           height: 100%;
@@ -228,6 +230,32 @@
                 quantityField.val(currentValue - 1);
             }
         }
+    });
+
+
+    document.querySelectorAll('.btn-primary').forEach(function(button) {
+        button.addEventListener('click', function() {
+            // Get the offer information from data attributes
+            var offerName = this.getAttribute('data-offer-name');
+            var offerAmount = this.getAttribute('data-offer-amount');
+            var offerCoins = this.getAttribute('data-offer-coins');
+            var offerImage = this.getAttribute('data-offer-image');
+
+            // Update the modal title with the offer name
+            document.getElementById('modalOfferName').innerText = offerName;
+
+            // Update the modal body with offer information
+            document.getElementById('modalOfferAmount').innerText = offerAmount;
+            document.getElementById('modalOfferCoins').innerText = offerCoins;
+            var modalOfferImage = document.getElementById('modalOfferImage');
+            if (offerImage) {
+                modalOfferImage.src = offerImage;
+                modalOfferImage.alt = offerName;
+                modalOfferImage.style.display = 'block'; // Show the image
+            } else {
+                modalOfferImage.style.display = 'none'; // Hide the image container
+            }
+        });
     });
 
 </script>

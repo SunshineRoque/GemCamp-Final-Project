@@ -1,13 +1,11 @@
 class Order < ApplicationRecord
-  validates :amount, presence: true
-  validates :coin, presence: true
   validates :coin, presence: true, if: :deposit_genre?
   validates :amount, presence: true, if: :deposit_genre?
   validates :amount, numericality: { greater_than: 0 }, if: -> { deposit_genre? && amount.present? }
   validates :offer, presence: true, if: :deposit_genre?
   belongs_to :offer, optional: true
   belongs_to :user
-  before_create :generate_serial_number
+  after_create :generate_serial_number
 
   enum genre: { deposit: 0, increase: 1, deduct: 2, bonus: 3, share: 4 }
 
@@ -40,37 +38,34 @@ class Order < ApplicationRecord
   def generate_serial_number
     number_count = format('%04d', user.orders.count + 1)
     date_prefix = Time.current.strftime('%y%m%d')
-    self.serial_number = "#{date_prefix}-#{id}-#{user_id}-#{number_count}"
+    update(serial_number: "#{date_prefix}-#{id}-#{user_id}-#{number_count}")
   end
 
   def increase_user_coins
-    user = User.find(user_id)
+    return unless user
     user.update(coins: user.coins + coin)
   end
 
   def decrease_user_coins
-    user = User.find(user_id)
+    return unless user
     user.update(coins: user.coins - coin)
   end
 
   def increase_user_total_deposit
-    user = User.find(user_id)
+    return unless user
     user.update(total_deposit: user.total_deposit + amount)
   end
 
   def decrease_user_total_deposit
-    user = User.find(user_id)
+    return unless user
     user.update(total_deposit: user.total_deposit - amount)
   end
 
   def enough_coins?
-    user = User.find(user_id)
-    if user.coin >= coin
-      true
-    else
-      errors.add(:base, 'User does not have enough coins.')
-      false
-    end
+    user = User.find_by(id: user_id)
+    return true if user&.coin >= coin
+    errors.add(:base, 'User does not have enough coins.')
+    false
   end
 
   def submitted_to_paid
@@ -96,4 +91,5 @@ class Order < ApplicationRecord
       decrease_user_total_deposit
     end
   end
+
 end

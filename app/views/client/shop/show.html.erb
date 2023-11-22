@@ -1,0 +1,114 @@
+<% if @order&.errors&.any? %>
+  <div id="error_explanation">
+    <h2><%= pluralize(@order.errors.count, "error") %></h2>
+    <ul>
+      <% @order.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+    </ul>
+  </div>
+<% end %>
+
+<div class="container-fluid border border-black">
+  <div class="row">
+    <div class="col-2 border border-black"></div>
+
+    <div class="col-1 border border-black d-inline-flex p-2 text-center align-items-center justify-content-center">
+      <%= link_to 'Logo', client_root_path, class: "nav-link #{'active' if action_name == 'logo'}", 'aria-current': 'page' %>
+    </div>
+
+    <div class="col-4 border border-black"></div>
+
+    <div class="col-3 border border-black">
+      <div class="row">
+        <div class="col-3 border border-black d-inline-flex p-2 text-center align-items-center justify-content-center">Coins</div>
+        <div class="col-3 border border-black d-inline-flex p-2 text-center align-items-center justify-content-center">Claim</div>
+        <div class="col-3 border border-black d-inline-flex p-2 text-center align-items-center justify-content-center">Language</div>
+
+        <div class="col-3 border border-black d-inline-flex p-2 text-center align-items-center justify-content-center">
+          <div class="row">
+            <div class="col-1 d-flex justify-content-center">
+              <div id="mySidenav" class="sidenav">
+                <div class="row">
+                  <% if @user %>
+                    <div class="row">
+                      <div class="col-11">
+                        <%= render 'client/partial/left_side' %>
+                      </div>
+                      <div class="col-1">
+                        <%= render 'client/partial/right_side' %>
+                      </div>
+                    </div>
+                  <% else %>
+                    <h4><%= link_to 'Sign In', client_user_session_path, class: "nav-link", 'aria-current': 'page' %></h4>
+                  <% end %>
+                </div>
+              </div>
+            </div>
+          </div>
+          <nav class="navbar navbar-light bg-light" style="box-shadow: 0px 0px 8px #888888;">
+            <button class="navbar-toggler hamburger-button" type="button" data-toggle="collapse" aria-expanded="false" aria-label="Toggle navigation" onclick="Nav()" style="z-index: 2">
+              <div class="animated-icon"><span></span><span></span><span></span></div>
+            </button>
+          </nav>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-2 border border-black"></div>
+  </div>
+
+  <div class="row mb-2"></div>
+
+  <div class="row">
+    <div class="col-2"></div>
+
+    <div class="col-8">
+      <div class="row mt-4">
+        <div class="col-md-8 mx-auto">
+          <div class="card" style="width: 100%;">
+            <img class="card-img-top img-fluid" src="<%= @offer.image.url %>" alt="Item Image">
+            <div class="card-body">
+              <p class="card-text"><%= @offer.name %></p>
+              <p class="card-text">Amount: <%= @offer.amount %></p>
+              <p class="card-text">Coin: <%= @offer.coin %></p>
+              <p class="card-text">id: <%= @offer.id %></p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <%= form_with model: @order, url: client_shop_index_path, method: :post, data: { turbo: false } do |form| %>
+        <div class="row mt-4">
+          <div class="col-md-8 mx-auto">
+            <div class="container border border-gray">
+              <div class="row">
+                <div class="col border border-gray" style="text-align: center; align-items: center; justify-content: center;">
+                  <%= form.hidden_field :offer_id, value: @offer.id %>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="row mt-4">
+          <div class="col-md-8 mx-auto">
+            <div class="container border border-gray">
+              <div class="row">
+                <div class="col" style="padding: 0; text-align: center; align-items: center; justify-content: center; color:white;">
+                  <%= form.submit "Buy", style: "border:none; width:100%; height:100%; background-color: blue; text-align: center; align-items: center; justify-content: center; color:white;" %>
+                  <p></p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</div>
+
+<div class="row mb-2"></div>
+<div class="row mb-4"></div>
+
+<%= render 'client/partial/application_down' %>
+</div>
