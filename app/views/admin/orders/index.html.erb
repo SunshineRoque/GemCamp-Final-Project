@@ -55,7 +55,22 @@
 
           <%= f.submit 'Search', class: 'btn btn-primary' %>
         <% end %>
+        <div class="container" style="background-color: skyblue; padding: 20px;">
+          <h2 class="mb-4">Order Summary</h2>
 
+          <div class="row">
+            <div class="col-md-6">
+              <p class="mb-2"><strong>Total Amount: </strong> <%= @total_amount %></p>
+              <p class="mb-2"><strong>Total Coins: </strong> <%= @total_coins %></p>
+            </div>
+
+            <div class="col-md-6">
+              <p class="mb-2"><strong>Subtotal Amount: </strong> <%= @sub_total_amount %></p>
+              <p class="mb-2"><strong>Subtotal Coin: </strong> <%= @sub_total_coin %></p>
+            </div>
+          </div>
+        </div>
+        <p></p>
         <% @orders.each_slice(4) do |order_slice| %>
           <div class="row mb-3">
             <% order_slice.each do |order| %>
@@ -90,6 +105,27 @@
             <% end %>
           </div>
         <% end %>
+        <nav aria-label="Page navigation">
+          <ul class="pagination justify-content-center">
+            <% if @orders.prev_page %>
+              <li class="page-item">
+                <%= link_to '« Prev', { page: @orders.prev_page }, class: 'page-link' %>
+              </li>
+            <% end %>
+
+            <% (1..@orders.total_pages).each do |page| %>
+              <li class="page-item <%= 'active' if page == @orders.current_page %>">
+                <%= link_to page, { page: page }, class: 'page-link' %>
+              </li>
+            <% end %>
+
+            <% if @orders.next_page %>
+              <li class="page-item">
+                <%= link_to 'Next »', { page: @orders.next_page }, class: 'page-link' %>
+              </li>
+            <% end %>
+          </ul>
+        </nav>
       </div>
     </div>
   </div>

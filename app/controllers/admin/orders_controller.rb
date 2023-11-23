@@ -3,10 +3,11 @@ class Admin::OrdersController < ApplicationController
   before_action :set_order, only: [:cancel, :pay]
 
   def index
+    @orders = Order.includes(:offer, :user).all
     @admin_user = current_admin_user
     @offers = Offer.all
     @client_users = User.where(role: "client")
-    @orders = Order.includes(:offer, :user).all
+
 
     @orders = @orders.where(users: { email: params[:email] }) if params[:email].present?
     @orders = @orders.where(serial_number: params[:serial_number]) if params[:serial_number].present?
@@ -21,6 +22,10 @@ class Admin::OrdersController < ApplicationController
       end_date = Date.parse(params[:end_date])
       @orders = @orders.where(created_at: start_date..end_date)
     end
+    @total_amount = @orders.sum(:amount)
+    @total_coins = @orders.sum(:coin)
+    @orders = @orders.page(params[:page]).per(8)
+    calculate_subtotal_for_current_page
   end
 
   def pay
@@ -37,5 +42,11 @@ class Admin::OrdersController < ApplicationController
 
   def set_order
     @order = Order.find(params[:id])
+  end
+
+  def calculate_subtotal_for_current_page
+    # Calculate subtotal for the current page
+    @sub_total_amount = @orders.sum(&:amount)
+    @sub_total_coin = @orders.sum(&:coin)
   end
 end
