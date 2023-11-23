@@ -62,13 +62,16 @@
                       <% current_user_orders = Order.where(user_id: current_client_user.id) %>
 
                       <% if current_user_orders.any? %>
-                        <p class="container" style="background-color: #8bb9fe">Number of Orders: <%= current_user_orders.count %></p>
+                        <p class="container" style="background-color: #8bb9fe">Number of
+                          Orders: <%= current_user_orders.count %></p>
                         <% current_user_orders.each do |order| %>
                           <div class="order-item" style="text-align: left;">
                             <p><strong>Serial Number:</strong> <%= order.serial_number %></p>
                             <p><strong>Amount:</strong> <%= order.amount %></p>
                             <p><strong>Coin:</strong> <%= order.coin %></p>
-                            <p><strong>State:</strong> <span style="color: <%= order.state == 'pending' ? 'green' : (order.state == 'submitted' ? 'blue' : 'red') %>;"><strong><%= order.state %></strong></span></p>
+                            <p><strong>State:</strong>
+                              <span style="color: <%= order.state == 'pending' ? 'green' : (order.state == 'submitted' ? 'blue' : 'red') %>;"><strong><%= order.state %></strong></span>
+                            </p>
                             <p><strong>Created At:</strong> <%= order.created_at.strftime("%m/%d/%Y - %I:%M %p") %></p>
                             <!-- Add any additional attributes you want to display -->
                             <hr> <!-- Add a horizontal line between orders for better separation -->
@@ -108,14 +111,17 @@
                       <% current_user_tickets = Ticket.where(user_id: current_client_user.id) %>
 
                       <% if current_user_tickets.any? %>
-                        <p class="container" style="background-color: #8bb9fe">Number of tickets: <%= current_user_tickets.count %></p>
+                        <p class="container" style="background-color: #8bb9fe">Number of
+                          tickets: <%= current_user_tickets.count %></p>
                         <% current_user_tickets.each do |ticket| %>
                           <div class="ticket-item" style="text-align: left;">
                             <p><strong>Item:</strong> <%= ticket.item&.name %></p>
                             <p><strong>Serial Number:</strong> <%= ticket.serial_number %></p>
                             <p><strong>Batch Count:</strong> <%= ticket.batch_count %></p>
                             <p><strong>Coins:</strong> <%= ticket.coins %></p>
-                            <p><strong>State:</strong> <span style="color: <%= ticket.state == 'pending' ? 'green' : (ticket.state == 'won' ? 'violet' : (ticket.state == 'lost' ? 'blue' : 'red')) %>;"><strong><%= ticket.state %></strong></span></p>
+                            <p><strong>State:</strong>
+                              <span style="color: <%= ticket.state == 'pending' ? 'green' : (ticket.state == 'won' ? 'violet' : (ticket.state == 'lost' ? 'blue' : 'red')) %>;"><strong><%= ticket.state %></strong></span>
+                            </p>
                             <p><strong>Created At:</strong> <%= ticket.created_at.strftime("%m/%d/%Y - %I:%M %p") %></p>
                             <hr> <!-- Add a horizontal line between tickets for better separation -->
                           </div>
@@ -153,14 +159,18 @@
                       <% current_user_winners = Winner.where(user_id: current_client_user.id) %>
 
                       <% if current_user_winners.any? %>
-                        <p class="container" style="background-color: #8bb9fe">Number of winnings: <%= current_user_winners.count %></p>
+                        <p class="container" style="background-color: #8bb9fe">Number of
+                          winnings: <%= current_user_winners.count %></p>
                         <% current_user_winners.each do |winner| %>
-                          <div class="winner-item" >
-                            <% if winner.item&.image.present? %>
-                              <%= image_tag winner.item&.image.url, class: 'card-img-top', style: 'height: 70%; width: 70%; object-fit: cover; text-align: center; align-items: center; justify-content: center' %>
-                            <% end %>
+                          <div class="winner-item">
+                            <div class="image-container" style="margin: 5px; <% if winner.item && winner.item.image.present? %>height: auto;<% else %>height: 300px;<% end %> background-color: #eee;">
+                              <% if winner.item && winner.item.image.present? %>
+                                <%= image_tag winner.item.image.url, class: 'card-img-top img-fluid', alt: 'Winner Image' %>
+                              <% end %>
+                            </div>
                             <p style="text-align: left;"><strong>Item:</strong> <%= winner.item&.name %></p>
-                            <p style="text-align: left;"><strong>Ticket Serial Number:</strong> <%= winner.ticket&.serial_number %></p>
+                            <p style="text-align: left;">
+                              <strong>Ticket Serial Number:</strong> <%= winner.ticket&.serial_number %></p>
                             <hr> <!-- Add a horizontal line between winners for better separation -->
                           </div>
                         <% end %>
@@ -177,7 +187,7 @@
             </div>
           </div>
 
-          <div class="col" style="margin: 5px;padding:0; text-align: center; align-items: center; justify-content: center">
+          <div class="col" style="margin: 5px; padding: 0; text-align: center; align-items: center; justify-content: center;">
             <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#invitationHistoryModal" style="width: 100%;">
               Invitation History
             </button>
@@ -197,13 +207,12 @@
                       <% current_user_children = current_client_user.users %>
 
                       <% if current_user_children.present? %>
-                        <p class="container" style="background-color: #8bb9fe">Number of invitations: <%= current_user_children.count %></p>
+                        <p class="container" style="background-color: #8bb9fe;">Number of invitations: <%= current_user_children.count %></p>
                         <% current_user_children.each do |child| %>
-
                           <div class="invitation-item" style="text-align: left;">
-                            <p> <%= child.email %></p>
-                            </div>
-                            <hr> <!-- Add a horizontal line between winners for better separation -->
+                            <p><%= child.email %></p>
+                          </div>
+                          <hr> <!-- Add a horizontal line between invitations for better separation -->
                         <% end %>
                       <% else %>
                         <p>No invitation history available.</p>
@@ -224,9 +233,6 @@
     </div>
     <div class="col-2"></div>
   </div>
-  <div class="row mb-4"></div>
-  <div class="row mb-4"></div>
-  <div class="row mb-4"></div>
   <div class="row mb-4"></div>
   <div class="row mb-4"></div>
   <div class="row mb-4"></div>

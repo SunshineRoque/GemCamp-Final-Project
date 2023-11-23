@@ -18,6 +18,7 @@ class Admin::WinnersController < ApplicationController
       end_date = Date.parse(params[:end_date])
       @winners = @winners.where(created_at: start_date..end_date)
     end
+    @winners = @winners.page(params[:page]).per(8)
   end
 
   def claim

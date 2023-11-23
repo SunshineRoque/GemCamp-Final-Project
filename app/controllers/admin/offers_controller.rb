@@ -6,6 +6,7 @@ class Admin::OffersController < ApplicationController
     @admin_user = current_admin_user
     @offers = Offer.all
     @offers = @offers.where(status: params[:status]) if params[:status].present?
+    @offers = @offers.page(params[:page]).per(6)
   end
 
   def new

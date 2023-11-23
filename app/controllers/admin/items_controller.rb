@@ -4,7 +4,7 @@ class Admin::ItemsController < ApplicationController
 
   def index
     @admin_user = current_admin_user
-    @items = Item.includes(:categories, :tickets).all
+    @items = Item.includes(:categories, :tickets).all.page(params[:page]).per(8)
   end
 
   def new

@@ -49,6 +49,27 @@
           </div>
         </div>
       <% end %>
+      <nav aria-label="Page navigation">
+        <ul class="pagination justify-content-center">
+          <% if @client_users.prev_page %>
+            <li class="page-item">
+              <%= link_to '« Prev', { page: @client_users.prev_page }, class: 'page-link' %>
+            </li>
+          <% end %>
+
+          <% (1..@client_users.total_pages).each do |page| %>
+            <li class="page-item <%= 'active' if page == @client_users.current_page %>">
+              <%= link_to page, { page: page }, class: 'page-link' %>
+            </li>
+          <% end %>
+
+          <% if @client_users.next_page %>
+            <li class="page-item">
+              <%= link_to 'Next »', { page: @client_users.next_page }, class: 'page-link' %>
+            </li>
+          <% end %>
+        </ul>
+      </nav>
     </div>
   </div>
   </div>

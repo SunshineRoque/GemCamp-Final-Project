@@ -67,7 +67,11 @@
       <div class="row mt-4">
         <div class="col-md-8 mx-auto">
           <div class="card" style="width: 100%;">
-            <img class="card-img-top img-fluid" src="<%= @item.image.url %>" alt="Item Image">
+            <div class="image-container" style="margin: 5px; <% if @item.image.present? %>height: auto;<% else %>height: 300px;<% end %> background-color: #eee;">
+              <% if @item.image.present? %>
+                <%= image_tag @item.image.url, class: 'card-img-top img-fluid', alt: 'Item Image' %>
+              <% end %>
+            </div>
             <div class="card-body">
               <p class="card-text"><%= @item.name %></p>
               <div class="progress">

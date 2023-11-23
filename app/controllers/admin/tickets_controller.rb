@@ -6,7 +6,7 @@ class Admin::TicketsController < ApplicationController
     @admin_user = current_admin_user
     @items = Item.all
     @client_users = User.where(role: "client")
-    @tickets = Ticket.includes(:item, :user).all
+    @tickets = Ticket.includes(:item, :user).all.page(params[:page]).per(8)
 
     @tickets = @tickets.where(users: { email: params[:email] }) if params[:email].present?
     @tickets = @tickets.where(items: { name: params[:name] }) if params[:name].present?
