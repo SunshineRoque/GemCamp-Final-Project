@@ -37,7 +37,12 @@ Rails.application.routes.draw do
         end
       end
       resources :offers, except: :show
-      resources :orders, only: :index
+      resources :orders, only: :index do
+        member do
+          post 'pay'
+          post 'cancel'
+        end
+      end
     end
 
     devise_for :users, as: :admin, path: 'admin', controllers: {

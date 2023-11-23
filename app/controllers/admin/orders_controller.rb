@@ -1,6 +1,6 @@
 class Admin::OrdersController < ApplicationController
   before_action :authenticate_admin_user!
-  # before_action :set_order, only: :cancel
+  before_action :set_order, only: [:cancel, :pay]
 
   def index
     @admin_user = current_admin_user
@@ -23,14 +23,19 @@ class Admin::OrdersController < ApplicationController
     end
   end
 
-  # def cancel
-  #   @order.cancel! if @order.may_cancel?
-  #   redirect_to admin_orders_path
-  # end
-  #
-  # private
-  #
-  # def set_order
-  #   @order = Order.find(params[:id])
-  # end
+  def pay
+    @order.pay! if @order.may_pay?
+    redirect_to admin_orders_path
+  end
+
+  def cancel
+    @order.cancel! if @order.may_cancel?
+    redirect_to admin_orders_path
+  end
+
+  private
+
+  def set_order
+    @order = Order.find(params[:id])
+  end
 end

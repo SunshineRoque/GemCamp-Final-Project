@@ -75,9 +75,13 @@
                         <li class="list-group-item"><strong>Serial Number:</strong> <%= order.serial_number %></li>
                         <li class="list-group-item"><strong>Genre:</strong> <%= order.genre %></li>
                         <li class="list-group-item"><strong>State:</strong> <%= order.state %></li>
-                        <%# if order.may_cancel? %>
-                        <%#= button_to 'Cancel', cancel_admin_order_path(id: order), method: :post, class: 'btn btn-danger' %>
-                        <%# end %>
+                        <p></p>
+                        <% if order.may_pay? %>
+                          <%= button_to 'Pay', pay_admin_order_path(id: order), method: :post, class: 'btn btn-danger' %>
+                        <% end %>
+                        <% if order.may_cancel? %>
+                          <%= button_to 'Cancel', cancel_admin_order_path(id: order), method: :post, class: 'btn btn-danger' %>
+                        <% end %>
                       </ul>
                     </div>
                   </div>
