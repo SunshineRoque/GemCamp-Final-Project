@@ -36,8 +36,194 @@
     </div>
     <div class="col-2"></div>
   </div>
-
   <div class="row mb-4"></div>
+  <div class="row mb-4">
+    <div class="col-2"></div>
+    <div class="col-8">
+      <div class="container">
+        <div class="row">
+          <div class="col" style="margin: 5px;padding:0; text-align: center; align-items: center; justify-content: center">
+            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#orderHistoryModal" style="width: 100%;">
+              Order History
+            </button>
+
+            <!-- Modal -->
+            <div class="modal fade" id="orderHistoryModal" tabindex="-1" role="dialog" aria-labelledby="orderHistoryModalTitle" aria-hidden="true">
+              <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                  <div class="modal-header">
+                    <h5 class="modal-title" id="modalOrderTitle">Order Details</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                      <span aria-hidden="true">&times;</span>
+                    </button>
+                  </div>
+                  <div class="modal-body" id="modalOrderBody">
+                    <% if current_client_user %>
+                      <% current_user_orders = Order.where(user_id: current_client_user.id) %>
+
+                      <% if current_user_orders.any? %>
+                        <p class="container" style="background-color: #8bb9fe">Number of Orders: <%= current_user_orders.count %></p>
+                        <% current_user_orders.each do |order| %>
+                          <div class="order-item" style="text-align: left;">
+                            <p><strong>Serial Number:</strong> <%= order.serial_number %></p>
+                            <p><strong>Amount:</strong> <%= order.amount %></p>
+                            <p><strong>Coin:</strong> <%= order.coin %></p>
+                            <p><strong>State:</strong> <span style="color: <%= order.state == 'pending' ? 'green' : (order.state == 'submitted' ? 'blue' : 'red') %>;"><strong><%= order.state %></strong></span></p>
+                            <p><strong>Created At:</strong> <%= order.created_at.strftime("%m/%d/%Y - %I:%M %p") %></p>
+                            <!-- Add any additional attributes you want to display -->
+                            <hr> <!-- Add a horizontal line between orders for better separation -->
+                          </div>
+                        <% end %>
+                      <% else %>
+                        <p>No order history available.</p>
+                      <% end %>
+
+                    <% end %>
+                  </div>
+                  <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="col" style="margin: 5px;padding:0; text-align: center; align-items: center; justify-content: center">
+            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#lotteryHistoryModal" style="width: 100%;">
+              Lottery History
+            </button>
+
+            <!-- Modal -->
+            <div class="modal fade" id="lotteryHistoryModal" tabindex="-1" role="dialog" aria-labelledby="lotteryHistoryModalTitle" aria-hidden="true">
+              <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                  <div class="modal-header">
+                    <h5 class="modal-title" id="modalLotteryTitle">Ticket Details</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                      <span aria-hidden="true">&times;</span>
+                    </button>
+                  </div>
+                  <div class="modal-body" id="modalLotteryBody">
+                    <% if current_client_user %>
+                      <% current_user_tickets = Ticket.where(user_id: current_client_user.id) %>
+
+                      <% if current_user_tickets.any? %>
+                        <p class="container" style="background-color: #8bb9fe">Number of tickets: <%= current_user_tickets.count %></p>
+                        <% current_user_tickets.each do |ticket| %>
+                          <div class="ticket-item" style="text-align: left;">
+                            <p><strong>Item:</strong> <%= ticket.item&.name %></p>
+                            <p><strong>Serial Number:</strong> <%= ticket.serial_number %></p>
+                            <p><strong>Batch Count:</strong> <%= ticket.batch_count %></p>
+                            <p><strong>Coins:</strong> <%= ticket.coins %></p>
+                            <p><strong>State:</strong> <span style="color: <%= ticket.state == 'pending' ? 'green' : (ticket.state == 'won' ? 'violet' : (ticket.state == 'lost' ? 'blue' : 'red')) %>;"><strong><%= ticket.state %></strong></span></p>
+                            <p><strong>Created At:</strong> <%= ticket.created_at.strftime("%m/%d/%Y - %I:%M %p") %></p>
+                            <hr> <!-- Add a horizontal line between tickets for better separation -->
+                          </div>
+                        <% end %>
+                      <% else %>
+                        <p>No ticket history available.</p>
+                      <% end %>
+                    <% end %>
+                  </div>
+                  <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="col" style="margin: 5px;padding:0; text-align: center; align-items: center; justify-content: center">
+            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#winningHistoryModal" style="width: 100%;">
+              Winning History
+            </button>
+
+            <!-- Modal -->
+            <div class="modal fade" id="winningHistoryModal" tabindex="-1" role="dialog" aria-labelledby="winningHistoryModalTitle" aria-hidden="true">
+              <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                  <div class="modal-header">
+                    <h5 class="modal-title" id="modalWinningTitle">Winning Details</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                      <span aria-hidden="true">&times;</span>
+                    </button>
+                  </div>
+                  <div class="modal-body" id="modalWinningBody">
+                    <% if current_client_user %>
+                      <% current_user_winners = Winner.where(user_id: current_client_user.id) %>
+
+                      <% if current_user_winners.any? %>
+                        <p class="container" style="background-color: #8bb9fe">Number of winnings: <%= current_user_winners.count %></p>
+                        <% current_user_winners.each do |winner| %>
+                          <div class="winner-item" >
+                            <% if winner.item&.image.present? %>
+                              <%= image_tag winner.item&.image.url, class: 'card-img-top', style: 'height: 70%; width: 70%; object-fit: cover; text-align: center; align-items: center; justify-content: center' %>
+                            <% end %>
+                            <p style="text-align: left;"><strong>Item:</strong> <%= winner.item&.name %></p>
+                            <p style="text-align: left;"><strong>Ticket Serial Number:</strong> <%= winner.ticket&.serial_number %></p>
+                            <hr> <!-- Add a horizontal line between winners for better separation -->
+                          </div>
+                        <% end %>
+                      <% else %>
+                        <p>No winning history available.</p>
+                      <% end %>
+                    <% end %>
+                  </div>
+                  <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="col" style="margin: 5px;padding:0; text-align: center; align-items: center; justify-content: center">
+            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#invitationHistoryModal" style="width: 100%;">
+              Invitation History
+            </button>
+
+            <!-- Modal -->
+            <div class="modal fade" id="invitationHistoryModal" tabindex="-1" role="dialog" aria-labelledby="invitationHistoryModalTitle" aria-hidden="true">
+              <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                  <div class="modal-header">
+                    <h5 class="modal-title" id="modalInvitationTitle">Invitation Details</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                      <span aria-hidden="true">&times;</span>
+                    </button>
+                  </div>
+                  <div class="modal-body" id="modalInvitationBody">
+                    <% if current_client_user %>
+                      <% current_user_children = current_client_user.users %>
+
+                      <% if current_user_children.present? %>
+                        <p class="container" style="background-color: #8bb9fe">Number of invitations: <%= current_user_children.count %></p>
+                        <% current_user_children.each do |child| %>
+
+                          <div class="invitation-item" style="text-align: left;">
+                            <p> <%= child.email %></p>
+                            </div>
+                            <hr> <!-- Add a horizontal line between winners for better separation -->
+                        <% end %>
+                      <% else %>
+                        <p>No invitation history available.</p>
+                      <% end %>
+                    <% end %>
+                  </div>
+                  <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="col"></div>
+        </div>
+      </div>
+    </div>
+    <div class="col-2"></div>
+  </div>
   <div class="row mb-4"></div>
   <div class="row mb-4"></div>
   <div class="row mb-4"></div>
@@ -56,9 +242,7 @@
   <%= render 'client/partial/application_down' %>
 </div>
 
-<!--  <div>-->
-<%#= image_tag @user.image.url if @user.image.present? %>
-<!--  </div>-->
+
 
 
 

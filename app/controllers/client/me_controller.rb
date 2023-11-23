@@ -5,6 +5,10 @@ class Client::MeController < ApplicationController
 
   def index
     @user = current_client_user
+    @orders = Order.includes(:offer, :user).all
+    @tickets = Ticket.includes(:item, :user).all
+    @winners = Winner.includes(:item, :ticket, :user).all
+    @client_users = User.where(role: "client")
   end
 
   def update
