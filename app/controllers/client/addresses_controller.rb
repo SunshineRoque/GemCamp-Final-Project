@@ -4,7 +4,7 @@ class Client::AddressesController < ApplicationController
 
   def index
     @user = current_client_user
-    @addresses = Address.includes(:user, :region, :province)
+    @addresses = Address.includes(:user, :region, :province).where(user: current_client_user)
   end
 
   def new

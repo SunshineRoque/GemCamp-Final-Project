@@ -21,9 +21,6 @@ class Client::Users::RegistrationsController < Devise::RegistrationsController
       if promoter
         resource.parent = promoter
         resource.save
-      else
-        flash[:alert] = 'Promoter not found'
-        render :new
       end
     end
   end

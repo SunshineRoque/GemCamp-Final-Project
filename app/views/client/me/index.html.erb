@@ -169,8 +169,14 @@
                               <% end %>
                             </div>
                             <p style="text-align: left;"><strong>Item:</strong> <%= winner.item&.name %></p>
+                            <p style="text-align: left;"><strong>Winner id:</strong> <%= winner.id %></p>
                             <p style="text-align: left;">
                               <strong>Ticket Serial Number:</strong> <%= winner.ticket&.serial_number %></p>
+                            <% if winner.may_claim? %>
+                              <%= link_to 'Claim Prize', client_me_path(winner.id), class: 'btn btn-warning mr-2' %>
+                              <%else %>
+                              <p style="text-align: left;"><strong>State: </strong><span style="color: blue;%>;"> <strong><%= winner.state %></strong></span>
+                            <% end %>
                             <hr> <!-- Add a horizontal line between winners for better separation -->
                           </div>
                         <% end %>

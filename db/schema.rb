@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_11_21_081653) do
+ActiveRecord::Schema[7.0].define(version: 2023_11_23_110109) do
   create_table "address_barangays", charset: "utf8mb4", force: :cascade do |t|
     t.bigint "city_id"
     t.string "code"
@@ -156,7 +156,6 @@ ActiveRecord::Schema[7.0].define(version: 2023_11_21_081653) do
     t.bigint "item_id"
     t.bigint "ticket_id"
     t.bigint "user_id"
-    t.bigint "addresses_id"
     t.bigint "admin_id"
     t.integer "item_batch_count"
     t.string "state"
@@ -166,7 +165,8 @@ ActiveRecord::Schema[7.0].define(version: 2023_11_21_081653) do
     t.text "comment"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["addresses_id"], name: "index_winners_on_addresses_id"
+    t.bigint "address_id"
+    t.index ["address_id"], name: "index_winners_on_address_id"
     t.index ["admin_id"], name: "index_winners_on_admin_id"
     t.index ["item_id"], name: "index_winners_on_item_id"
     t.index ["ticket_id"], name: "index_winners_on_ticket_id"

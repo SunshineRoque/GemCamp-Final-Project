@@ -53,7 +53,11 @@ Rails.application.routes.draw do
   constraints(ClientDomainConstraint.new) do
     namespace :client do
       root "home#index"
-      resources :me, only: [:index]
+      resources :me, only: [:index, :show, :update] do
+        member do
+          patch 'me/update_winners'
+        end
+      end
       resources :invite, only: [:index], constraints: {}
       resources :addresses
       resources :lottery, only: [:index, :show, :create]

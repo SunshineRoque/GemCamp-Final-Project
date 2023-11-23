@@ -58,12 +58,13 @@
                         <li class="list-group-item"><strong>Admin Name:</strong> <%= winner.admin&.name %></li>
                         <li class="list-group-item"><strong>Item:</strong> <%= winner.item&.name %></li>
                         <li class="list-group-item"><strong>Winner's Email:</strong> <%= winner.user&.email %></li>
-                        <% if winner.user.present? && winner.user&.addresses&.present? %>
-                          <li class="list-group-item">
-                            <p><strong>Address:</strong> <%= winner.user&.addresses&.full_addresses %></p></li>
-                        <% else %>
-                          <li class="list-group-item"><p><strong>Address:</strong> N/A</p></li>
-                        <% end %>
+                        <li class="list-group-item"><strong>Address:</strong>
+                          <% if winner.address.present? %>
+                            <p class="card-title">Address: <%= "#{winner.address&.region&.name}, #{winner.address&.province&.name}, #{winner.address&.city&.name}, #{winner.address&.barangay&.name}, #{winner.address&.street_address}" %></p>
+                          <% else %>
+                            <p class="card-title">No address available</p>
+                          <% end %>
+                         </li>
                         <li class="list-group-item"><strong>Batch Count:</strong> <%= winner.item&.batch_count %></li>
                         <li class="list-group-item">
                           <strong>Ticket's Serial Number:</strong> <%= winner.ticket&.serial_number %></li>
@@ -76,9 +77,6 @@
                           </div>
                           <div class="card-body">
                             <div class="btn-group justify-content-center" role="group">
-                              <% if winner.may_claim? %>
-                                <%= button_to 'Claim', claim_admin_winner_path(id: winner), method: :post, class: 'btn btn-primary mr-2' %>
-                              <% end %>
                               <% if winner.may_submit? %>
                                 <%= button_to 'Submit', submit_admin_winner_path(id: winner), method: :post, class: 'btn btn-warning mr-2' %>
                               <% end %>

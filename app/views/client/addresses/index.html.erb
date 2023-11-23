@@ -1,23 +1,28 @@
 <div class="container-fluid border border-black">
   <%= render 'client/partial/application_up' %>
-<% @addresses.each do |address| %>
-  <p>Name: <%= address.name %></p>
-  <p>Remark: <%= address.remark %></p>
-  <p>Is_default?: <%= address.is_default? ? 'Yes' : 'No' %></p>
-
-  <p>Address: </p>
-  <%= "#{address&.region&.name}, #{address&.province&.name}, #{address&.city&.name}, #{address&.barangay&.name}, #{address.street_address}" %>
-
-  <p>Genre: <%=  address.genre %></p>
-
-  <div>
-    <%= link_to '+', new_client_address_path %>
-    <%= button_to '-', client_address_path(address), method: :delete %>
+  <div class="row">
+    <h1 style='text-decoration: none;'>ADDRESS <%= link_to '+', new_client_address_path, class: 'btn btn-primary' %></h1>
+    <div class="container">
+      <% @addresses.each do |address| %>
+        <div class="row">
+          <div class="col mx-auto"> <!-- Center the card within the column -->
+            <div class="card mb-4">
+              <div class="card-body">
+                <p class="card-title">Address: <%= "#{address&.region&.name}, #{address&.province&.name}, #{address&.city&.name}, #{address&.barangay&.name}, #{address.street_address}" %></p>
+                <p class="card-text">Genre: <%= address.genre %></p>
+                <p class="card-text">Default? <%= address.is_default? ? 'Yes' : 'No' %></p>
+                <div class="address-actions">
+                  <%= button_to '-', client_address_path(address), method: :delete, class: 'btn btn-danger', data: { confirm: 'Are you sure?' } %>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      <% end %>
+    </div>
   </div>
-<% end %>
 
-
-<%= link_to 'Back', client_me_index_path %>
+  <%= link_to 'Back', client_me_index_path %>
 
   <%= render 'client/partial/application_down' %>
 </div>

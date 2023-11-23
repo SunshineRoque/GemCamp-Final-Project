@@ -2,7 +2,7 @@ class Winner < ApplicationRecord
   belongs_to :item
   belongs_to :ticket
   belongs_to :user
-  belongs_to :addresses, optional: true
+  belongs_to :address, optional: true
   belongs_to :admin, class_name: 'User', optional: true
   before_create :set_batch_count
 
@@ -43,6 +43,8 @@ class Winner < ApplicationRecord
       transitions from: :published, to: :remove_published
     end
   end
+
+
 
   private
   def set_batch_count

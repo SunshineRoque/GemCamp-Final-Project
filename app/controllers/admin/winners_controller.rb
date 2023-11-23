@@ -7,7 +7,7 @@ class Admin::WinnersController < ApplicationController
     @items = Item.all
     @client_users = User.where(role: "client")
     @winners = Ticket.all
-    @winners = Winner.includes(:item, :user, :ticket).all
+    @winners = Winner.includes(:item, :user, :ticket, :address).all
 
     @winners = @winners.where(ticket: { serial_number: params[:serial_number]}) if params[:serial_number].present?
     @winners = @winners.where(users: { email: params[:email] }) if params[:email].present?
