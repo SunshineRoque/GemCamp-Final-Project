@@ -55,6 +55,7 @@ Rails.application.routes.draw do
       resources :me, only: [:index, :show, :update] do
         member do
           patch 'me/update_winners'
+          post 'cancel'
         end
       end
       resources :invite, only: [:index], constraints: {}

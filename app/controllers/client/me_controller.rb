@@ -41,6 +41,12 @@ class Client::MeController < ApplicationController
     end
   end
 
+  def cancel
+    @order.cancel! if @order.may_cancel?
+    redirect_to client_me_index_path
+  end
+
+
   private
 
   def set_user

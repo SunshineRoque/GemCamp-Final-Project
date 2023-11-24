@@ -14,20 +14,26 @@ class Client::ShopController < ApplicationController
 
   def create
     @offer = Offer.find(params[:order][:offer_id])
-    @order = Order.new # Initialize a new order instance
+    @order = Order.new
     @order.user = current_client_user
-
     @order.coin = @offer.coin
     @order.amount = @offer.amount
     @order.offer = @offer
+    @order.state = 'submitted'
 
-
-    if @order.save
-      flash[:notice] = 'Order created successfully'
-      redirect_to client_shop_index_path(@order) # Redirect after successfully saving the order
+    if current_client_user.coins >= @offer.coin
+      if @order.save
+        flash[:notice] = 'Order created successfully'
+        redirect_to client_shop_index_path(@order)
+      else
+        flash.now[:alert] = 'Order create failed'
+        @user = current_client_user
+        render :show
+      end
     else
-      flash.now[:alert] = 'Order create failed'
-      render :show # Render the new action or form again for corrections
+      flash.now[:alert] = "You don't have enough coins"
+      @user = current_client_user
+      render :show
     end
   end
 

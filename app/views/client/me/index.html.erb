@@ -47,12 +47,11 @@
               Order History
             </button>
 
-            <!-- Modal -->
             <div class="modal fade" id="orderHistoryModal" tabindex="-1" role="dialog" aria-labelledby="orderHistoryModalTitle" aria-hidden="true">
               <div class="modal-dialog" role="document">
                 <div class="modal-content">
                   <div class="modal-header">
-                    <h5 class="modal-title" id="modalOrderTitle">Order Details</h5>
+                    <h5 class="modal-title" id="modalWinningTitle">Order Details</h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                       <span aria-hidden="true">&times;</span>
                     </button>
@@ -70,8 +69,12 @@
                             <p><strong>Amount:</strong> <%= order.amount %></p>
                             <p><strong>Coin:</strong> <%= order.coin %></p>
                             <p><strong>State:</strong>
-                              <span style="color: <%= order.state == 'pending' ? 'green' : (order.state == 'submitted' ? 'blue' : 'red') %>;"><strong><%= order.state %></strong></span>
-                            </p>
+                              <% if order.may_cancel? %>
+                                <%= button_to 'Cancel', cancel_client_me_path(id: order), method: :post, class: 'btn btn-warning mr-2' %>
+                              <% else %>
+                              <p style="text-align: left;">
+                                <strong>State: </strong><span style="color: blue;%>;"> <strong><%= order.state %></strong></span>
+                            <% end %>                            </p>
                             <p><strong>Created At:</strong> <%= order.created_at.strftime("%m/%d/%Y - %I:%M %p") %></p>
                             <!-- Add any additional attributes you want to display -->
                             <hr> <!-- Add a horizontal line between orders for better separation -->
