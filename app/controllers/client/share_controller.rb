@@ -1,14 +1,10 @@
 class Client::ShareController < ApplicationController
-  before_action :authenticate_client_user!
   before_action :set_winner, only: [:show, :update]
+  before_action :authenticate_client_user!, except: [:index]
 
   def index
     @user = current_client_user
-    @winners = Winner.includes(:item).where(user: current_client_user)
-    # @orders = Order.includes(:offer, :user).where(user: current_client_user)
-    # @tickets = Ticket.includes(:item, :user).all
-    # @winners = Winner.includes(:item, :ticket, :user).all
-    # @client_users = User.where(role: "client")
+    @winners = Winner.includes(:item).where(state: 'published')
   end
 
   def show

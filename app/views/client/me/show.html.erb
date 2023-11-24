@@ -16,7 +16,8 @@
       <p></p>
       <div class="row">
         <h1 class="container" style='background-color: skyblue; text-align: center; '>CLAIM PAGE</h1>
-        <h4 style='text-decoration: none;'>ADDRESS <%= link_to '+', new_client_address_path, class: 'btn btn-primary' %></h4>
+        <p></p>
+        <h4 style='text-decoration: none;'>ADDRESS <%= link_to '+', new_client_address_path, class: 'btn btn-primary' %> <span style="font-style: italic; color:red;"> &nbsp; &nbsp; &nbsp; Choose Address Please!</span></h4>
         <div class="container">
           <%= form_with model: @winner, url: me_update_winners_client_me_path(@winner), method: :patch, remote: true, data: { turbo: false } do |f| %>
             <% @addresses.each_with_index do |address, index| %>

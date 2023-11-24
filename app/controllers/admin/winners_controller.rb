@@ -21,10 +21,6 @@ class Admin::WinnersController < ApplicationController
     @winners = @winners.page(params[:page]).per(8)
   end
 
-  def claim
-    @winner.claim! if @winner.may_claim?
-    redirect_to admin_winners_path
-  end
 
   def submit
     @winner.submit! if @winner.may_submit?
@@ -54,11 +50,6 @@ class Admin::WinnersController < ApplicationController
     redirect_to admin_winners_path
   end
 
-  def share
-
-    @winner.share! if @winner.may_share?
-    redirect_to admin_winners_path
-  end
 
   def remove_publish
 

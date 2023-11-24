@@ -1,5 +1,5 @@
 class Winner < ApplicationRecord
-  validates :address_id, presence: true, if: :claim?
+  validates :address_id, presence: true, if: :claimed?
   validates :picture, presence: true, if: :shared?
   validates :comment, presence: true, if: :shared?
   mount_uploader :picture, ImageUploader

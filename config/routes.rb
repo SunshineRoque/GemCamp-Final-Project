@@ -26,12 +26,10 @@ Rails.application.routes.draw do
       end
       resources :winners, only: :index do
         member do
-          post 'claim'
           post 'submit'
           post 'pay'
           post 'ship'
           post 'deliver'
-          post 'share'
           post 'publish'
           post 'remove_publish'
         end

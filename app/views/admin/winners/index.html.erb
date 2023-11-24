@@ -64,12 +64,39 @@
                           <% else %>
                             <p class="card-title">No address available</p>
                           <% end %>
-                         </li>
+                        </li>
                         <li class="list-group-item"><strong>Batch Count:</strong> <%= winner.item&.batch_count %></li>
                         <li class="list-group-item">
-                          <strong>Ticket's Serial Number:</strong> <%= winner.ticket&.serial_number %></li>
+                          <strong>Ticket's Serial Number:</strong>
+                          <p><%= winner.ticket&.serial_number %></p></li>
                         <li class="list-group-item"><strong>Price:</strong> <%= winner.price %></li>
-                        <li class="list-group-item"><strong>Comment:</strong> <%= winner.comment %></li>
+                        <li class="list-group-item">
+                          <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#winningHistoryModal" style="width: 100%;">
+                            <strong>View Comment</strong>
+                          </button>
+                        </li>
+                        <div class="modal fade" id="winningHistoryModal" tabindex="-1" role="dialog" aria-labelledby="winningHistoryModalTitle" aria-hidden="true">
+                          <div class="modal-dialog" role="document">
+                            <div class="modal-content">
+                              <div class="modal-header">
+                                <h5 class="modal-title" id="modalWinningTitle">Shared Feedback by <span style="color:darkviolet"><%=winner.user&.username%></span></h5>
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                  <span aria-hidden="true">&times;</span>
+                                </button>
+                              </div>
+                              <div class="modal-body" id="modalWinningBody">
+                                <% if winner.picture.present? %>
+                                  <%= image_tag winner.picture.url, class: 'img-fluid', alt: 'Winner Picture' %>
+                                <% end %>
+                                <p><span style="color: blue;%>;"><strong>Shared Comment</strong></span></p>
+                                <%= winner.comment %>
+                              </div>
+                              <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
                         <div class="container border border-black">
                           <p></p>
                           <div class="card-footer text-muted">
