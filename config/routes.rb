@@ -53,6 +53,7 @@ Rails.application.routes.draw do
   constraints(ClientDomainConstraint.new) do
     namespace :client do
       root "home#index"
+      resources :menu, only: :index
       resources :me, only: [:index, :show, :update] do
         member do
           patch 'me/update_winners'
@@ -76,7 +77,6 @@ Rails.application.routes.draw do
     }
   end
 
-  resources :menu, only: :index
 
   namespace :api do
     namespace :v1 do
