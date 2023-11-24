@@ -15,7 +15,7 @@
             <div class="row" style="margin-left: 5vh">Coins: <%= @user.coins %></div>
             <div class="row mb-4"></div>
             <div class="row" style="padding:0; margin: auto; text-align: center; align-items: center; justify-content: center ">
-              <%= link_to 'Cash In Now', client_me_index_path, class: "btn btn-primary-light #{'active' if action_name == 'index' }", 'aria-current': 'page',
+              <%= link_to 'Cash In Now', edit_client_cash_in_path(@user), class: "btn btn-primary-light #{'active' if action_name == 'index' }", 'aria-current': 'page',
                           style: "border: 1px solid black; width: 95%; height: 30px; margin: auto; padding: 0;" %>
             </div>
             <div class="row mb-4"></div>
@@ -174,8 +174,11 @@
                               <strong>Ticket Serial Number:</strong> <%= winner.ticket&.serial_number %></p>
                             <% if winner.may_claim? %>
                               <%= link_to 'Claim Prize', client_me_path(winner.id), class: 'btn btn-warning mr-2' %>
-                              <%else %>
-                              <p style="text-align: left;"><strong>State: </strong><span style="color: blue;%>;"> <strong><%= winner.state %></strong></span>
+                            <% elsif winner.may_share? %>
+                              <%= link_to 'Share Prize', client_share_path(winner.id), class: 'btn btn-warning mr-2' %>
+                            <% else %>
+                              <p style="text-align: left;">
+                                <strong>State: </strong><span style="color: blue;%>;"> <strong><%= winner.state %></strong></span>
                             <% end %>
                             <hr> <!-- Add a horizontal line between winners for better separation -->
                           </div>
@@ -213,7 +216,8 @@
                       <% current_user_children = current_client_user.users %>
 
                       <% if current_user_children.present? %>
-                        <p class="container" style="background-color: #8bb9fe;">Number of invitations: <%= current_user_children.count %></p>
+                        <p class="container" style="background-color: #8bb9fe;">Number of
+                          invitations: <%= current_user_children.count %></p>
                         <% current_user_children.each do |child| %>
                           <div class="invitation-item" style="text-align: left;">
                             <p><%= child.email %></p>

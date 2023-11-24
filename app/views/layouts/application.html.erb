@@ -240,7 +240,17 @@
         }
     });
 
+    $(document).ready(function () {
+        $('[data-toggle="modal"]').click(function () {
+            var winnerId = $(this).data('target').replace('#orderHistoryModal', '');
+            var modalTitle = $('#modalOrderTitle' + winnerId);
+            var modalBody = $('#modalOrderBody' + winnerId);
 
+            // Use AJAX to fetch additional details based on winnerId if needed
+            // For simplicity, I'm just updating the modal title with the winnerId
+            modalTitle.text('Comments - Winner ID: ' + winnerId);
+        });
+    });
 
 </script>
 </body>

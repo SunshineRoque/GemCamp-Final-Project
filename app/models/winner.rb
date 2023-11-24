@@ -1,10 +1,15 @@
 class Winner < ApplicationRecord
+  validates :address_id, presence: true, if: :claim?
+  validates :picture, presence: true, if: :shared?
+  validates :comment, presence: true, if: :shared?
+  mount_uploader :picture, ImageUploader
   belongs_to :item
   belongs_to :ticket
   belongs_to :user
   belongs_to :address, optional: true
   belongs_to :admin, class_name: 'User', optional: true
   before_create :set_batch_count
+
 
   include AASM
 

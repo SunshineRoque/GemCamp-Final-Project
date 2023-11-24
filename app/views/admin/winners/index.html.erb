@@ -89,9 +89,6 @@
                               <% if winner.may_deliver? %>
                                 <%= button_to 'Deliver', deliver_admin_winner_path(id: winner), method: :post, class: 'btn btn-danger mr-2' %>
                               <% end %>
-                              <% if winner.may_share? %>
-                                <%= button_to 'Share', share_admin_winner_path(id: winner), method: :post, class: 'btn btn-danger mr-2' %>
-                              <% end %>
                               <% if winner.may_publish? %>
                                 <%= button_to 'Publish', publish_admin_winner_path(id: winner), method: :post, class: 'btn btn-danger mr-2' %>
                               <% end %>

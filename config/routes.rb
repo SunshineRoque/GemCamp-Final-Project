@@ -61,8 +61,13 @@ Rails.application.routes.draw do
       resources :invite, only: [:index], constraints: {}
       resources :addresses
       resources :lottery, only: [:index, :show, :create]
-      resources :shop, only: [:index , :show, :create] do
+      resources :shop, only: [:index, :show, :create]
+      resources :share, only: [:index, :show, :update] do
+        member do
+          post 'share'
+        end
       end
+      resources :cash_in, only: [:edit, :update]
     end
 
     devise_for :users, as: :client, path: 'client', controllers: {

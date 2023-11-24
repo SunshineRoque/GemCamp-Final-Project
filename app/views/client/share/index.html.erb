@@ -1,0 +1,63 @@
+<div class="container-fluid border border-black">
+  <%= render 'client/partial/application_up' %>
+  <div class="row mb-4"></div>
+  <div class="row mb-4"></div>
+  <div class="row mb-4">
+    <div class="col-2"></div>
+    <div class="col-8">
+      <% @winners.each do |winner| %>
+        <% if winner.state == "shared" %>
+          <div class="row mb-4"></div>
+            <div class="container">
+              <div class="row">
+                <div class="col">
+                  <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#orderHistoryModal<%= winner.id %>" style="width: 100%;">
+                    <% if winner.picture.present? %>
+                      <%= image_tag winner.picture.url, class: 'card-img-top img-fluid', alt: 'Winner Image' %>
+                    <% end %>
+                    <p style="text-align: left;"><strong>Item:</strong> <%= winner.item&.name %></p>
+                  </button>
+
+                  <!-- Modal -->
+                  <div class="modal fade" id="orderHistoryModal<%= winner.id %>" tabindex="-1" role="dialog" aria-labelledby="orderHistoryModalTitle" aria-hidden="true">
+                    <div class="modal-dialog" role="document">
+                      <div class="modal-content">
+                        <div class="modal-header">
+                          <h5 class="modal-title" id="modalOrderTitle">Comments</h5>
+                          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                          </button>
+                        </div>
+                        <div class="modal-body" id="modalOrderBody<%= winner.id %>">
+                          <p style="text-align: left;"> <%= winner.comment %></p>
+                          <!-- Add more details specific to winner.id as needed -->
+                        </div>
+                        <div class="modal-footer">
+                          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+        <% end %>
+      <% end %>
+    </div>
+    <div class="col-2"></div>
+  </div>
+  <div class="row mb-4"></div>
+  <div class="row mb-4"></div>
+  <div class="row mb-4"></div>
+  <div class="row mb-4"></div>
+  <div class="row mb-4"></div>
+  <div class="row mb-4"></div>
+  <div class="row mb-4"></div>
+  <div class="row mb-4"></div>
+  <div class="row mb-4"></div>
+  <div class="row mb-4"></div>
+  <div class="row mb-4"></div>
+  <div class="row mb-4"></div>
+  <%= render 'client/partial/application_down' %>
+</div>
+

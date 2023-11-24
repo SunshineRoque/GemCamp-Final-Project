@@ -32,11 +32,11 @@ class Client::MeController < ApplicationController
     @winner.address_id = params[:winner][:addresses_id]
     if @winner.save
       @winner.claim! if @winner.may_claim?
-      flash[:notice] = 'Winner updated successfully'
+      flash[:notice] = 'Prize Claimed successfully'
       redirect_to client_me_index_path
     else
       puts "Errors: #{@winner.errors.full_messages}"
-      flash.now[:alert] = 'Winner update failed'
+      flash.now[:alert] = 'Prize claim failed'
       render :show, status: :unprocessable_entity
     end
   end

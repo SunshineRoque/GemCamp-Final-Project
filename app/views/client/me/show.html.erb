@@ -18,31 +18,27 @@
         <h1 class="container" style='background-color: skyblue; text-align: center; '>CLAIM PAGE</h1>
         <h4 style='text-decoration: none;'>ADDRESS <%= link_to '+', new_client_address_path, class: 'btn btn-primary' %></h4>
         <div class="container">
-
           <%= form_with model: @winner, url: me_update_winners_client_me_path(@winner), method: :patch, remote: true, data: { turbo: false } do |f| %>
-            <% @addresses.each do |address| %>
+            <% @addresses.each_with_index do |address, index| %>
               <div class="row">
                 <div class="col mx-auto">
                   <div class="card mb-4">
                     <div class="card-body">
-                      <p class="card-title"><%= f.radio_button :addresses_id, address.id, class: 'address-radio' %> <%= "#{address&.region&.name}, #{address&.province&.name}, #{address&.city&.name}, #{address&.barangay&.name}, #{address.street_address}" %> </p>
+                      <p class="card-title">
+                        <%= f.radio_button :addresses_id, address.id, class: 'address-radio', checked: index.zero? %>
+                        <%= "#{address&.region&.name}, #{address&.province&.name}, #{address&.city&.name}, #{address&.barangay&.name}, #{address.street_address}" %>
+                      </p>
                     </div>
                   </div>
                 </div>
               </div>
             <% end %>
-            <%= f.hidden_field :serial_number, value: @winner.ticket&.serial_number %>
             <div class="row">
-              <div class="col mx-auto" id="claimButtonContainer" style="display:none;">
-                <%= f.submit 'Claim', class: 'btn btn-primary', data: { confirm: 'Are you sure?'} %>
-              </div>
-              <div class="col mx-auto" id="messageContainer" style="display:none;">
-                <h3 class="container" style="background-color:red; color:black; text-align: center;">YOU NEED TO CHOOSE ADDRESS!</h3>
+              <div class="col mx-auto">
+                <%= f.submit 'Claim', class: 'btn btn-primary' %>
               </div>
             </div>
           <% end %>
-
-
         </div>
       </div>
 
@@ -56,35 +52,5 @@
 
   <%= render 'client/partial/application_down' %>
 </div>
-
-
-
-
-<script>
-    document.addEventListener('DOMContentLoaded', function() {
-        var radios = document.querySelectorAll('.address-radio');
-        var buttonContainer = document.getElementById('claimButtonContainer');
-        var messageContainer = document.getElementById('messageContainer');
-
-        function updateVisibility() {
-            if (document.querySelector('.address-radio:checked')) {
-                buttonContainer.style.display = 'block';
-                messageContainer.style.display = 'none';
-            } else {
-                buttonContainer.style.display = 'none';
-                messageContainer.style.display = 'block';
-            }
-        }
-
-        // Initial check on page load
-        updateVisibility();
-
-        radios.forEach(function(radio) {
-            radio.addEventListener('change', updateVisibility);
-        });
-    });
-</script>
-
-
 
 

@@ -1,0 +1,55 @@
+<div class="container-fluid border border-black">
+  <%= render 'client/partial/application_up' %>
+  <div class="row mb-4"></div>
+  <div class="row">
+    <div class="col-2"></div>
+    <div class="col-8">
+      <div class="container border border-black">
+        <div class="row">
+          <div class="col-12">
+            <div class="row mb-4"></div>
+            <div class="row" style="margin-left: 5vh">Ticket Serial
+              Number: <%= @winner.ticket&.serial_number %></p></div>
+          </div>
+        </div>
+      </div>
+      <p></p>
+      <div class="row">
+        <h1 class="container" style='background-color: skyblue; text-align: center; '>SHARE PAGE</h1>
+        <h4 style='text-decoration: none;'>Share your story, please!</h4>
+        <div class="container">
+          <%= form_with model: @winner, url: client_share_path(@winner), method: :patch, remote: true, data: { turbo: false } do |f| %>
+            <div class="row">
+              <div class="col mx-auto">
+                <div class="card mb-4">
+                  <div class="card-body">
+                    <p class="card-title"><div><%= f.file_field :picture %></div></p>
+                    <p class="card-title"><div>
+                      <%= f.label :comment %>
+                      <%= f.text_field :comment, class: 'form-control' %>
+                  </div></p>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col mx-auto">
+                <%= f.submit 'Share', class: 'btn btn-primary' %>
+              </div>
+            </div>
+          <% end %>
+        </div>
+      </div>
+
+    </div>
+
+    <div class="col-2"></div>
+  </div>
+
+
+  <div class="row mb-4"></div>
+
+  <%= render 'client/partial/application_down' %>
+</div>
+
+

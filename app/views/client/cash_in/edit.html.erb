@@ -1,0 +1,102 @@
+<div class="container-fluid border border-black">
+  <%= render 'client/partial/application_up' %>
+  <div class="row mb-4"></div>
+  <div class="row">
+    <div class="col-2"></div>
+    <div class="col-8">
+      <p></p>
+      <div class="row">
+        <h1 class="container" style='background-color: skyblue; text-align: center; '>CASH IN</h1>
+        <div class="container">
+          <div class="mb-3" id="error-message" style="color: red;"></div>
+
+        <!-- Your existing form code -->
+        <%= form_with model: @user, url: client_cash_in_path(@user), method: :patch, remote: true, data: { turbo: false } do |f| %>
+          <div class="row">
+            <div class="col mx-auto">
+              <div class="card mb-4">
+                <div class="card-body">
+                  <p class="card-title">
+                  <div class="mb-3">
+                    <%= f.label :coins %>
+                    <div class="input-group">
+                      <%= f.text_field :coins, class: 'form-control', max: @user.coins, min: @user.coins, id: 'coins-input' %>
+                      <div class="input-group-append">
+                        <button type="button" class="btn btn-primary" id="increment-coins">+</button>
+                        <button type="button" class="btn btn-primary" id="decrement-coins">-</button>
+                      </div>
+                    </div>
+                  </div>
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col mx-auto">
+              <%= f.submit 'Submit', class: 'btn btn-primary', id: 'submit-button' %>
+            </div>
+          </div>
+        <% end %>
+
+
+      </div>
+      </div>
+
+    </div>
+
+    <div class="col-2"></div>
+  </div>
+
+
+  <%= render 'client/partial/application_down' %>
+</div>
+
+
+
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        const form = document.querySelector('form');
+        const errorMessage = document.getElementById('error-message');
+
+        form.addEventListener('click', function (event) {
+            const coinsInput = document.getElementById('coins-input');
+
+            if (event.target.id === 'increment-coins') {
+                coinsInput.value = parseInt(coinsInput.value, 10) + 1;
+                updateErrorMessage(); // Update error message after incrementing
+            } else if (event.target.id === 'decrement-coins') {
+                const newValue = parseInt(coinsInput.value, 10) - 1;
+
+                if (newValue >= parseInt(coinsInput.min, 10)) {
+                    coinsInput.value = newValue;
+                } else {
+                    alert('The input number should be equal or greater than the current coins. Please try again.');
+                    return;
+                }
+
+                updateErrorMessage(); // Update error message after decrementing
+            }
+        });
+
+        form.addEventListener('submit', function (event) {
+            const coinsInput = document.getElementById('coins-input');
+
+            // Check if the value is greater than or equal to the current user.coins
+            if (parseInt(coinsInput.value, 10) < parseInt(coinsInput.min, 10)) {
+                displayErrorMessage('The input number should be equal or greater than the current coins. Please try again.');
+                event.preventDefault(); // Prevent the form from submitting
+            }
+        });
+
+        // Function to update the error message
+        function updateErrorMessage() {
+            errorMessage.innerText = ''; // Clear the error message
+        }
+
+        // Function to display an error message
+        function displayErrorMessage(message) {
+            errorMessage.innerText = message;
+        }
+    });
+</script>

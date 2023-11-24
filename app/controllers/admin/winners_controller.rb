@@ -27,7 +27,6 @@ class Admin::WinnersController < ApplicationController
   end
 
   def submit
-
     @winner.submit! if @winner.may_submit?
     redirect_to admin_winners_path
   end
