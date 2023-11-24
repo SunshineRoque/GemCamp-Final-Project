@@ -3,6 +3,7 @@ class Client::MeController < ApplicationController
   before_action :authenticate_client_user!
   before_action :set_user, only: :update
   before_action :set_winner, only: [:show, :update_winners]
+  before_action :set_order, only: :cancel
 
   def index
     @user = current_client_user
@@ -55,6 +56,10 @@ class Client::MeController < ApplicationController
 
   def set_winner
     @winner = Winner.find(params[:id])
+  end
+
+  def set_order
+    @order = Order.find(params[:id])
   end
 
   def user_params
