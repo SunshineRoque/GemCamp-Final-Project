@@ -48,6 +48,7 @@ Rails.application.routes.draw do
           resources :bonus, only: [:new, :create]
         end
       end
+      resources :invites, only: :index
     end
 
     devise_for :users, as: :admin, path: 'admin', controllers: {

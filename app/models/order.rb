@@ -1,6 +1,6 @@
 class Order < ApplicationRecord
   validates :coin, presence: true
-  validates :remarks, presence: true, if: -> {:increase? || :deduct? || :bonus?}
+  validates :remarks, presence: true, unless: :deposit?
   validates :amount, presence: true, if: :deposit?
   validates :amount, numericality: { greater_than: 0 }, if: -> { deposit? && amount.present? }
   validates :offer, presence: true, if: :deposit?
