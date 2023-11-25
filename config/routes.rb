@@ -41,6 +41,13 @@ Rails.application.routes.draw do
           post 'cancel'
         end
       end
+      resources :users, only: :index, path: 'users/client' do
+        namespace :admin_orders, path: 'orders'  do
+          resources :increase, only: [:new, :create]
+          resources :deduct, only: [:new, :create]
+          resources :bonus, only: [:new, :create]
+        end
+      end
     end
 
     devise_for :users, as: :admin, path: 'admin', controllers: {

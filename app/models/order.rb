@@ -1,8 +1,9 @@
 class Order < ApplicationRecord
-  validates :coin, presence: true, if: :deposit_genre?
-  validates :amount, presence: true, if: :deposit_genre?
-  validates :amount, numericality: { greater_than: 0 }, if: -> { deposit_genre? && amount.present? }
-  validates :offer, presence: true, if: :deposit_genre?
+  validates :coin, presence: true
+  validates :remarks, presence: true, if: -> {:increase? || :deduct? || :bonus?}
+  validates :amount, presence: true, if: :deposit?
+  validates :amount, numericality: { greater_than: 0 }, if: -> { deposit? && amount.present? }
+  validates :offer, presence: true, if: :deposit?
   belongs_to :offer, optional: true
   belongs_to :user
   after_create :generate_serial_number
@@ -20,20 +21,16 @@ class Order < ApplicationRecord
     end
 
     event :cancel do
-      transitions from: :paid, to: :cancelled, guard: :enough_coins?, after: :paid_to_cancelled
+      transitions from: :paid, to: :cancelled, guard: :enough_coins_to_cancel_increase?, after: :paid_to_cancelled
       transitions from: [:pending, :submitted], to: :cancelled
     end
 
     event :pay do
-      transitions from: :submitted, to: :paid, after: :submitted_to_paid
+      transitions from: :submitted, to: :paid, guard: :enough_coins_to_deduct?, after: :submitted_to_paid
     end
   end
 
   private
-
-  def deposit_genre?
-    genre == 'deposit'
-  end
 
   def generate_serial_number
     number_count = format('%04d', user.orders.count + 1)
@@ -61,33 +58,38 @@ class Order < ApplicationRecord
     user.update(total_deposit: user.total_deposit - amount)
   end
 
-  def enough_coins?
-    user = User.find_by(id: user_id)
-    return true if user&.coin >= coin
+  def enough_coins_to_cancel_increase?
+    return true if deduct? || (!deduct? && user.coins >= coin)
+    errors.add(:base, 'User does not have enough coins.')
+    false
+  end
+
+  def enough_coins_to_deduct?
+    return true if !deduct? || (deduct? && user.coins >= coin)
     errors.add(:base, 'User does not have enough coins.')
     false
   end
 
   def submitted_to_paid
-    if genre != 'deduct'
+    if !deduct?
       increase_user_coins
     else
       decrease_user_coins
     end
 
-    if genre == 'deposit'
+    if deposit?
       increase_user_total_deposit
     end
   end
 
   def paid_to_cancelled
-    if genre != 'deduct'
-      decrease_user_coins_with_guard
+    if !deduct?
+      decrease_user_coins
     else
       increase_user_coins
     end
 
-    if genre == 'deposit'
+    if deposit?
       decrease_user_total_deposit
     end
   end

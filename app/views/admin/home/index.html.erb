@@ -8,7 +8,8 @@
       <p></p>
       <h5>Hi, Admin: <%= @admin_user.email %></h5>
       <p></p>
-      <h3 class="container" style="background-color: #8bb9fe; text-align: center; align-items: center; justify-content: center">USER LIST</h3>
+      <h3 class="container" style="background-color: #8bb9fe; text-align: center; align-items: center; justify-content: center">USER
+        LIST</h3>
       <p></p>
     </div>
 
@@ -17,9 +18,11 @@
         <div class="col-6 mb-4">
           <div class="card" style="height: 100%; width: 100%;">
             <div class="card-body">
-              <h5><div class="card-footer text-muted">
-                <p class="card-text"><%= client_user.email %></p>
-              </div></h5>
+              <h5>
+                <div class="card-footer text-muted">
+                  <p class="card-text"><%= client_user.email %></p>
+                </div>
+              </h5>
 
               <% if client_user.parent&.email.present? %>
                 <p class="card-text">Invited by: <%= client_user.parent&.email %></p>
@@ -45,6 +48,7 @@
               <p class="card-text">Coins = ₱ <%= client_user.coins %></p>
               <p class="card-text">Total Used Coins = </p>
               <p class="card-text">Phone Number: <%= client_user.phone %></p>
+                <%= link_to 'Balance Operate', new_admin_user_admin_orders_increase_path(user_id: client_user.id), class: "btn btn-primary", 'aria-current': 'page', style: 'background-color: lightblue; border: none;' %>
             </div>
           </div>
         </div>
@@ -72,6 +76,6 @@
       </nav>
     </div>
   </div>
-  </div>
+</div>
 </div>
 <div class="row border border-black"></div>
