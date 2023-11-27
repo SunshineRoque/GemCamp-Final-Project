@@ -18,10 +18,13 @@
               </ul>
             </div>
           <% end %>
-          <div class="mb-3">
-            <%= form.label :preview %>
-            <%= form.text_area :preview, class: 'form-control' %>
+          <p></p>
+          <p></p>
+          <div>
+            <%= form.file_field :preview %>
           </div>
+          <p></p>
+          <p></p>
           <div class="field">
             <%= form.label 'Status' %>
             <%= form.select :status, options_for_select(Banner.statuses.keys.map { |status| [status.humanize, status] }) %>

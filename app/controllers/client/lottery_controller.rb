@@ -7,6 +7,8 @@ class Client::LotteryController < ApplicationController
     @categories = Category.all
     @selected_category = params[:category_id] ? Category.find(params[:category_id]) : nil
     @items = @selected_category ? @selected_category.items : Item.includes(:categories).all
+    @banners = Banner.where("online_at <= ? AND offline_at > ? AND status = ?", Time.current, Time.current, 'active')
+    @news_tickers = NewsTicker.where("status = ?",'active').limit(5)
   end
 
   def show

@@ -11,6 +11,11 @@
           <% @banners.each do |banner| %>
             <div class="col-4 mb-4">
               <div class="card h-100" style="width: 100%;">
+                <div class="image-container" style="margin: 5px; height: 200px; background-color: #eee;">
+                  <% if banner.preview.present? %>
+                    <%= image_tag banner.preview.url, class: 'card-img-top', style: 'height: 100%; width: 100%; object-fit: cover;' %>
+                  <% end %>
+                </div>
                 <p></p>
                 <td class="button">
                   <div class="btn-group" role="group">
@@ -26,12 +31,11 @@
                   <div class="container border border-black">
                     <p></p>
                     <div class="card-body">
-                      <p class="card-text" style="margin-left:30px;">Preview: <%= banner.preview %></p>
-                      <p class="card-text" style="margin-left:30px;">Online
+                      <p class="card-text" style="text-align: left; margin-left:30px;">Online
                         at: <%= banner.online_at&.strftime("%m/%d/%Y") %></p>
-                      <p class="card-text" style="margin-left:30px;">Offline
+                      <p class="card-text" style="text-align: left; margin-left:30px;">Offline
                         at: <%= banner.offline_at&.strftime("%m/%d/%Y") %></p>
-                      <p class="card-text" style="margin-left:30px;">Status: <%= banner.status %></p>
+                      <p class="card-text" style="text-align: left; margin-left:30px;">Status: <%= banner.status %></p>
                     </div>
                   </div>
                 </div>

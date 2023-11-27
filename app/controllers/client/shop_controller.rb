@@ -5,6 +5,8 @@ class Client::ShopController < ApplicationController
   def index
     @user = current_client_user
     @offers = Offer.all
+    @banners = Banner.where("online_at <= ? AND offline_at > ? AND status = ?", Time.current, Time.current, 'active')
+    @news_tickers = NewsTicker.where("status = ?",'active').limit(5)
   end
 
   def show

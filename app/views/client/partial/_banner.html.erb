@@ -1,0 +1,48 @@
+<style>
+
+</style>
+
+<div class="row">
+  <div class="col-12 border border-black">
+    <div id="carouselExampleInterval" class="carousel slide" data-bs-ride="carousel">
+      <div class="carousel-inner">
+        <% @banners.each_with_index do |banner, index| %>
+          <div class="carousel-item <%= 'active' if index.zero? %>" data-bs-interval="10000">
+            <div class="d-flex align-items-center justify-content-center">
+              <%= image_tag banner.preview.url, class: 'd-block w-100', style: 'object-fit: cover;' if banner.preview.present? %>
+            </div>
+          </div>
+        <% end %>
+      </div>
+
+      <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleInterval" data-bs-slide="prev">
+        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Previous</span>
+      </button>
+
+      <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleInterval" data-bs-slide="next">
+        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Next</span>
+      </button>
+    </div>
+  </div>
+</div>
+<div class="row ">
+  <div class="col border border-black">
+    <div class="ticker_wrap">
+      <div class="ticker__breaking"> Announcement:</div>
+      <div class="ticker__viewport">
+        <ul class="ticker__list" data-ticker="list">
+          <li class="ticker__item" data-ticker="item">
+            <% @news_tickers.each do |news_ticker| %>
+              &nbsp;
+              <i class="material-icons"><strong>Content by <%= news_ticker.admin&.username %>: </strong></i>
+                <%= news_ticker.content %>
+              &nbsp;
+            <% end %>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>
