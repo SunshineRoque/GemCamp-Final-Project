@@ -54,36 +54,36 @@
     <div class="col "></div>
     <div class="col-2 "></div>
   </div>
-
   <div class="row">
     <div class="col-2" style="margin-top: 0;"></div>
     <div class="col-8">
       <div class="row">
-        <div class="col" style="margin: 10px;padding:0; text-align: center; align-items: center; justify-content: center">
-          <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTNnk8afGYUk1f5HHtOTu9G5GEDshdlN8-LZw&usqp=CAU"
-               class="rounded float-start border border-black m-0"
-               alt="..." style="border: 1px solid black; border-radius:0%; width: 100%; height: 100%;  margin: auto; padding: 0; display: flex; align-items: center; justify-content: center;">
-        </div>
+        <% @winners.each_with_index do |winner, index| %>
+          <% if index < 4 %>
+            <div class="col" style="margin: 10px; padding: 0; text-align: center; align-items: center; justify-content: center">
+              <%= image_tag winner.picture.url, class: 'd-block w-100', style: 'object-fit: cover; border: 1px solid black; border-radius: 0%; width: 100%; height: 100%;  margin: auto; padding: 0; display: flex; align-items: center; justify-content: center;' if winner.picture.present? %>
+            </div>
+          <% end %>
+        <% end %>
+      </div>
 
-        <div class="col" style="margin: 10px;padding:0; text-align: center; align-items: center; justify-content: center">
-          <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTNnk8afGYUk1f5HHtOTu9G5GEDshdlN8-LZw&usqp=CAU"
-               class="rounded float-start border border-black m-0"
-               alt="..." style="border: 1px solid black; border-radius:0%; width: 100%; height: 100%;  margin: auto; padding: 0; display: flex; align-items: center; justify-content: center;">
+      <div class="row">
+        <% @winners.each_with_index do |winner, index| %>
+          <% if index >= 4 %>
+            <div class="col" style="margin: 10px; padding: 0; text-align: center; align-items: center; justify-content: center">
+              <%= image_tag winner.picture.url, class: 'd-block w-100', style: 'object-fit: cover; border: 1px solid black; border-radius: 0%; width: 100%; height: 100%;  margin: auto; padding: 0; display: flex; align-items: center; justify-content: center;' if winner.picture.present? %>
+            </div>
+          <% end %>
+        <% end %>
+        <div class="col" style="margin: 10px; padding: 0; text-align: center; align-items: center; justify-content: center">
+          <%= link_to client_share_index_path, class: 'text-decoration-none text-dark' do %>
+            <div class="btn btn-primary-light border border-black m-0 d-inline-flex p-2" style="border: 1px solid black; border-radius: 0%; width: 100%; height: 100%;  margin: auto; padding: 0; display: flex; align-items: center; justify-content: center;">
+              More...
+            </div>
+          <% end %>
         </div>
-
-        <div class="col" style="margin: 10px;padding:0; text-align: center; align-items: center; justify-content: center">
-          <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTNnk8afGYUk1f5HHtOTu9G5GEDshdlN8-LZw&usqp=CAU"
-               class="rounded float-start border border-black m-0"
-               alt="..." style="border: 1px solid black; border-radius:0%; width: 100%; height: 100%;  margin: auto; padding: 0; display: flex; align-items: center; justify-content: center;">
-        </div>
-
-        <div class="col" style="margin: 10px;padding:0; text-align: center; align-items: center; justify-content: center">
-          <div class="btn btn-primary-light border border-black m-0 d-inline-flex p-2"
-               style="border: 1px solid black; border-radius:0%; width: 100%; height: 100%;  margin: auto; padding: 0; display: flex; align-items: center; justify-content: center;">
-            More...
-          </div>
-        </div>
-
+        <div class="col"></div>
+        <div class="col"></div>
       </div>
     </div>
     <div class="col-2"></div>
@@ -92,8 +92,8 @@
   <div class="row mb-5"></div>
   <div class="row ">
     <div class="col-2 "></div>
-    <div class="col-1 border border-black d-inline-flex p-2" style="text-align: center; align-items: center; justify-content: center;" %>
-      Coming soon
+    <div class="col-1 border border-black d-inline-flex p-2" style="text-align: center; align-items: center; justify-content: center;" %>Coming
+      Soon
     </div>
     <div class="col "></div>
     <div class="col "></div>
@@ -101,36 +101,36 @@
     <div class="col "></div>
     <div class="col-2 "></div>
   </div>
-
   <div class="row">
     <div class="col-2" style="margin-top: 0;"></div>
     <div class="col-8">
       <div class="row">
-        <div class="col" style="margin: 10px;padding:0; text-align: center; align-items: center; justify-content: center">
-          <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTNnk8afGYUk1f5HHtOTu9G5GEDshdlN8-LZw&usqp=CAU"
-               class="rounded float-start border border-black m-0"
-               alt="..." style="border: 1px solid black; border-radius:0%; width: 100%; height: 100%;  margin: auto; padding: 0; display: flex; align-items: center; justify-content: center;">
-        </div>
+        <% @items.each_with_index do |item, index| %>
+          <% if index < 4 %>
+            <div class="col" style="margin: 10px; padding: 0; text-align: center; align-items: center; justify-content: center">
+              <%= image_tag item.image.url, class: 'd-block w-100', style: 'object-fit: cover; border: 1px solid black; border-radius: 0%; width: 100%; height: 100%;  margin: auto; padding: 0; display: flex; align-items: center; justify-content: center;' if item.image.present? %>
+            </div>
+          <% end %>
+        <% end %>
+      </div>
 
-        <div class="col" style="margin: 10px;padding:0; text-align: center; align-items: center; justify-content: center">
-          <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTNnk8afGYUk1f5HHtOTu9G5GEDshdlN8-LZw&usqp=CAU"
-               class="rounded float-start border border-black m-0"
-               alt="..." style="border: 1px solid black; border-radius:0%; width: 100%; height: 100%;  margin: auto; padding: 0; display: flex; align-items: center; justify-content: center;">
+      <div class="row">
+        <% @items.each_with_index do |item, index| %>
+          <% if index >= 4 %>
+            <div class="col" style="margin: 10px; padding: 0; text-align: center; align-items: center; justify-content: center">
+              <%= image_tag item.image.url, class: 'd-block w-100', style: 'object-fit: cover; border: 1px solid black; border-radius: 0%; width: 100%; height: 100%;  margin: auto; padding: 0; display: flex; align-items: center; justify-content: center;' if item.image.present? %>
+            </div>
+          <% end %>
+        <% end %>
+        <div class="col" style="margin: 10px; padding: 0; text-align: center; align-items: center; justify-content: center">
+          <%= link_to client_lottery_index_path, class: 'text-decoration-none text-dark' do %>
+            <div class="btn btn-primary-light border border-black m-0 d-inline-flex p-2" style="border: 1px solid black; border-radius: 0%; width: 100%; height: 100%;  margin: auto; padding: 0; display: flex; align-items: center; justify-content: center;">
+              More...
+            </div>
+          <% end %>
         </div>
-
-        <div class="col" style="margin: 10px;padding:0; text-align: center; align-items: center; justify-content: center">
-          <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTNnk8afGYUk1f5HHtOTu9G5GEDshdlN8-LZw&usqp=CAU"
-               class="rounded float-start border border-black m-0"
-               alt="..." style="border: 1px solid black; border-radius:0%; width: 100%; height: 100%;  margin: auto; padding: 0; display: flex; align-items: center; justify-content: center;">
-        </div>
-
-        <div class="col" style="margin: 10px;padding:0; text-align: center; align-items: center; justify-content: center">
-          <div class="btn btn-primary-light border border-black m-0 d-inline-flex p-2"
-               style="border: 1px solid black; border-radius:0%; width: 100%; height: 100%;  margin: auto; padding: 0; display: flex; align-items: center; justify-content: center;">
-            More...
-          </div>
-        </div>
-
+        <div class="col"></div>
+        <div class="col"></div>
       </div>
     </div>
     <div class="col-2"></div>
@@ -141,4 +141,5 @@
   <div class="row mb-4"></div>
 
   <%= render 'client/partial/application_down' %>
+</div>
 </div>
