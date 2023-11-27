@@ -1,0 +1,71 @@
+<%= render 'admin/partial/top_nav' %>
+<div class="row">
+  <div class="col-2  border border-black border-top-o">
+    <%= render 'admin/partial/left_nav' %>
+  </div>
+  <div class="col-10">
+    <div class="row">
+      <h1 style='text-decoration: none;'>NEWS
+        TICKERS <%= link_to '+', new_admin_news_ticker_path, class: 'btn btn-primary' %></h1>
+      <div class="container">
+        <div class="row">
+          <% @news_tickers.each do |news_ticker| %>
+            <div class="col-4 mb-4">
+              <div class="card h-100" style="width: 100%;">
+                <div class="card-body">
+                  <h5>
+                    <div class="card-footer text-muted">
+                      <p class="card-text"><%= news_ticker.admin&.username %></p>
+                    </div>
+                  </h5>
+                  <td class="button">
+                    <div class="btn-group" role="group">
+                      <div class="row">
+                        <div class="col-1"></div>
+                        <div class="col"><%= link_to 'Edit', edit_admin_news_ticker_path(news_ticker), class: 'btn btn-warning', style: 'width:80px;' %></div>
+                        <div class="col"><%= button_to 'Delete', admin_news_ticker_path(news_ticker), method: :delete, class: 'btn btn-danger', style: 'width:80px;' %></div>
+                        <div class="col-1"></div>
+                      </div>
+                    </div>
+                  </td>
+                  <p></p>
+                  <div class="container border border-black">
+                    <p></p>
+                    <div class="card-footer text-muted">
+                      <p class="card-text">Status: <%= news_ticker.status %></p>
+                    </div>
+                    <div class="card-body">
+                      <p class="card-text" style="margin-left:30px;">Content: <%= news_ticker.content %></p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          <% end %>
+          <nav aria-label="Page navigation">
+            <ul class="pagination justify-content-center">
+              <% if @news_tickers.prev_page %>
+                <li class="page-news_ticker">
+                  <%= link_to '« Prev', { page: @news_tickers.prev_page }, class: 'page-link' %>
+                </li>
+              <% end %>
+
+              <% (1..@news_tickers.total_pages).each do |page| %>
+                <li class="page-news_ticker <%= 'active' if page == @news_tickers.current_page %>">
+                  <%= link_to page, { page: page }, class: 'page-link' %>
+                </li>
+              <% end %>
+
+              <% if @news_tickers.next_page %>
+                <li class="page-news_ticker">
+                  <%= link_to 'Next »', { page: @news_tickers.next_page }, class: 'page-link' %>
+                </li>
+              <% end %>
+            </ul>
+          </nav>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="row border border-black"></div>

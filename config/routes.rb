@@ -49,6 +49,7 @@ Rails.application.routes.draw do
         end
       end
       resources :invites, only: :index
+      resources :news_tickers, except: :show
     end
 
     devise_for :users, as: :admin, path: 'admin', controllers: {
