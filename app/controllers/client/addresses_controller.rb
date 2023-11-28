@@ -16,10 +16,10 @@ class Client::AddressesController < ApplicationController
     @address = Address.new(address_params)
     @address.user = current_client_user
     if @address.save
-      flash[:notice] = 'Address created successfully'
+      flash[:notice] = t('Address created successfully')
       redirect_to client_addresses_path
     else
-      flash.now[:alert] = 'Address create failed'
+      flash.now[:alert] = t('Address create failed')
       render :new, status: :unprocessable_entity
     end
   end
@@ -31,17 +31,17 @@ class Client::AddressesController < ApplicationController
 
   def update
     if @address.update(address_params)
-      flash[:notice] = 'Address updated successfully'
+      flash[:notice] = t('Address updated successfully')
       redirect_to client_addresses_path
     else
-      flash.now[:alert] = 'Address update failed'
+      flash.now[:alert] = t('Address update failed')
       render :edit, status: :unprocessable_entity
     end
   end
 
   def destroy
     @address.destroy
-    flash[:notice] = 'Address destroyed successfully'
+    flash[:notice] = t('Address destroyed successfully')
     redirect_to client_addresses_path
   end
 

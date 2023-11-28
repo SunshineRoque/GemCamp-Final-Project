@@ -2,14 +2,24 @@
   <div class="row ">
     <div class="col-2 border border-black"></div>
     <div class="col-1 border border-black d-inline-flex p-2" style="text-align: center; align-items: center; justify-content: center;">
-      <%= link_to 'Logo', client_root_path, class: "nav-link #{'active' if action_name == 'logo'}", 'aria-current': 'page' %>
+      <%= link_to t('home'), client_root_path, class: "nav-link #{'active' if action_name == 'logo'}", 'aria-current': 'page' %>
     </div>
     <div class="col-4 border border-black"></div>
     <div class="col-3 border border-black">
       <div class="row ">
-        <div class="col-3 border border-black d-inline-flex p-2" style="text-align: center; align-items: center; justify-content: center;">Coins</div>
-        <div class="col-3 border border-black d-inline-flex p-2 " style="text-align: center; align-items: center; justify-content: center;">Claim</div>
-        <div class="col-3 border border-black d-inline-flex p-2 " style="text-align: center; align-items: center; justify-content: center;">Language</div>
+        <div class="col-3 border border-black d-inline-flex p-2" style="text-align: center; align-items: center; justify-content: center;"><%= t('coins')%></div>
+        <div class="col-3 border border-black d-inline-flex p-2 " style="text-align: center; align-items: center; justify-content: center;"><%= t('claim')%></div>
+        <div class="col-3 border border-black d-inline-flex p-2 " style="text-align: center; align-items: center; justify-content: center;">
+          <div class="dropdown">
+            <button class="btn btn-secondary dropdown-toggle w-auto" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+              <%= t('language') %>
+            </button>
+            <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+              <li><%= link_to t('english'), params.permit!.merge(locale: 'en'), class: 'dropdown-item' %></li>
+              <li><%= link_to t('tagalog'), params.permit!.merge(locale: 'tl'), class: 'dropdown-item' %></li>
+            </ul>
+          </div>
+        </div>
         <div class="col-3 border border-black d-inline-flex p-2 " style="text-align: center; align-items: center; justify-content: center;">
           <div class="row">
             <div class="col-1 d-flex justify-content-center">
@@ -25,7 +35,7 @@
                       </div>
                     </div>
                   <% else %>
-                    <h4><%= link_to 'Sign In', client_user_session_path, class: "nav-link", 'aria-current': 'page' %></h4>
+                    <h4><%= link_to t('sign_in'), client_user_session_path, class: "nav-link", 'aria-current': 'page' %></h4>
                   <% end %>
                 </div>
               </div>
@@ -55,7 +65,7 @@
                 <div class="col-md-6">
                   <%= link_to client_shop_path(offer), class: 'text-decoration-none text-dark' do %>
                     <div class="border border-black" style="height:300px; border-radius: 0%; margin: 10px; padding: 20px;">
-                      <p style="margin-bottom: 10px; font-weight: bold;">Name: <%= offer.name %></p>
+                      <p style="margin-bottom: 10px; font-weight: bold;"><%= t('name')%>: <%= offer.name %></p>
                       <%= image_tag offer.image.url, style: "width: auto; height: 200px; object-fit: cover;" if offer.image.present? %>
                     </div>
                   <% end %>

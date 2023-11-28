@@ -18,7 +18,7 @@
 <div class="row">
   <div class="col-1"></div>
 
-  <div class="col-11" style="text-align: left">Username: <%= @user&.username if client_user_signed_in?%></div>
+  <div class="col-11" style="text-align: left"><%= t('username')%>: <%= @user&.username if client_user_signed_in?%></div>
 </div>
 
 <div class="row mb-2"></div>
@@ -32,14 +32,14 @@
 
 <div class="row">
   <div class="col-1"></div>
-  <div class="col-11" style="text-align: left">Coins: <%= @user&.coins if client_user_signed_in?%></div>
+  <div class="col-11" style="text-align: left"><%= t('coins')%>: <%= @user&.coins if client_user_signed_in?%></div>
 </div>
 
 <div class="row mb-4"></div>
 
 <div class="row">
   <div class="col-1"></div>
-  <div class="col-11" style="padding:0; text-align: center; justify-content: center; align-items: center;"><%= link_to 'Cash In Now',  edit_client_cash_in_path(@user), class: "btn btn-primary-light #{'active' if action_name == 'index' }", 'aria-current': 'page',
+  <div class="col-11" style="padding:0; text-align: center; justify-content: center; align-items: center;"><%= link_to  t('cash_in_now'),  edit_client_cash_in_path(@user), class: "btn btn-primary-light #{'active' if action_name == 'index' }", 'aria-current': 'page',
                                                      style: "border: 1px solid black; width: 95%; height: 45px;  margin: auto; padding: 0;" %>
   </div>
 </div>
@@ -48,7 +48,7 @@
 
 <div class="row">
   <div class="col"></div>
-  <div class="col" style="text-align: left"><h4>Contact Us</h4></div>
+  <div class="col" style="text-align: left"><h4><%= t('contact_us')%></h4></div>
   <div class="col"></div>
 </div>
 
@@ -56,7 +56,7 @@
 
 <div class="row">
   <div class="col"></div>
-  <div class="col" style="text-align: left"><h6><%= link_to 'Profile', client_me_index_path, class: "nav-link #{'active' if action_name == 'profile' }", 'aria-current': 'page' %>
+  <div class="col" style="text-align: left"><h6><%= link_to t('profile'), client_me_index_path, class: "nav-link #{'active' if action_name == 'profile' }", 'aria-current': 'page' %>
   </h6></div>
   <div class="col"></div>
 </div>
@@ -65,7 +65,7 @@
 
 <div class="row">
   <div class="col"></div>
-  <div class="col" style="text-align: left"><h4><%= link_to 'Sign Out', destroy_client_user_session_path, data: { 'turbo-method': :delete }, class: "nav-link #{'active' if action_name == 'sign in' }", 'aria-current': 'page' %>
+  <div class="col" style="text-align: left"><h4><%= link_to t('sign_out'), destroy_client_user_session_path, data: { 'turbo-method': :delete }, class: "nav-link #{'active' if action_name == 'sign in' }", 'aria-current': 'page' %>
   </h4></div>
   <div class="col"></div>
 </div>

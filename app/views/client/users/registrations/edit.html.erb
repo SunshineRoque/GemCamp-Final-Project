@@ -11,7 +11,7 @@
           <%= render "client/users/shared/error_messages", resource: resource %>
 
           <div class="mb-3">
-            <%= f.label :image, class: 'form-label' %><br>
+            <%= f.label t('image'), class: 'form-label' %><br>
             <%= f.file_field :image, class: 'form-control' %>
           </div>
 
@@ -21,7 +21,7 @@
           </div>
 
           <div class="mb-3">
-            <%= f.label :phone_number, class: 'form-label' %><br>
+            <%= f.label t('phone_number'), class: 'form-label' %><br>
             <%= f.text_field :phone, autofocus: true, autocomplete: "tel", class: 'form-control' %>
           </div>
 
@@ -39,7 +39,7 @@
           <% end %>
 
           <div class="mb-3">
-            <%= f.label :password, class: 'form-label' %> <i>(leave blank if you don't want to change it)</i><br>
+            <%= f.label t('password'), class: 'form-label' %> <i>(<%= t("leave blank if you don't want to change it") %>)</i><br>
             <%= f.password_field :password, autocomplete: "new-password", class: 'form-control' %>
             <% if @minimum_password_length %>
               <br>
@@ -48,22 +48,22 @@
           </div>
 
           <div class="mb-3">
-            <%= f.label :password_confirmation, class: 'form-label' %><br>
+            <%= f.label t('password_confirmation'), class: 'form-label' %><br>
             <%= f.password_field :password_confirmation, autocomplete: "new-password", class: 'form-control' %>
           </div>
 
           <div class="mb-3">
-            <%= f.label :current_password, class: 'form-label' %>
-            <i>(we need your current password to confirm your changes)</i><br>
+            <%= f.label t('current_password'), class: 'form-label' %>
+            <i>(<%= t("we need your current password to confirm your changes") %>)</i><br>
             <%= f.password_field :current_password, autocomplete: "current-password", class: 'form-control' %>
           </div>
 
           <div class="mb-3">
             <div class="row">
               <div class="col-9">
-                <%= f.submit "Update", class: 'btn btn-primary' %> <%= link_to "Back", client_me_index_path, class: 'btn btn-secondary' %>              </div>
+                <%= f.submit t('update'), class: 'btn btn-primary' %> <%= link_to t('back'), client_me_index_path, class: 'btn btn-secondary' %>              </div>
               <div class="col-2">
-                <%= button_to "Cancel my account", registration_path(resource_name), data: { confirm: "Are you sure?", turbo_confirm: "Are you sure?" }, method: :delete, class: 'btn btn-danger' %>
+                <%= button_to t('cancel_my_account'), registration_path(resource_name), data: { confirm: "Are you sure?", turbo_confirm: "Are you sure?" }, method: :delete, class: 'btn btn-danger' %>
               </div>
             </div>
           </div>

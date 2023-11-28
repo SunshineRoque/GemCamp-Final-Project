@@ -10,15 +10,15 @@ class Client::CashInController < ApplicationController
 
     if @user.coins.to_i >= @user.coins_was.to_i
       if @user.save
-        flash[:notice] = 'Cash In successfully'
+        flash[:notice] = t('cash_in_successfully')
         redirect_to client_me_index_path
       else
         puts "Errors: #{user.errors.full_messages}"
-        flash.now[:alert] = 'Cash In failed'
+        flash.now[:alert] = t('cash_in_failed')
         render :edit, status: :unprocessable_entity
       end
     else
-      flash.now[:alert] = 'The input number should be equal or greater than the current coins. Please try again.'
+      flash.now[:alert] = t('the_input_number')
       render :edit, status: :unprocessable_entity
     end
   end

@@ -19,11 +19,10 @@ class Client::MeController < ApplicationController
   end
 
   def update
-    @user = current_client_user # Assuming you have a method like this to get the current user
+    @user = current_client_user
 
     if @user.update(user_params)
-      # Handle successful update
-      redirect_to client_me_index_path, notice: 'User was successfully updated.'
+      redirect_to client_me_index_path, notice: t('user_was_successfully_updated')
     else
       render :edit
     end
@@ -33,11 +32,11 @@ class Client::MeController < ApplicationController
     @winner.address_id = params[:winner][:addresses_id]
     if @winner.save
       @winner.claim! if @winner.may_claim?
-      flash[:notice] = 'Prize Claimed successfully'
+      flash[:notice] = t('prize_claimed_successfully')
       redirect_to client_me_index_path
     else
       puts "Errors: #{@winner.errors.full_messages}"
-      flash.now[:alert] = 'Prize claim failed'
+      flash.now[:alert] = t('prize_claim_failed')
       render :show, status: :unprocessable_entity
     end
   end

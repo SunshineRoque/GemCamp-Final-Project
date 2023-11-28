@@ -25,15 +25,15 @@ class Client::ShopController < ApplicationController
 
     if current_client_user.coins >= @offer.coin
       if @order.save
-        flash[:notice] = 'Order created successfully'
+        flash[:notice] = t('order_created_successfully')
         redirect_to client_shop_index_path(@order)
       else
-        flash.now[:alert] = 'Order create failed'
+        flash.now[:alert] = t('order_create_failed')
         @user = current_client_user
         render :show
       end
     else
-      flash.now[:alert] = "You don't have enough coins"
+      flash.now[:alert] = t("you_dont_have_enough_coins")
       @user = current_client_user
       render :show
     end

@@ -30,11 +30,12 @@ class Client::LotteryController < ApplicationController
       quantity.times do
         Ticket.create(item: @item, user: current_client_user)
       end
-      flash[:notice] = "You successfully bought #{quantity} ticket/s."
+      flash[:notice] = t('successfully_bought', quantity: quantity)
+
     elsif quantity <= 0
-      flash[:alert] = "Quantity must be a positive number."
+      flash[:alert] = t('quantity_positive')
     else
-      flash[:alert] = "Not enough coins to create a ticket."
+      flash[:alert] = t("not_enough_coins")
     end
 
     redirect_to client_lottery_path(@item)

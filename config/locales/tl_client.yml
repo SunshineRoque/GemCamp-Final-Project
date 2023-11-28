@@ -1,0 +1,147 @@
+tl:
+  language: Wika
+  home: Bahay
+  coins: Mga Barya
+  claim: I-claim
+  announcement: Anunsyo
+  content_by: Ginawa ni
+  winners_feedback: Puna ng mga Nanalo
+  more: Higit pa
+  coming_soon: Malapit na
+  share: Ibahagi
+  invite: Mag anyaya
+  lottery: Lottery
+  shop: Mamili
+  me: Ako
+  sign_in: Mag-sign In
+  sign_out: Mag-sign Out
+  username: Username
+  cash_in_now: Mag-cash In
+  contact_us: Makipag-ugnayan sa amin
+  profile: Profile
+  cash_in_successfully: Matagumpay na nakapag-Cash In
+  cash_in_failed: Hindi na-Cash In
+  the_input_number: Ang input number ay dapat na katumbas o mas malaki kaysa sa kasalukuyang mga barya. Pakisubukang muli.
+  submit: Ipasa
+  back: Bumalik
+  successfully_bought: 'Matagumpay kang nakabili ng %{quantity} tiket.'
+  quantity_positive: 'Ang dami ay dapat na positibong numero.'
+  not_enough_coins: 'Hindi sapat na coins para makagawa ng tiket.'
+  button: Pindutan
+  all: Lahat
+  name: Pangalan
+  order_created_successfully: Matagumpay na nagawa ang order.
+  order_create_failed: Hindi nagawa ang order.
+  you_dont_have_enough_coins: Wala kang sapat na barya.
+  amount: Halaga
+  buy: Bumili
+  user_was_successfully_updated: Matagumpay na na-update ang user.
+  prize_claimed_successfully: Matagumpay na Na-claim ang Premyo.
+  prize_claim_failed: Hindi Matagumpay na Na-claim ang Premyo.
+  edit_profile: Ibahin ang profile
+  address: Tirahan
+  order_history: Kasaysayan ng mga na-order
+  lottery_history: Kasaysayan ng Lottery
+  winning_history: Kasaysayan ng mga Panalo
+  invitation_history: Kasaysayan ng mga Naimbita
+  edit_client_user: Ibahin ang impormasyon ng kliyente
+  image: Larawan
+  phone_number: Numero ng Telepono
+  password: Password
+  leave blank if you don't want to change it: iwanang blangko kung ayaw mong baguhin ito
+  characters_minimum: Minimum ng Character
+  password_confirmation: Ikumpirma ang Password
+  current_password: Kasalukuyang Password
+  we need your current password to confirm your changes: kailangan namin ang iyong kasalukuyang password upang kumpirmahin ang iyong mga pagbabago
+  update: Update
+  cancel_my_account: Kanselahin ang Aking Account
+  address1: TIRAHAN
+  genre:
+    home: Bahay
+    office: Opisina
+  default: Default
+  new_address: Bagong tirahan
+  remark: Puna
+  is_default: Default ba
+  street_address: Address ng Kalye
+  region: Rehiyon
+  please_select_region: Mangyaring Pumili ng Rehiyon
+  please_select_province: Mangyaring Piliin ang Lalawigan
+  province: Lalawigan
+  city: Lungsod
+  please_select_city: Mangyaring Piliin ang Lungsod
+  please_select_baranggay: Mangyaring Pumili ng Baranggay
+  Address created successfully: Matagumpay na Nagawa ang Address.
+  Address create failed: Hindi Nagawa ang Address.
+  Address updated successfully: Matagumpay na na-update ang address.
+  Address update failed: Hindi na-update ang address.
+  Address destroyed successfully: Matagumpay na nabura ang address.
+  create_address: Lumikha ng Address
+  orders1:
+    states:
+      pending: Nakabinbin
+      submitted: Naisumite
+      cancelled: Kinansela
+  created_at: Nilikha Ng
+  order_details: Mga Detalye ng Order
+  number_of_orders: Bilang ng mga Order
+  close: Isara
+  ticket_details: Mga Detalye ng Tiket
+  number_of_tickets: Bilang ng mga Tiket
+  item: Bagay
+  batch_count: Bilang ng Batch
+  tickets1:
+    states:
+      pending: Nakabinbin
+      won: Nanalo
+      lost: Nawala
+      cancelled: Kinansela
+  winning_details: Mga Detalye ng mga Panalo
+  number_of_winnings: Bilang ng mga Panalo
+  tickets_serial_number: Serial Number ng Tiket
+  winners1:
+    states:
+      won: Nanalo
+      claimed: Nakuha
+      submitted: Isinumite
+      paid: Binayaran
+      shipped: Naipadala
+      delivered: Naihatid
+      shared: Ibinahagi
+      published: Inilathala
+      remove_published: Alisin ang Nailathala
+  claim_prize: Kuhanin ang Premyo
+  share_feedback: Ibahagi ang Feedback
+  invitation_details: Mga Detalye ng Imbitasyon
+  number_of_invitations: Bilang ng mga Imbitasyon
+  no_order: Walang available na history ng order.
+  no_ticket: Walang available na history ng tiket.
+  no_winning: Walang available na history ng mga nanalo.
+  no_invitation: Walang available na history ng mga naimbita.
+  claim_page: Pahina sa Pagkuha ng Premyo
+  choose_address_please!: Mangyaring Pumili ng Tirahan!
+  share_page: Pahina para sa Pgababhagi ng Puna
+  share_your_story_thank_you: Ibahagi ang Iyong Kwento, Salamat!
+  comment: Magkomento
+  yes: Oo
+  no: Hindi
+  log_in: Mag Log-in
+  register: Mag Register
+  devise:
+    failure:
+      client_user:
+        not_found_in_database: 'Hindi wastong email o password'
+        unauthenticated: 'Kailangan mong mag-sign in o mag-sign up bago magpatuloy.'
+      not_found_in_database: 'Hindi wastong email o password'
+      unauthenticated: 'Hindi wastong email o password.'
+  errors:
+    messages:
+      not_saved: 'Hindi na-save ang rekord.'
+  activerecord:
+    errors:
+      models:
+        user:
+          attributes:
+            password:
+              blank: 'Ang password ay kinakailangan.'
+  shared_by: Ibinahagi ni

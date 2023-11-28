@@ -8,24 +8,24 @@
         <div class="row">
           <div class="col-12">
             <div class="row mb-4"></div>
-            <div class="row" style="margin-left: 5vh">Username: <%= @user.username %></p></div>
+            <div class="row" style="margin-left: 5vh">Username: <%= @user.username %></div>
             <div class="row mb-2"></div>
             <div class="row" style="margin-left: 5vh">Email: <%= @user.email %></div>
             <div class="row mb-2"></div>
-            <div class="row" style="margin-left: 5vh">Coins: <%= @user.coins %></div>
+            <div class="row" style="margin-left: 5vh"><%= t('coins') %>: <%= @user.coins %></div>
             <div class="row mb-4"></div>
             <div class="row" style="padding:0; margin: auto; text-align: center; align-items: center; justify-content: center ">
-              <%= link_to 'Cash In Now', edit_client_cash_in_path(@user), class: "btn btn-primary-light #{'active' if action_name == 'index' }", 'aria-current': 'page',
+              <%= link_to t('cash_in_now'), edit_client_cash_in_path(@user), class: "btn btn-primary-light #{'active' if action_name == 'index' }", 'aria-current': 'page',
                           style: "border: 1px solid black; width: 95%; height: 30px; margin: auto; padding: 0;" %>
             </div>
             <div class="row mb-4"></div>
             <div class="row" style="padding:0; margin: auto; text-align: center; align-items: center; justify-content: center">
               <div class="col-6">
-                <%= link_to 'Edit Profile', edit_client_user_registration_path, class: "btn btn-primary-light #{'active' if action_name == 'index' }", 'aria-current': 'page',
+                <%= link_to t('edit_profile'), edit_client_user_registration_path, class: "btn btn-primary-light #{'active' if action_name == 'index' }", 'aria-current': 'page',
                             style: "border: 1px solid black; width: 95%; height: 30px; margin: auto; padding: 0;" %>
               </div>
               <div class="col-6">
-                <%= link_to 'Address', client_addresses_path, class: "btn btn-primary-light #{'active' if action_name == 'index' }", 'aria-current': 'page',
+                <%= link_to t('address'), client_addresses_path, class: "btn btn-primary-light #{'active' if action_name == 'index' }", 'aria-current': 'page',
                             style: "border: 1px solid black; width: 95%; height: 30px; margin: auto; padding: 0;" %>
               </div>
             </div>
@@ -44,14 +44,14 @@
         <div class="row">
           <div class="col" style="margin: 5px;padding:0; text-align: center; align-items: center; justify-content: center">
             <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#orderHistoryModal" style="width: 100%;">
-              Order History
+              <%= t('order_history') %>
             </button>
 
             <div class="modal fade" id="orderHistoryModal" tabindex="-1" role="dialog" aria-labelledby="orderHistoryModalTitle" aria-hidden="true">
               <div class="modal-dialog" role="document">
                 <div class="modal-content">
                   <div class="modal-header">
-                    <h5 class="modal-title" id="modalWinningTitle">Order Details</h5>
+                    <h5 class="modal-title" id="modalWinningTitle"><%= t('order_details') %></h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                       <span aria-hidden="true">&times;</span>
                     </button>
@@ -61,33 +61,32 @@
                       <% current_user_orders = Order.where(user_id: current_client_user.id) %>
 
                       <% if current_user_orders.any? %>
-                        <p class="container" style="background-color: #8bb9fe">Number of
-                          Orders: <%= current_user_orders.count %></p>
+                        <p class="container" style="background-color: #8bb9fe"><%= t('number_of_orders') %>: <%= current_user_orders.count %></p>
                         <% current_user_orders.each do |order| %>
                           <div class="order-item" style="text-align: left;">
                             <p><strong>Serial Number:</strong> <%= order.serial_number %></p>
-                            <p><strong>Amount:</strong> <%= order.amount %></p>
-                            <p><strong>Coin:</strong> <%= order.coin %></p>
-                            <p><strong>State:</strong>
+                            <p><strong><%= t('amount') %>:</strong> <%= order.amount %></p>
+                            <p><strong><%= t('coins') %>:</strong> <%= order.coin %></p>
+                            <p><strong><%= t('state') %>:</strong>
                               <% if order.may_cancel? %>
-                                <%= button_to 'Cancel', cancel_client_me_path(id: order), method: :post, class: 'btn btn-warning mr-2' %>
+                                <%= button_to  t('cancel') , cancel_client_me_path(id: order), method: :post, class: 'btn btn-warning mr-2' %>
                               <% else %>
                               <p style="text-align: left;">
-                                <strong>State: </strong><span style="color: blue;%>;"> <strong><%= order.state %></strong></span>
+                                <strong><%= t('state') %>: </strong><span style="color: blue;%>;"> <strong><%= t("orders1.states.#{order.state}") %></strong></span>
                             <% end %>                            </p>
-                            <p><strong>Created At:</strong> <%= order.created_at.strftime("%m/%d/%Y - %I:%M %p") %></p>
+                            <p><strong><%= t('created_at') %>:</strong> <%= order.created_at.strftime("%m/%d/%Y - %I:%M %p") %></p>
                             <!-- Add any additional attributes you want to display -->
                             <hr> <!-- Add a horizontal line between orders for better separation -->
                           </div>
                         <% end %>
                       <% else %>
-                        <p>No order history available.</p>
+                        <p><%= t('no_order') %></p>
                       <% end %>
 
                     <% end %>
                   </div>
                   <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal"><%= t('close') %></button>
                   </div>
                 </div>
               </div>
@@ -96,15 +95,14 @@
 
           <div class="col" style="margin: 5px;padding:0; text-align: center; align-items: center; justify-content: center">
             <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#lotteryHistoryModal" style="width: 100%;">
-              Lottery History
+              <%= t('lottery_history') %>
             </button>
 
-            <!-- Modal -->
             <div class="modal fade" id="lotteryHistoryModal" tabindex="-1" role="dialog" aria-labelledby="lotteryHistoryModalTitle" aria-hidden="true">
               <div class="modal-dialog" role="document">
                 <div class="modal-content">
                   <div class="modal-header">
-                    <h5 class="modal-title" id="modalLotteryTitle">Ticket Details</h5>
+                    <h5 class="modal-title" id="modalLotteryTitle"><%= t('ticket_details') %></h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                       <span aria-hidden="true">&times;</span>
                     </button>
@@ -114,28 +112,27 @@
                       <% current_user_tickets = Ticket.where(user_id: current_client_user.id) %>
 
                       <% if current_user_tickets.any? %>
-                        <p class="container" style="background-color: #8bb9fe">Number of
-                          tickets: <%= current_user_tickets.count %></p>
+                        <p class="container" style="background-color: #8bb9fe"><%= t('number_of_tickets') %>: <%= current_user_tickets.count %></p>
                         <% current_user_tickets.each do |ticket| %>
                           <div class="ticket-item" style="text-align: left;">
-                            <p><strong>Item:</strong> <%= ticket.item&.name %></p>
+                            <p><strong><%= t('item') %>:</strong> <%= ticket.item&.name %></p>
                             <p><strong>Serial Number:</strong> <%= ticket.serial_number %></p>
-                            <p><strong>Batch Count:</strong> <%= ticket.batch_count %></p>
-                            <p><strong>Coins:</strong> <%= ticket.coins %></p>
-                            <p><strong>State:</strong>
-                              <span style="color: <%= ticket.state == 'pending' ? 'green' : (ticket.state == 'won' ? 'violet' : (ticket.state == 'lost' ? 'blue' : 'red')) %>;"><strong><%= ticket.state %></strong></span>
+                            <p><strong><%= t('batch_count') %>:</strong> <%= ticket.batch_count %></p>
+                            <p><strong><%= t('coins') %>:</strong> <%= ticket.coins %></p>
+                            <p><strong><%= t('state') %>:</strong>
+                              <span style="color: <%= ticket.state == 'pending' ? 'green' : (ticket.state == 'won' ? 'violet' : (ticket.state == 'lost' ? 'blue' : 'red')) %>;"><strong><%= t("tickets1.states.#{ticket.state}") %></strong></span>
                             </p>
-                            <p><strong>Created At:</strong> <%= ticket.created_at.strftime("%m/%d/%Y - %I:%M %p") %></p>
+                            <p><strong><%= t('created_at') %>:</strong> <%= ticket.created_at.strftime("%m/%d/%Y - %I:%M %p") %></p>
                             <hr> <!-- Add a horizontal line between tickets for better separation -->
                           </div>
                         <% end %>
                       <% else %>
-                        <p>No ticket history available.</p>
+                        <p><%= t('no_ticket') %></p>
                       <% end %>
                     <% end %>
                   </div>
                   <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal"><%= t('close') %></button>
                   </div>
                 </div>
               </div>
@@ -144,7 +141,7 @@
 
           <div class="col" style="margin: 5px;padding:0; text-align: center; align-items: center; justify-content: center">
             <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#winningHistoryModal" style="width: 100%;">
-              Winning History
+              <%= t('winning_history') %>
             </button>
 
             <!-- Modal -->
@@ -152,7 +149,7 @@
               <div class="modal-dialog" role="document">
                 <div class="modal-content">
                   <div class="modal-header">
-                    <h5 class="modal-title" id="modalWinningTitle">Winning Details</h5>
+                    <h5 class="modal-title" id="modalWinningTitle"><%= t('winning_details') %></h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                       <span aria-hidden="true">&times;</span>
                     </button>
@@ -162,8 +159,7 @@
                       <% current_user_winners = Winner.where(user_id: current_client_user.id) %>
 
                       <% if current_user_winners.any? %>
-                        <p class="container" style="background-color: #8bb9fe">Number of
-                          winnings: <%= current_user_winners.count %></p>
+                        <p class="container" style="background-color: #8bb9fe"><%= t('number_of_winnings') %>: <%= current_user_winners.count %></p>
                         <% current_user_winners.each do |winner| %>
                           <div class="winner-item">
                             <div class="image-container" style="margin: 5px; <% if winner.item && winner.item.image.present? %>height: auto;<% else %>height: 300px;<% end %> background-color: #eee;">
@@ -171,28 +167,28 @@
                                 <%= image_tag winner.item.image.url, class: 'card-img-top img-fluid', alt: 'Winner Image' %>
                               <% end %>
                             </div>
-                            <p style="text-align: left;"><strong>Item:</strong> <%= winner.item&.name %></p>
-                            <p style="text-align: left;"><strong>Winner id:</strong> <%= winner.id %></p>
+                            <p style="text-align: left;"><strong><%= t('item') %>:</strong> <%= winner.item&.name %></p>
+                            <p style="text-align: left;"><strong><%= t('created_at') %>:</strong> <%= winner.created_at.strftime("%m/%d/%Y - %I:%M %p") %></p>
                             <p style="text-align: left;">
-                              <strong>Ticket Serial Number:</strong> <%= winner.ticket&.serial_number %></p>
+                              <strong><%= t('tickets_serial_number') %>:</strong> <%= winner.ticket&.serial_number %></p>
                             <% if winner.may_claim? %>
-                              <%= link_to 'Claim Prize', client_me_path(winner.id), class: 'btn btn-warning mr-2' %>
+                              <%= link_to t('claim_prize'), client_me_path(winner.id), class: 'btn btn-warning mr-2' %>
                             <% elsif winner.may_share? %>
-                              <%= link_to 'Share Prize', client_share_path(winner.id), class: 'btn btn-warning mr-2' %>
+                              <%= link_to t('share_feedback'), client_share_path(winner.id), class: 'btn btn-warning mr-2' %>
                             <% else %>
                               <p style="text-align: left;">
-                                <strong>State: </strong><span style="color: blue;%>;"> <strong><%= winner.state %></strong></span>
+                                <strong><%= t('state') %>: </strong><span style="color: blue;%>;"> <strong><%= t("winners1.states.#{winner.state}") %></strong></span>
                             <% end %>
                             <hr> <!-- Add a horizontal line between winners for better separation -->
                           </div>
                         <% end %>
                       <% else %>
-                        <p>No winning history available.</p>
+                        <p><%= t('no_winning') %></p>
                       <% end %>
                     <% end %>
                   </div>
                   <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal"><%= t('close') %></button>
                   </div>
                 </div>
               </div>
@@ -201,7 +197,7 @@
 
           <div class="col" style="margin: 5px; padding: 0; text-align: center; align-items: center; justify-content: center;">
             <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#invitationHistoryModal" style="width: 100%;">
-              Invitation History
+              <%= t('invitation_history') %>
             </button>
 
             <!-- Modal -->
@@ -209,7 +205,7 @@
               <div class="modal-dialog" role="document">
                 <div class="modal-content">
                   <div class="modal-header">
-                    <h5 class="modal-title" id="modalInvitationTitle">Invitation Details</h5>
+                    <h5 class="modal-title" id="modalInvitationTitle"><%= t('invitation_details') %></h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                       <span aria-hidden="true">&times;</span>
                     </button>
@@ -219,8 +215,7 @@
                       <% current_user_children = current_client_user.users %>
 
                       <% if current_user_children.present? %>
-                        <p class="container" style="background-color: #8bb9fe;">Number of
-                          invitations: <%= current_user_children.count %></p>
+                        <p class="container" style="background-color: #8bb9fe;"><%= t('number_of_invitations') %>: <%= current_user_children.count %></p>
                         <% current_user_children.each do |child| %>
                           <div class="invitation-item" style="text-align: left;">
                             <p><%= child.email %></p>
@@ -228,12 +223,12 @@
                           <hr> <!-- Add a horizontal line between invitations for better separation -->
                         <% end %>
                       <% else %>
-                        <p>No invitation history available.</p>
+                        <p><%= t('no_invitation') %></p>
                       <% end %>
                     <% end %>
                   </div>
                   <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal"><%= t('close') %></button>
                   </div>
                 </div>
               </div>

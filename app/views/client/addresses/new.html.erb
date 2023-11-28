@@ -1,8 +1,12 @@
 <div class="container-fluid border border-black">
   <%= render 'client/partial/application_up' %>
-<h1>New Address</h1>
-
-<%= render partial: 'form', locals: { address: @address } %>
-
+  <div class="container">
+    <div class="row">
+      <div class="col">
+        <h1><%= t('new_address') %></h1>
+        <%= render partial: 'form', locals: { address: @address } %>
+      </div>
+    </div>
+  </div>
   <%= render 'client/partial/application_down' %>
 </div>

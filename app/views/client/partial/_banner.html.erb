@@ -30,13 +30,13 @@
 <div class="row ">
   <div class="col border border-black">
     <div class="ticker_wrap">
-      <div class="ticker__breaking"> Announcement:</div>
+      <div class="ticker__breaking"> <%= t('announcement')%>:</div>
       <div class="ticker__viewport">
         <ul class="ticker__list" data-ticker="list">
           <li class="ticker__item" data-ticker="item">
             <% @news_tickers.each do |news_ticker| %>
               &nbsp;
-              <i class="material-icons"><strong>Content by <%= news_ticker.admin&.username %>: </strong></i>
+              <i class="material-icons"><strong><%= t('content_by') %> <%= news_ticker.admin&.username %>: </strong></i>
                 <%= news_ticker.content %>
               &nbsp;
             <% end %>

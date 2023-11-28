@@ -1,0 +1,130 @@
+en:
+  language: Language
+  home: Home
+  coins: Coins
+  claim: Claim
+  announcement: Announcement
+  content_by: Content by
+  winners_feedback: Winners' Feedback
+  more: More
+  coming_soon: Coming soon
+  share: Share
+  invite: Invite
+  lottery: Lottery
+  shop: Shop
+  me: Me
+  sign_in: Sign In
+  sign_out: Sign Out
+  username: Username
+  cash_in_now: Cash In Now
+  contact_us: Contact us
+  profile: Profile
+  cash_in_successfully: Cash In successfully
+  cash_in_failed: Cash In failed
+  the_input_number: The input number should be equal or greater than the current coins. Please try again.
+  submit: Submit
+  successfully_bought: 'You successfully bought %{quantity} ticket/s.'
+  tickets.: tickets.
+  quantity_positive: Quantity must be a positive number.
+  not_enough_coins: 'Not enough coins to create a ticket.'
+  button: Button
+  all: All
+  name: Name
+  order_created_successfully: Order created successfully.
+  order_create_failed: Order created failed.
+  you_dont_have_enough_coins: You don't have enough coins.
+  amount: Amount
+  buy: Buy
+  user_was_successfully_updated: User was successfully updated.
+  prize_claimed_successfully: Prize Claimed Successfully.
+  prize_claim_failed: Prize Claim Failed.
+  edit_profile: Edit Profile
+  address: Address
+  order_history: Order History
+  lottery_history: Lottery History
+  winning_history: Winning History
+  invitation_history: Invitation History
+  edit_client_user: Edit Client User
+  image: Image
+  phone_number: Phone Number
+  password: Password
+  leave blank if you don't want to change it: leave blank if you don't want to change it
+  characters_minimum: Characters Minimum
+  password_confirmation: Password Confirmation
+  current_password: Current Password
+  we need your current password to confirm your changes: we need your current password to confirm your changes
+  update: Update
+  cancel_my_account: Cancel My Account
+  address1: ADDRESS
+  genre:
+    home: Home
+    office: Office
+  default: Default
+  new_address: New Address
+  remark: Remark
+  is_default: Is Default
+  street_address: Steert Address
+  region: Region
+  please_select_region: Please Select Region
+  please_select_province: Please Select Province
+  province: Province
+  city: City
+  please_select_city: Please Select City
+  please_select_baranggay: Please Select Baranggay
+  Address created successfully: Address Created Successfully.
+  Address create failed: Address create failed.
+  Address updated successfully: Address updated successfully.
+  Address update failed: Address update failed.
+  Address destroyed successfully: Address destroyed successfully.
+  create_address: Create Address
+  orders1:
+    states:
+      pending: Pending
+      submitted: Submitted
+      cancelled: Cancelled
+  created_at: Created At
+  order_details: Order Details
+  number_of_orders: Number of Orders
+  close: Close
+  ticket_details: Ticket Details
+  number_of_tickets: Number of Tickets
+  item: Item
+  batch_count: Batch Count
+  tickets1:
+    states:
+      pending: Pending
+      won: Won
+      lost: Lost
+      cancelled: Cancelled
+  winning_details: Winning Details
+  number_of_winnings: Number of Winnings
+  tickets_serial_number: Ticket's Serial Number
+  winners1:
+    states:
+      won: Won
+      claimed: Claimed
+      submitted: Submitted
+      paid: Paid
+      shipped: Shipped
+      delivered: Delivered
+      shared: Shared
+      published: Published
+      remove_published: Remove Published
+  claim_prize: Claim Prize
+  share_feedback: Share Feedback
+  invitation_details: Invitation Details
+  number_of_invitations: Number of Invitations
+  No order history available.: No order history available.
+  No ticket history available.: No ticket history available.
+  No winning history available.: No winning history available.
+  No invitation history available.: No invitation history available.
+  claim_page: CLAIM PAGE
+  choose_address_please!: Choose Address Please!
+  share_page: Share Page
+  share_your_story_thank_you: Share Your Story, Thank You!
+  comment: Comment
+  yes: Yes
+  no : No
+  log_in: Log In
+  register: Register
+  shared_by: Shared by

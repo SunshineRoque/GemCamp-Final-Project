@@ -15,7 +15,7 @@
                   <div class="card-body">
                     <p class="card-title">
                     <div class="mb-3">
-                      <%= f.label :coins %>
+                      <%= f.label t('coins') %>
                       <div class="input-group">
                         <%= f.text_field :coins, class: 'form-control', max: @user.coins, min: @user.coins, id: 'coins-input' %>
                         <div class="input-group-append">
@@ -31,7 +31,7 @@
             </div>
             <div class="row">
               <div class="col mx-auto">
-                <%= f.submit 'Submit', class: 'btn btn-primary' %>
+                <%= f.submit t('submit') , class: 'btn btn-primary' %>&nbsp;&nbsp;<%= link_to t('back'), client_me_index_path, class: 'btn btn-secondary' %>
               </div>
             </div>
           <% end %>

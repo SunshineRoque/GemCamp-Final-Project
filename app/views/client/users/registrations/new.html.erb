@@ -3,20 +3,30 @@
   <div class="row ">
     <div class="col-2 border border-black"></div>
     <div class="col-1 border border-black d-inline-flex p-2" style="text-align: center; align-items: center; justify-content: center;">
-      <%= link_to 'Logo', client_root_path, class: "nav-link #{'active' if action_name == 'logo'}", 'aria-current': 'page' %>
+      <%= link_to t('home'), client_root_path, class: "nav-link #{'active' if action_name == 'logo'}", 'aria-current': 'page' %>
     </div>
     <div class="col-4 border border-black"></div>
     <div class="col-3 border border-black">
       <div class="row ">
-        <div class="col-3 border border-black d-inline-flex p-2" style="text-align: center; align-items: center; justify-content: center;">Coins</div>
-        <div class="col-3 border border-black d-inline-flex p-2 " style="text-align: center; align-items: center; justify-content: center;">Claim</div>
-        <div class="col-3 border border-black d-inline-flex p-2 " style="text-align: center; align-items: center; justify-content: center;">Language</div>
+        <div class="col-3 border border-black d-inline-flex p-2" style="text-align: center; align-items: center; justify-content: center;"><%= t('coins') %></div>
+        <div class="col-3 border border-black d-inline-flex p-2 " style="text-align: center; align-items: center; justify-content: center;"><%= t('claim') %></div>
+        <div class="col-3 border border-black d-inline-flex p-2 " style="text-align: center; align-items: center; justify-content: center;">
+          <div class="dropdown">
+            <button class="btn btn-secondary dropdown-toggle w-auto" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+              <%= t('language') %>
+            </button>
+            <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+              <li><%= link_to t('english'), params.permit!.merge(locale: 'en'), class: 'dropdown-item' %></li>
+              <li><%= link_to t('tagalog'), params.permit!.merge(locale: 'tl'), class: 'dropdown-item' %></li>
+            </ul>
+          </div>
+        </div>
         <div class="col-3 border border-black d-inline-flex p-2 " style="text-align: center; align-items: center; justify-content: center;">
           <div class="row">
             <div class="col-1 d-flex justify-content-center">
               <div id="mySidenav" class="sidenav">
                 <div class="row">
-                    <h4><%= link_to 'Sign In', client_user_session_path, class: "nav-link", 'aria-current': 'page' %></h4>
+                    <h4><%= link_to t('sign_in'), client_user_session_path, class: "nav-link", 'aria-current': 'page' %></h4>
                 </div>
               </div>
             </div>
@@ -35,10 +45,10 @@
 
     <div class="row" style="height: 50px;">
       <div class="col-2"></div>
-      <div class="col-4" style="padding:0;"><%= link_to 'Log in', new_client_user_session_path, class: "btn btn-primary-light #{'active' if action_name == 'index' }", 'aria-current': 'page',
+      <div class="col-4" style="padding:0;"><%= link_to t('log_in'), new_client_user_session_path, class: "btn btn-primary-light #{'active' if action_name == 'index' }", 'aria-current': 'page',
                                                         style: "border: 1px solid black; border-radius: 0%; width: 100%; height: 50px; " %>
       </div>
-      <div class="col-4" style="padding:0;"><%= link_to 'Register', new_client_user_registration_path, class: "btn btn-primary #{'active' if action_name == 'index' }", 'aria-current': 'page',
+      <div class="col-4" style="padding:0;"><%= link_to t('register'), new_client_user_registration_path, class: "btn btn-primary #{'active' if action_name == 'index' }", 'aria-current': 'page',
                                                         style: "border: 1px solid black; border-radius: 0%; width: 100%; height: 50px;" %>
       </div>
       <div class="col-2"></div>
@@ -88,7 +98,7 @@
 
     <div class="row" style="height: 50px;">
       <div class="col-2"></div>
-      <div class="col-8" style="padding:0;"><%= f.password_field :password_confirmation, autofocus: true, autocomplete: "new-password", class: "form-control", placeholder: "Confirm Password",
+      <div class="col-8" style="padding:0;"><%= f.password_field :password_confirmation, autofocus: true, autocomplete: "new-password", class: "form-control", placeholder: t('password_confirmation'),
                                                                  style: "border: 1px solid black; border-radius: 0%; width: 100%; height: 50px; " %>
       </div>
       <div class="col-2"></div>
@@ -99,7 +109,7 @@
 
     <div class="row" style="height: 50px;">
       <div class="col-2"></div>
-      <div class="col-8" style="padding:0;"><%= f.submit "Log in", class: "form-control", placeholder: "LOG IN",
+      <div class="col-8" style="padding:0;"><%= f.submit "Log in", class: "form-control", placeholder: t('log_in'),
                                                          style: "border: 1px solid black; width: 100%; height: 50px; " %></div>
       <div class="col-2"></div>
     </div>
