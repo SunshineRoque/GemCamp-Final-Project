@@ -77,6 +77,7 @@ tl:
   winners:
     states:
       won: Nanalo
+      claimed: Nakuha
       submitted: Isinumite
       paid: Binayaran
       shipped: Naipadala
@@ -184,4 +185,21 @@ tl:
       active: Aktibo
       inactive: Hindi Aktibo
   create_news_ticker: Lumikha ng News Ticker
-
+  bonus: Bonus
+  remarks: Mga Puna
+  promoter_name: Pangalan ng Promoter
+  order_was_paid: Ang Order ay Matagumpay na Nagawa at Nabayaran.
+  order2_create_failed: Hindi Matagumpay na Nagawa at Nabayaran.
+  the_number: Ang input number ay dapat na katumbas o mas malaki sa 0. Pakisubukang muli.
+  order_successful_yet_cancelled: Matagumpay na nakagawa ng Order pero nakansela agad. Walang sapat na barya ang user.
+  no_username: Walang Username
+  no_promoter: Walang Promoter
+  activerecord:
+    errors:
+      models:
+        order:
+          attributes:
+            coin:
+              blank: 'Ang Coin field ay kailangang puno.'
+            remarks:
+              blank: 'Ang Remarks field ay kailangang puno.'

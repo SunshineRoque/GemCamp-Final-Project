@@ -108,6 +108,7 @@ en:
   winners:
     states:
       won: Won
+      claimed: Claimed
       submitted: Submitted
       paid: Paid
       shipped: Shipped
@@ -213,8 +214,24 @@ en:
       active: Active
       inactive: Inactive
   create_news_ticker: Create News Ticker
-
-
+  bonus: Bonus
+  remarks: Remarks
+  promoter_name: Promoter Name
+  order_was_paid: Order was Successfully Created and Paid.
+  order2_create_failed: Order create failed.
+  the_number: The input number should be equal or greater 0. Please try again.
+  order_successful_yet_cancelled: Order create successfully yet cancelled. User does not have enough coins.
+  no_username: No Username
+  no_promoter: No Promoter
+  activerecord:
+    errors:
+      models:
+        order:
+          attributes:
+            coin:
+              blank: 'The Coin field cannot be blank.'
+            remarks:
+              blank: 'The Remarks field cannot be blank.'
 
 
 

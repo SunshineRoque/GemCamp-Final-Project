@@ -18,20 +18,20 @@ class Admin::AdminOrders::DeductController < ApplicationController
         @order.submit!
         if @order.may_pay?
           @order.may_pay!
-          flash[:notice] = 'Order was successfully created and paid'
+          flash[:notice] = t('order_was_paid')
           redirect_to admin_root_path
         else
           @order.cancel!
-          flash.now[:alert] = 'Order create successfully yet cancelled. User does not have enough coins.'
+          flash.now[:alert] = t('order_successful_yet_cancelled')
           redirect_to admin_root_path
         end
         render :new, status: :unprocessable_entity
       else
-        flash.now[:alert] = 'Order create failed'
+        flash.now[:alert] = t('order2_create_failed')
         render :new, status: :unprocessable_entity
       end
     else
-      flash.now[:alert] = 'The input number should be equal or greater user. Please try again.'
+      flash.now[:alert] = t('the_number')
       render :new, status: :unprocessable_entity
     end
   end

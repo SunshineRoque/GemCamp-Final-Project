@@ -16,14 +16,14 @@ class Admin::AdminOrders::IncreaseController < ApplicationController
       if @order.save
         @order.submit!
         @order.pay!
-        flash[:notice] = 'Order was successfully created and paid'
+        flash[:notice] = t('order_was_paid')
         redirect_to admin_root_path
       else
-        flash.now[:alert] = 'Order create failed'
+        flash.now[:alert] = t('order2_create_failed')
         render :new, status: :unprocessable_entity
       end
     else
-      flash.now[:alert] = 'The input number should be equal or greater 0. Please try again.'
+      flash.now[:alert] = t('the_number')
       render :new, status: :unprocessable_entity
     end
   end

@@ -11,13 +11,13 @@
           <div class="card-header">
             <ul class="nav nav-tabs card-header-tabs">
               <li class="nav-item">
-                <%= link_to 'Increase', new_admin_user_admin_orders_increase_path(user_id: @user.id), class: 'nav-link font-bold'%>
+                <%= link_to t('increase'), new_admin_user_admin_orders_increase_path(user_id: @user.id), class: 'nav-link font-bold'%>
               </li>
               <li class="nav-item">
-                <%= link_to 'Deduct', new_admin_user_admin_orders_deduct_path(user_id: @user.id), class: 'nav-link active font-bold text-dark' %>
+                <%= link_to t('deduct'), new_admin_user_admin_orders_deduct_path(user_id: @user.id), class: 'nav-link active font-bold text-dark' %>
               </li>
               <li class="nav-item">
-                <%= link_to 'Bonus', new_admin_user_admin_orders_bonu_path(user_id: @user.id), class: 'nav-link font-bold' %>
+                <%= link_to t('bonus'), new_admin_user_admin_orders_bonu_path(user_id: @user.id), class: 'nav-link font-bold' %>
               </li>
             </ul>
           </div>
@@ -37,7 +37,7 @@
               <div class="row">
                 <div class="input-group">
                   <div class="input-group-prepend">
-                    <div class="input-group-text" style="background-color: #a7acb1; border-bottom-right-radius: 0; border-top-right-radius: 0">Coins</div>
+                    <div class="input-group-text" style="background-color: #a7acb1; border-bottom-right-radius: 0; border-top-right-radius: 0"><%= t('coins')%></div>
                   </div>
                   <%= form.text_field :coin, class: 'form-control', id: 'inlineFormInputGroupCoins' %>
                 </div>
@@ -48,14 +48,14 @@
                   <div class="input-group-prepend">
                     <div class="input-group-text" style="background-color: #a7acb1; border-bottom-right-radius: 0; border-top-right-radius: 0">Genre</div>
                   </div>
-                  <div class="form-control" id="inlineFormInputGroupGenre" readonly="true" style="text-align: left">Deduct</div>
+                  <div class="form-control" id="inlineFormInputGroupGenre" readonly="true" style="text-align: left"><%= t('deduct')%></div>
                 </div>
               </div>
               <div class="row mb-4"></div>
               <div class="row">
                 <div class="input-group">
                   <div class="input-group-prepend">
-                    <div class="input-group-text" style="background-color: #a7acb1; border-bottom-right-radius: 0; border-top-right-radius: 0">Remarks</div>
+                    <div class="input-group-text" style="background-color: #a7acb1; border-bottom-right-radius: 0; border-top-right-radius: 0"><%= t('remarks')%></div>
                   </div>
                   <%= form.text_field :remarks, class: 'form-control', id: 'inlineFormInputGroupRemark' %>
                 </div>
@@ -64,7 +64,7 @@
               <div class="row">
                 <div class="input-group" style="text-align: center; justify-content: right; align-items: center;">
                   <div class="input-group-prepend">
-                    <%= form.submit 'Submit', class: 'input-group-text', style: "background-color: skyblue;" %>
+                    <%= form.submit t('submit'), class: 'input-group-text', style: "background-color: skyblue;" %>
                   </div>
                 </div>
               </div>
@@ -82,22 +82,11 @@
                 <div class="input-group-prepend">
                   <div class="input-group-text" style="background-color: #a7acb1; border-bottom-right-radius: 0; border-top-right-radius: 0">Username</div>
                 </div>
-                <div class="form-control" id="inlineFormInputGroupUsername" readonly="true" style="text-align: left"><%= @user.username %></div>
-              </div>
-            </div>
-            <div class="row mb-4"></div>
-            <div class="row">
-              <div class="input-group">
-                <div class="input-group-prepend">
-                  <div class="input-group-text" style="background-color: #a7acb1; border-bottom-right-radius: 0; border-top-right-radius: 0">Promoter
-                    Name
-                  </div>
-                </div>
-                <div class="form-control" id="inlineFormInputGroupPromoterName" readonly="true" style="text-align: left">
-                  <% if @user.parent&.email.present? %>
-                    <%= @user.parent.email %>
+                <div class="form-control" id="inlineFormInputGroupUsername" readonly="true" style="text-align: left">
+                  <% if @user.username.present? %>
+                    <%= @user.username %>
                   <% else %>
-                    No Promoter
+                    <%= t('no_username')%>
                   <% end %>
                 </div>
               </div>
@@ -106,7 +95,23 @@
             <div class="row">
               <div class="input-group">
                 <div class="input-group-prepend">
-                  <div class="input-group-text" style="background-color: #a7acb1; border-bottom-right-radius: 0; border-top-right-radius: 0">Coins</div>
+                  <div class="input-group-text" style="background-color: #a7acb1; border-bottom-right-radius: 0; border-top-right-radius: 0"><%= t('promoter_name')%>
+                  </div>
+                </div>
+                <div class="form-control" id="inlineFormInputGroupPromoterName" readonly="true" style="text-align: left">
+                  <% if @user.parent&.email.present? %>
+                    <%= @user.parent.email %>
+                  <% else %>
+                    <%= t('no_promoter')%>
+                  <% end %>
+                </div>
+              </div>
+            </div>
+            <div class="row mb-4"></div>
+            <div class="row">
+              <div class="input-group">
+                <div class="input-group-prepend">
+                  <div class="input-group-text" style="background-color: #a7acb1; border-bottom-right-radius: 0; border-top-right-radius: 0"><%= t('coins')%></div>
                 </div>
                 <div class="form-control" id="inlineFormInputGroupCoins" readonly="true" style="text-align: left"><%= @user.coins %></div>
               </div>
