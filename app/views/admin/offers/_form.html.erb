@@ -5,12 +5,12 @@
   </div>
   <div class="col-10">
     <div class="row">
-      <h1 style='text-decoration: none;'>OFFERS <%= link_to '+', class: 'btn btn-primary' %></h1>
+      <h1 style='text-decoration: none;'><%= t('offers')%> <%= link_to '+', class: 'btn btn-primary' %></h1>
       <div class="container">
         <%= form_with model: offer, url: url, local: true do |form| %>
           <% if offer.errors.any? %>
             <div id="error_explanation" class="alert alert-danger">
-              <h2><%= pluralize(offer.errors.count, "error") %> prohibited this offer from being saved:</h2>
+              <h2><%= pluralize(offer.errors.count, "error") %></h2>
               <ul>
                 <% offer.errors.full_messages.each do |msg| %>
                   <li><%= msg %></li>
@@ -19,24 +19,22 @@
             </div>
           <% end %>
 
-          <!-- Your existing form fields... -->
-
           <div class="mb-3">
-            <%= form.label :name %>
+            <%= form.label t('name') %>
             <%= form.text_field :name, class: 'form-control' %>
           </div>
 
           <div class="mb-3">
-            <%= form.label :amount %>
+            <%= form.label t('amount') %>
             <%= form.text_field :amount, class: 'form-control' %>
           </div>
           <div class="mb-3">
-            <%= form.label :coin %>
+            <%= form.label t('coins') %>
             <%= form.text_field :coin, class: 'form-control' %>
           </div>
           <div class="field">
-            <%= form.label 'Status' %>
-            <%= form.select :status, options_for_select(Item.statuses.keys.map { |status| [status.humanize, status] }) %>
+            <%= form.label t('status') %>
+            <%= form.select :status, options_for_select(Item.statuses.keys.map { |status| [I18n.t("offers1.status.#{status}"), status] }) %>
           </div>
           <p></p>
           <div>
@@ -44,8 +42,8 @@
           </div>
           <p></p>
           <div style="margin-bottom: 10px;">
-            <%= form.submit class: 'btn btn-primary' %>
-            <%= link_to 'Back', admin_offers_path, class: "btn btn-primary", 'aria-current': 'page', style: 'background-color: lightblue; border: none;' %>
+            <%= form.submit t('create_offer'), class: 'btn btn-primary' %>
+            <%= link_to t('back'), admin_offers_path, class: "btn btn-primary", 'aria-current': 'page', style: 'background-color: lightblue; border: none;' %>
           </div>
         <% end %>
       </div>

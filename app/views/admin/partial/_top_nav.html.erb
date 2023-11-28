@@ -1,23 +1,34 @@
 <div class="row mb-4"></div>
 <div class="row">
-  <div class="col-2  border border-black d-inline-flex p-2" style="text-align: center; align-items: center; justify-content: center;">
-    System Management
+  <div class="col-2  border border-black d-inline-flex p-2" style="text-align: center; align-items: center; justify-content: center; border-left: none;">
+    <%= t('system_management') %>
   </div>
-  <div class="col-7  border border-black"></div>
-  <div class="col-1  border border-black d-inline-flex p-2" style="text-align: center; align-items: center; justify-content: center;">
-    Change Language
-  </div>
+  <div class="col-6  border border-black"></div>
   <div class="col-2  border border-black d-inline-flex p-2" style="text-align: center; align-items: center; justify-content: center;">
     <li class="list-group-item" style="border: 1px solid black; border-radius: 0%; ">
       <div class="dropdown">
         <button class="btn btn-secondary dropdown-toggle w-auto" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
-          Username
+          <%= t('change_language') %>
         </button>
         <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
-          <li><%= link_to 'Profile', admin_root_path, class: "nav-link #{'active' if action_name == 'posts' }", 'aria-current': 'page' %>  </li>
-          <li><%= link_to 'Sign Out', destroy_admin_user_session_path, data: { 'turbo-method': :delete }, class: "nav-link #{'active' if action_name == 'sign in' }", 'aria-current': 'page' %></li>
+          <li><%= link_to t('english'), params.permit!.merge(locale: 'en'), class: 'dropdown-item' %></li>
+          <li><%= link_to t('tagalog'), params.permit!.merge(locale: 'tl'), class: 'dropdown-item' %></li>
+        </ul>
+      </div>
+    </li>
+  </div>
+  <div class="col  border border-black d-inline-flex p-2" style="text-align: center; align-items: center; justify-content: center;">
+    <li class="list-group-item" style="border: 1px solid black; border-radius: 0%; ">
+      <div class="dropdown">
+        <button class="btn btn-secondary dropdown-toggle w-auto" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+          <%= t('username') %>
+        </button>
+        <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+          <li><%= link_to t('profile'), admin_root_path, class: 'dropdown-item', 'aria-current': 'page' %>  </li>
+          <li><%= link_to t('sign_out'), destroy_admin_user_session_path, data: { 'turbo-method': :delete }, class: 'dropdown-item', 'aria-current': 'page' %></li>
         </ul>
       </div>
     </li>
   </div>
 </div>
+

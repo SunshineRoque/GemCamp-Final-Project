@@ -1,0 +1,231 @@
+# Files in the config/locales directory are used for internationalization
+# and are automatically loaded by Rails. If you want to use locales other
+# than English, add the necessary files in this directory.
+#
+# To use the locales, use `I18n.t`:
+#
+#     I18n.t "hello"
+#
+# In views, this is aliased to just `t`:
+#
+#     <%= t("hello") %>
+#
+# To use a different locale, set it with `I18n.locale`:
+#
+#     I18n.locale = :es
+#
+# This would use the information in config/locales/es.yml.
+#
+# The following keys must be escaped otherwise they will not be retrieved by
+# the default I18n backend:
+#
+# true, false, on, off, yes, no
+#
+# Instead, surround them with single quotes.
+#
+# en:
+#   "true": "foo"
+#
+# To learn more, please read the Rails Internationalization guide
+# available at https://guides.rubyonrails.org/i18n.html.
+
+en:
+  system_management: System Management
+  change_language: Change Language
+  english: English
+  tagalog: Tagalog
+  username: Username
+  profile: Profile
+  sign_out: Sign Out
+  homepage: Homepage
+  member_management: Member Management
+  user_list: User List
+  ticket_list: ticket List
+  winner_list: Winner List
+  order_list: Order List
+  invite_list: Invite List
+  admin_management: Admin Management
+  item_list: Item List
+  category_list: Category List
+  offer_list: Offer List
+  news_tickers_list: News Tickers List
+  banner_list: Banner List
+  user_list2: USER LIST
+  invited_by: Invited by
+  total_deposit: Total Deposit
+  members_total_deposit: Member's Total deposit
+  no_members: No Member
+  coins: Coins
+  total_used_coins: Total Used Coins
+  phone_number: Phone Number
+  balance_operate: Balance Operate
+  prev: Prev
+  next: Next
+  order_list2: ORDER LIST
+  offer: Offer
+  state: State
+  deposit: Deposit
+  increase: Increase
+  deduct: Deduct
+  share: Share
+  start_date: Start Date
+  end_date: End Date
+  search: Search
+  order_summary: Order Summary
+  total_amount: Total Amount
+  total_coins: Total Coins
+  subtotal_amount: Subtotal Amount
+  subtotal_coin: Subtotal Coins
+  ordered_by: Order by
+  amount: Amount
+  cancel: Cancel
+  submit: Submit
+  pay: Pay
+  orders:
+    states:
+      pending: Pending
+      submitted: Submitted
+      cancelled: Cancelled
+      paid: Paid
+  genre:
+    orders:
+      deposit: Deposit
+      increase: Increase
+      deduct: Deduct
+      share: Share
+  ticket_list2: TICKET LIST
+  item_name: Item Name
+  item: Item
+  client_email: Client Email
+  batch_count: Batch Count
+  tickets:
+    states:
+      pending: Pending
+      won: Won
+      lost: Lost
+      cancelled: Cancelled
+  winner_list2: WINNER LIST
+  winners:
+    states:
+      won: Won
+      submitted: Submitted
+      paid: Paid
+      shipped: Shipped
+      delivered: Delivered
+      shared: Shared
+      published: Published
+      remove_published: Remove Published
+  winner_information: Winner Information
+  admin_name: Admin Name
+  winners_email: Winner's Email
+  address: Address
+  tickets_serial_number: Ticket Serial Number
+  price: Price
+  view_comment: View Comment
+  shared_feedback_by: Feedback Shared By
+  shared_comment: Shared Comment
+  close: Close
+  deliver: Deliver
+  ship: Ship
+  publish: Publish
+  remove_publish: Remove Publish
+  no_address_available: No Address Available
+  invite_list2: INVITE LIST
+  search_parent_email: Search Parent Email
+  parent_email: Parent Email
+  created_at: Created At
+  coins_used_count: Coins Used Count
+  child_members: Child Members
+  items: ITEMS
+  edit: Edit
+  delete: Delete
+  quantity: Quantity
+  online_at:  Online At
+  offline_at: Offline At
+  start_at: Start At
+  status: Status
+  items1:
+    status:
+      active: Active
+      inactive: Inactive
+  category: Category
+  items2:
+    states:
+      pending: Pending
+      starting: Starting
+      paused: Paused
+      ended: Ended
+      cancelled: Cancelled
+  start: Start
+  pause: Pause
+  end: End
+  name: Name
+  minimum_tickets: Minimum Tickets
+  create_item: Create Item
+  back: Back
+  item_updated_successfully: Item Updated Successfully!
+  item_update_failed: Item updated Failed!
+  item_destroyed_successfully: Item Destroyed Successfully!
+  cannot_delete_record_of_item_because_it_has_ticket_records: Cannot Delete Record Of Item Because it has Ticket Records!
+  item_created_successfully: Item Created Successfully!
+  item_create_failed: Item Create Failed Successfully!
+  prohibited_this_item_fro_being_saved: prohibited this item from being saved
+  category_created_successfully: Category Created Successfully!
+  category_updated_successfully: Category Updated Successfully!
+  category_update_failed: Category Updated Failed!
+  category_create_failed: Category Create Failed!
+  category_destroyed_successfully: Category Destroyed Successfully!
+  cannot_delete_record_of_category_because_it_has_item_records: Cannot Delete Record of Category because it has Item Records!
+  categories: CATEGORIES
+  enter_category_name: Enter Category Name
+  create_category: Create Category
+  offer_created_successfully: Offer Created Successfully!
+  offer_create_failed: Offer Create Failed!
+  offer_updated_successfully: Offer Updated Successfully!
+  offer_update_failed: Offer Update Failed
+  offer_destroyed_successfully: Offer Destroyed Successfully
+  offers: OFFERS
+  offers1:
+    status:
+      active: Active
+      inactive: Inactive
+  create_offer: Create Offer
+  banner_created_successfully: Banner Created Successfully!
+  banner_create_failed: Banner Create Failed!
+  banner_updated_successfully: Banner Updated Successfully!
+  banner_update_failed: Banner Update Failed!
+  banner_destroyed_successfully: Banner Destroyed Successfully!
+  banners: BANNERS
+  banners1:
+    status:
+      active: Active
+      inactive: Inactive
+  create_banner: Create Banner
+  newsticker_created_successfully: NewsTicker Created Successfully!
+  NewsTicker_create_failed: NewsTicker Create Failed!
+  NewsTicker_updated_successfully: NewsTicker updated successfully!
+  NewsTicker_update_failed: NewsTicker update failed!
+  NewsTicker_destroyed_successfully: NewsTicker destroyed successfully!
+  news_tickers: NEWS TICKERS
+  content: Content
+  news_tickers1:
+    status:
+      active: Active
+      inactive: Inactive
+  create_news_ticker: Create News Ticker
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

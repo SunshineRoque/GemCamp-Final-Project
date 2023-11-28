@@ -1,0 +1,187 @@
+tl:
+  system_management: Sistema Ng Pamamahala
+  change_language: Baguhin ang Wika
+  english: Ingles
+  tagalog: Tagalog
+  username: Pangalan ng Gumagamit
+  profile: Profile
+  sign_out: Mag-sign Out
+  homepage: Bahay Pahina
+  member_management: Pamamahala ng Miyembro
+  user_list: Listahan ng Gumagamit
+  ticket_list: Listahan ng Tiket
+  winner_list: Listahan ng Mga Panalo
+  order_list: Listahan ng Order
+  invite_list: Listahan ng Imbitasyon
+  admin_management: Pamamahala Ng  Admin
+  item_list: Listahan ng Item
+  category_list: Listahan ng Kategorya
+  offer_list: Listahan ng Alok
+  news_tickers_list: Listahan ng Ticker ng Balita
+  banner_list: Listahan ng Banner
+  user_list2: LISTAHAN NG GUMAGAMIT
+  invited_by: Inimbitahan ni
+  total_deposit: Kabuuang Deposito
+  members_total_deposit: Kabuuang Deposito ng mga Miyembro
+  no_members: Walang Miyembro
+  coins: Mga Barya
+  total_used_coins: Kabuuang Ginamit na mga Barya
+  phone_number: Numero ng Telepono
+  balance_operate: Gumana and Balanse
+  prev: Nakaraang Pahina
+  next: Susunod na Pahina
+  order_list2: LISTAHAN NG ORDER
+  offer: Alok
+  state: Estado
+  deposit: Deposito
+  increase: Pagtaas
+  deduct: Ibawas
+  share: Ibahagi
+  start_date: Pesta ng Pagsisimula
+  end_date: Pesta ng Pagtatapos
+  search: Paghahanap
+  order_summary: Buod ng Order
+  total_amount: Kabuuang Halaga
+  total_coins: Kabuuang Barya
+  subtotal_amount: Subtotal na halaga
+  subtotal_coin: Subtotal na Barya
+  ordered_by: In-order ni
+  amount: Halaga
+  cancel: Kanselahin
+  submit: Ipasa
+  pay: Magbayad
+  orders:
+    states:
+      pending: Nakabinbin
+      submitted: Isinumite
+      cancelled: Kinansela
+      paid: Binayaran
+  genre:
+    orders:
+      deposit: Deposito
+      increase: Pagtaas
+      deduct: Ibawas
+      share: Ibahagi
+  ticket_list2: LISTAHAN NG TIKET
+  item_name: Pangalan ng Item
+  item: Item
+  client_email: Email ng Kliyente
+  batch_count: Bilang ng Batch
+  tickets:
+    states:
+      pending: Nakabinbin
+      won: Nanalo
+      lost: Natalo
+      cancelled: Kinansela
+  winner_list2: LISTAHAN NG MGA NANALO
+  winners:
+    states:
+      won: Nanalo
+      submitted: Isinumite
+      paid: Binayaran
+      shipped: Naipadala
+      delivered: Naihatid
+      shared: Ibinahagi
+      published: Inilathala
+      remove_published: Alisin ang Nailathala
+  winner_information: Impormasyon ng Panalo
+  admin_name: Pangalan ng Admin
+  winners_email: Email ng Nanalo
+  address: Tirahan
+  tickets_serial_number: Serial Number ng Tiket
+  price: Presyo
+  view_comment: Tignan ang Komento
+  shared_feedback_by: Feedback na Ibinahagi ni
+  shared_comment: Ibinahaging Komento
+  close: Isarado
+  deliver: Ihatid
+  ship: Ipadala
+  publish: Ilathala
+  remove_publish: Alisin sa Paglathala
+  no_address_available: Walang Available na Address
+  invite_list2: Listahan ng Imbitasyon
+  search_parent_email: Magahanp ng Email ng Magulang
+  parent_email: Email ng Magulang
+  created_at: Nilikha ng
+  coins_used_count: Bilang ng Ginamit na Barya
+  child_members: Mga Anak na Miyembro
+  items: MGA BAGAY
+  edit: I-edit
+  delete: Tanggalin
+  quantity: Dami
+  online_at: Online sa
+  offline_at: Offline sa
+  start_at: Magsisimula sa
+  status: Katayuan
+  items1:
+    status:
+      active: Aktibo
+      inactive: Hindi Aktibo
+  category: Kategory
+  items2:
+    states:
+      pending: Nakabinbin
+      starting: Simula
+      paused: Nakahinto
+      ended: Natapos
+      cancelled: Kinansela
+  start: Simulan
+  pause: Ihinto
+  end: Tapusin
+  name: Pangalan
+  minimum_tickets: Minimum na Tiket
+  choose_file: Pumili ng File
+  no_file_chosen: Walang Napiling File
+  create_item: Lumikha ng Item
+  back: Bumalik
+  item_updated_successfully: Matagumpay na na-update ang Item!
+  item_update_failed: Hindi na-update ang Item!
+  item_destroyed_successfully: Matagumpay na Nabura and Item!
+  cannot_delete_record_of_item_because_it_has_ticket_records: Hindi Matatanggal ang Talaan Ng Item Dahil mayroon itong mga Talaan ng Tiket!
+  item_created_successfully: Matagumpay na Nagawa ang Item!
+  item_create_failed: Hindi matagumpay na nagawa ang Item!
+  prohibited_this_item_fro_being_saved: Ipinagbawal ang Item na ito na ma-save!
+  category_created_successfully: Matagumpay na Nagawa ang Kategorya!
+  category_updated_successfully: Matagumpay na Na-update ang Kategorya!
+  category_update_failed: Hindi Na-update ang Kategorya!
+  category_create_failed: Hindi Nagawa ang Kategorya!
+  category_destroyed_successfully: Matagumpay na Bura ang Kategorya!
+  cannot_delete_record_of_category_because_it_has_item_records: Hindi Matatanggal ang Tala ng Kategorya dahil mayroon itong Mga Talaan ng Item!
+  categories: MGA KATEGORYA
+  enter_category_name: Ilagay ang Pangalan ng Kategorya
+  create_category: Lumikha ng Kategorya
+  offer_created_successfully: Matagumpay na Nagawa ang Alok!
+  offer_create_failed: Hindi Nagawa ang Alok!
+  offer_updated_successfully: Matagumpay na Na-update ang Alok!
+  offer_update_failed: Hindi Na-update ang Alok!
+  offer_destroyed_successfully: Matagumpay na Nabura ang Alok
+  offers: MGA ALOK
+  offers1:
+    status:
+      active: Aktibo
+      inactive: Hindi Aktibo
+  create_offer: Gumawa ng Alok
+  banner_created_successfully: Matagumpay na Nagawa ang Banner!
+  banner_create_failed: Hindi Nagawa ang Banner!
+  banner_updated_successfully: Matagumpay na Na-update ang Banner!
+  banner_update_failed: Hindi Na-update ang Banner!
+  banner_destroyed_successfully: Matagumpay na Nabura ang Banner!
+  banners: MGA BANNER
+  banners1:
+    status:
+      active: Aktibo
+      inactive: Hindi Aktibo
+  create_banner: Gumawa ng Banner
+  newsticker_created_successfully: Matagumpay na Nagawa ang NewsTicker!
+  NewsTicker_create_failed: Hindi Nagawa ang NewsTicker!
+  NewsTicker_updated_successfully: Matagumpay na na-update ang NewsTicker!
+  NewsTicker_update_failed: Hindi na-update ang NewsTicker!
+  NewsTicker_destroyed_successfully: Matagumpay na nabura ang NewsTicker!
+  news_tickers: MGA TICKERS NG BALITA
+  content: Nilalaman
+  news_tickers1:
+    status:
+      active: Aktibo
+      inactive: Hindi Aktibo
+  create_news_ticker: Lumikha ng News Ticker
+

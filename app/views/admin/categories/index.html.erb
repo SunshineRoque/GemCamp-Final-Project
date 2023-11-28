@@ -5,7 +5,7 @@
   </div>
   <div class="col-10">
     <div class="row">
-      <h1 style='text-decoration: none;'>CATEGORIES <%= link_to '+', new_admin_category_path, class: 'btn btn-primary' %></h1>
+      <h1 style='text-decoration: none;'><%= t('categories')%> <%= link_to '+', new_admin_category_path, class: 'btn btn-primary' %></h1>
       <div class="container">
         <% @categories.each_slice(3) do |category_group| %>
           <div class="row mb-3">
@@ -23,8 +23,8 @@
                       <div class="btn-group" role="group">
                         <div class="row">
                           <div class="col-1"></div>
-                          <div class="col"><%= link_to 'Edit', edit_admin_category_path(category), class: 'btn btn-warning', style:'width:80px;' %></div>
-                          <div class="col"><%= button_to 'Delete', admin_category_path(category), method: :delete, class: 'btn btn-danger', style:'width:80px;' %></div>
+                          <div class="col"><%= link_to t('edit'), edit_admin_category_path(category), class: 'btn btn-warning', style:'width:80px;' %></div>
+                          <div class="col"><%= button_to t('delete'), admin_category_path(category), method: :delete, class: 'btn btn-danger', style:'width:100%;' %></div>
                           <div class="col-1"></div>
                         </div>
                       </div>
@@ -39,7 +39,7 @@
           <ul class="pagination justify-content-center">
             <% if @categories.prev_page %>
               <li class="page-item">
-                <%= link_to '« Prev', { page: @categories.prev_page }, class: 'page-link' %>
+                <%= link_to '« '+t('prev'), { page: @categories.prev_page }, class: 'page-link' %>
               </li>
             <% end %>
 
@@ -51,7 +51,7 @@
 
             <% if @categories.next_page %>
               <li class="page-item">
-                <%= link_to 'Next »', { page: @categories.next_page }, class: 'page-link' %>
+                <%= link_to t('next')+' »', { page: @categories.next_page }, class: 'page-link' %>
               </li>
             <% end %>
           </ul>

@@ -3,13 +3,12 @@
   <div class="col-2  border border-black border-top-o">
     <%= render 'admin/partial/left_nav' %>
   </div>
-  <div class="col-10">
+  <div class="col-10 border border-black">
     <div class="row">
       <p></p>
       <h5>Hi, Admin: <%= @admin_user.email %></h5>
       <p></p>
-      <h3 class="container" style="background-color: #8bb9fe; text-align: center; align-items: center; justify-content: center">USER
-        LIST</h3>
+      <h3 class="container" style="background-color: #8bb9fe; text-align: center; align-items: center; justify-content: center"><%= t('user_list2') %></h3>
       <p></p>
     </div>
 
@@ -25,30 +24,30 @@
               </h5>
 
               <% if client_user.parent&.email.present? %>
-                <p class="card-text">Invited by: <%= client_user.parent&.email %></p>
+                <p class="card-text"><%=t('invited_by')%>: <%= client_user.parent&.email %></p>
               <% end %>
 
-              <p class="card-text">Total Deposit = ₱ <%= client_user.total_deposit %></p>
+              <p class="card-text"><%=t('total_deposit')%> = ₱ <%= client_user.total_deposit %></p>
 
               <div class="card">
                 <div class="card-body">
                   <% if client_user.users.present? %>
-                    <p class="card-text">Member's Total Deposit = ₱<%= client_user.users.sum(&:total_deposit) %></p>
+                    <p class="card-text"><%=t('members_total_deposit')%> = ₱<%= client_user.users.sum(&:total_deposit) %></p>
                     <ul class="list-group list-group-flush">
                       <% client_user.users&.each do |child| %>
                         <li class="list-group-item"><%= child.email %> = ₱<%= child.total_deposit %></li>
                       <% end %>
                     </ul>
                   <% else %>
-                    <p class="card-text">No Members</p>
+                    <p class="card-text"><%=t('no_members')%></p>
                   <% end %>
                 </div>
               </div>
-
-              <p class="card-text">Coins = ₱ <%= client_user.coins %></p>
-              <p class="card-text">Total Used Coins = </p>
-              <p class="card-text">Phone Number: <%= client_user.phone %></p>
-                <%= link_to 'Balance Operate', new_admin_user_admin_orders_increase_path(user_id: client_user.id), class: "btn btn-primary", 'aria-current': 'page', style: 'background-color: lightblue; border: none;' %>
+              <p></p>
+              <p class="card-text"><%=t('coins')%> = ₱ <%= client_user.coins %></p>
+              <p class="card-text"><%=t('total_used_coins')%> = </p>
+              <p class="card-text"><%=t('phone_number')%>: <%= client_user.phone %></p>
+              <%= link_to t('balance_operate'), new_admin_user_admin_orders_increase_path(user_id: client_user.id), class: "btn btn-primary", 'aria-current': 'page', style: 'background-color: lightblue; border: none;' %>
             </div>
           </div>
         </div>
@@ -57,7 +56,7 @@
         <ul class="pagination justify-content-center">
           <% if @client_users.prev_page %>
             <li class="page-item">
-              <%= link_to '« Prev', { page: @client_users.prev_page }, class: 'page-link' %>
+              <%= link_to '« '+t('prev'), { page: @client_users.prev_page }, class: 'page-link' %>
             </li>
           <% end %>
 
@@ -69,7 +68,7 @@
 
           <% if @client_users.next_page %>
             <li class="page-item">
-              <%= link_to 'Next »', { page: @client_users.next_page }, class: 'page-link' %>
+              <%= link_to t('next')+' »', { page: @client_users.next_page }, class: 'page-link' %>
             </li>
           <% end %>
         </ul>

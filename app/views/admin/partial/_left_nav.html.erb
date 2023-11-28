@@ -1,26 +1,21 @@
 <div class="accordion accordion-flush" id="accordionFlushExample">
   <div class="accordion-item" style="margin-left:20px;">
-    <%= link_to 'Homepage', admin_root_path, class: "nav-link #{'active' if action_name == 'homepage' }", 'aria-current': 'page' %>
+    <%= link_to t( "homepage"), admin_root_path, class: "nav-link #{'active' if action_name == 'homepage' }", 'aria-current': 'page' %>
   </div>
   <div class="accordion-item">
     <h2 class="accordion-header" id="flush-headingTwo">
       <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseTwo" aria-expanded="false" aria-controls="flush-collapseTwo">
-        Member Management
+        <%= t( "member_management") %>
       </button>
     </h2>
     <div id="flush-collapseTwo" class="accordion-collapse collapse" aria-labelledby="flush-headingTwo" data-bs-parent="#accordionFlushExample">
       <div class="accordion-body">
         <ul class="list-group list-group-flush">
-          <li class="list-group-item"><strong><%= link_to 'User List', admin_root_path, class: "nav-link", 'aria-current': 'page' %></strong></li>
-          <li class="list-group-item"><strong><%= link_to 'Item List', admin_items_path, class: "nav-link", 'aria-current': 'page' %></strong></li>
-          <li class="list-group-item"><strong><%= link_to 'Category List', admin_categories_path, class: "nav-link", 'aria-current': 'page' %></strong></li>
-          <li class="list-group-item"><strong><%= link_to 'Ticket List', admin_tickets_path, class: "nav-link", 'aria-current': 'page' %></strong></li>
-          <li class="list-group-item"><strong><%= link_to 'Winner List', admin_winners_path, class: "nav-link", 'aria-current': 'page' %></strong></li>
-          <li class="list-group-item"><strong><%= link_to 'Offer List', admin_offers_path, class: "nav-link", 'aria-current': 'page' %></strong></li>
-          <li class="list-group-item"><strong><%= link_to 'Order List', admin_orders_path, class: "nav-link", 'aria-current': 'page' %></strong></li>
-          <li class="list-group-item"><strong><%= link_to 'Invite List', admin_invites_path, class: "nav-link", 'aria-current': 'page' %></strong></li>
-          <li class="list-group-item"><strong><%= link_to 'News Tickers List', admin_news_tickers_path, class: "nav-link", 'aria-current': 'page' %></strong></li>
-          <li class="list-group-item"><strong><%= link_to 'Banners List', admin_banners_path, class: "nav-link", 'aria-current': 'page' %></strong></li>
+          <li class="list-group-item"><strong><%= link_to t( "user_list"), admin_root_path, class: "nav-link", 'aria-current': 'page' %></strong></li>
+          <li class="list-group-item"><strong><%= link_to t( "ticket_list"), admin_tickets_path, class: "nav-link", 'aria-current': 'page' %></strong></li>
+          <li class="list-group-item"><strong><%= link_to t( "winner_list"), admin_winners_path, class: "nav-link", 'aria-current': 'page' %></strong></li>
+          <li class="list-group-item"><strong><%= link_to t( "order_list"), admin_orders_path, class: "nav-link", 'aria-current': 'page' %></strong></li>
+          <li class="list-group-item"><strong><%= link_to t( "invite_list"), admin_invites_path, class: "nav-link", 'aria-current': 'page' %></strong></li>
         </ul>
       </div>
     </div>
@@ -29,13 +24,18 @@
   <div class="accordion-item">
     <h2 class="accordion-header" id="flush-headingThree">
       <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseThree" aria-expanded="false" aria-controls="flush-collapseThree">
-        Example 2 Management
+        <%= t( "admin_management") %>
       </button>
     </h2>
     <div id="flush-collapseThree" class="accordion-collapse collapse" aria-labelledby="flush-headingThree" data-bs-parent="#accordionFlushExample">
       <div class="accordion-body">
-        <li>Example 1</li>
-        <li>Example 2</li>
+        <ul class="list-group list-group-flush">
+          <li class="list-group-item"><strong><%= link_to t( "item_list"), admin_items_path, class: "nav-link", 'aria-current': 'page' %></strong></li>
+          <li class="list-group-item"><strong><%= link_to t( "category_list"), admin_categories_path, class: "nav-link", 'aria-current': 'page' %></strong></li>
+          <li class="list-group-item"><strong><%= link_to t( "offer_list"), admin_offers_path, class: "nav-link", 'aria-current': 'page' %></strong></li>
+          <li class="list-group-item"><strong><%= link_to t( "news_ticker_list"), admin_news_tickers_path, class: "nav-link", 'aria-current': 'page' %></strong></li>
+          <li class="list-group-item"><strong><%= link_to t( "banner_list"), admin_banners_path, class: "nav-link", 'aria-current': 'page' %></strong></li>
+        </ul>
       </div>
     </div>
   </div>

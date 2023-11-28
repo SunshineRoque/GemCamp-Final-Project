@@ -5,7 +5,7 @@
   </div>
   <div class="col-10">
     <div class="row">
-      <h1 style='text-decoration: none;'>ITEMS <%= link_to '+', new_admin_item_path, class: 'btn btn-primary' %></h1>
+      <h1 style='text-decoration: none;'><%= t('items')%> <%= link_to '+', new_admin_item_path, class: 'btn btn-primary' %></h1>
       <div class="container">
         <div class="row">
           <% @items.each do |item| %>
@@ -21,8 +21,8 @@
                   <div class="btn-group" role="group">
                     <div class="row">
                       <div class="col-1"></div>
-                      <div class="col"><%= link_to 'Edit', edit_admin_item_path(item), class: 'btn btn-warning', style:'width:80px;' %></div>
-                      <div class="col"><%= button_to 'Delete', admin_item_path(item), method: :delete, class: 'btn btn-danger', style:'width:80px;' %></div>
+                      <div class="col"><%= link_to t('edit'), edit_admin_item_path(item), class: 'btn btn-warning', style:'width:80px;' %></div>
+                      <div class="col"><%= button_to t('delete'), admin_item_path(item), method: :delete, class: 'btn btn-danger', style:'width:100%;' %></div>
                       <div class="col-1"></div>
                     </div>
                   </div>
@@ -33,38 +33,35 @@
                       <p class="card-text"><%= item.name %></p>
                     </div>
                   </h5>
-                  <p class="card-text" style="margin-left:30px;">Quantity: <%= item.quantity %></p>
-                  <p class="card-text" style="margin-left:30px;">Min Tickets: <%= item.minimum_tickets %></p>
-                  <p class="card-text" style="margin-left:30px;">Batch Count: <%= item.batch_count %></p>
-                  <p class="card-text" style="margin-left:30px;">Online
-                    at: <%= item.online_at&.strftime("%m/%d/%Y") %></p>
-                  <p class="card-text" style="margin-left:30px;">Offline
-                    at: <%= item.offline_at&.strftime("%m/%d/%Y") %></p>
-                  <p class="card-text" style="margin-left:30px;">Start
-                    at: <%= item.start_at&.strftime("%m/%d/%Y") %></p>
-                  <p class="card-text" style="margin-left:30px;">Status: <%= item.status %></p>
-                  <p class="card-text" style="margin-left:30px;">Category: <%= item.categories.pluck(:name).join(',') %></p>
+                  <p class="card-text" style="margin-left:30px;"><%= t('quantity')%>: <%= item.quantity %></p>
+                  <p class="card-text" style="margin-left:30px;"><%= t('minimum_tickets')%>: <%= item.minimum_tickets %></p>
+                  <p class="card-text" style="margin-left:30px;"><%= t('batch_count')%>: <%= item.batch_count %></p>
+                  <p class="card-text" style="margin-left:30px;"><%= t('online_at')%>: <%= item.online_at&.strftime("%m/%d/%Y") %></p>
+                  <p class="card-text" style="margin-left:30px;"><%= t('offline_at')%>: <%= item.offline_at&.strftime("%m/%d/%Y") %></p>
+                  <p class="card-text" style="margin-left:30px;"><%= t('start_at')%>: <%= item.start_at&.strftime("%m/%d/%Y") %></p>
+                  <p class="card-text" style="margin-left:30px;"><%= t('status')%>: <%= t("items1.status.#{item.status}") %></p>
+                  <p class="card-text" style="margin-left:30px;"><%= t('category')%>: <%= item.categories.pluck(:name).join(',') %></p>
                   <div class="container border border-black">
                     <p></p>
                     <div class="card-footer text-muted">
-                      <p class="card-text">State: <%= item.state %></p>
+                      <p class="card-text"><%= t('state')%>: <%= t("items2.states.#{item.state}") %></p>
                     </div>
                     <div class="card-body">
                       <div class="btn-group" role="group">
                         <% if item.may_start? %>
-                          <%= button_to 'Start', start_admin_item_path(id: item), method: :post, class: 'btn btn-primary mr-2' %>
+                          <%= button_to t('start'), start_admin_item_path(id: item), method: :post, class: 'btn btn-primary mr-2' %>
                         <% end %>
                         &nbsp;
                         <% if item.may_pause? %>
-                          <%= button_to 'Pause', pause_admin_item_path(id: item), method: :post, class: 'btn btn-warning mr-2' %>
+                          <%= button_to t('pause'), pause_admin_item_path(id: item), method: :post, class: 'btn btn-warning mr-2' %>
                         <% end %>
                         &nbsp;
                         <% if item.may_end? %>
-                          <%= button_to 'End', end_admin_item_path(id: item), method: :post, class: 'btn btn-success mr-2' %>
+                          <%= button_to t('end'), end_admin_item_path(id: item), method: :post, class: 'btn btn-success mr-2' %>
                         <% end %>
                         &nbsp;
                         <% if item.may_cancel? %>
-                          <%= button_to 'Cancel', cancel_admin_item_path(id: item), method: :post, class: 'btn btn-danger mr-2' %>
+                          <%= button_to t('cancel'), cancel_admin_item_path(id: item), method: :post, class: 'btn btn-danger mr-2' %>
                         <% end %>
                         &nbsp;
                       </div>
@@ -78,7 +75,7 @@
             <ul class="pagination justify-content-center">
               <% if @items.prev_page %>
                 <li class="page-item">
-                  <%= link_to '« Prev', { page: @items.prev_page }, class: 'page-link' %>
+                  <%= link_to '« '+t('prev'), { page: @items.prev_page }, class: 'page-link' %>
                 </li>
               <% end %>
 
@@ -90,7 +87,7 @@
 
               <% if @items.next_page %>
                 <li class="page-item">
-                  <%= link_to 'Next »', { page: @items.next_page }, class: 'page-link' %>
+                  <%= link_to t('next')+' »', { page: @items.next_page }, class: 'page-link' %>
                 </li>
               <% end %>
             </ul>

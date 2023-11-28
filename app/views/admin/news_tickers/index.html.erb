@@ -5,8 +5,7 @@
   </div>
   <div class="col-10">
     <div class="row">
-      <h1 style='text-decoration: none;'>NEWS
-        TICKERS <%= link_to '+', new_admin_news_ticker_path, class: 'btn btn-primary' %></h1>
+      <h1 style='text-decoration: none;'><%= t('news_tickers')%> <%= link_to '+', new_admin_news_ticker_path, class: 'btn btn-primary' %></h1>
       <div class="container">
         <div class="row">
           <% @news_tickers.each do |news_ticker| %>
@@ -22,8 +21,8 @@
                     <div class="btn-group" role="group">
                       <div class="row">
                         <div class="col-1"></div>
-                        <div class="col"><%= link_to 'Edit', edit_admin_news_ticker_path(news_ticker), class: 'btn btn-warning', style: 'width:80px;' %></div>
-                        <div class="col"><%= button_to 'Delete', admin_news_ticker_path(news_ticker), method: :delete, class: 'btn btn-danger', style: 'width:80px;' %></div>
+                        <div class="col"><%= link_to t('edit'), edit_admin_news_ticker_path(news_ticker), class: 'btn btn-warning', style: 'width:80px;' %></div>
+                        <div class="col"><%= button_to t('delete'), admin_news_ticker_path(news_ticker), method: :delete, class: 'btn btn-danger', style: 'width:100%;' %></div>
                         <div class="col-1"></div>
                       </div>
                     </div>
@@ -32,10 +31,10 @@
                   <div class="container border border-black">
                     <p></p>
                     <div class="card-footer text-muted">
-                      <p class="card-text">Status: <%= news_ticker.status %></p>
+                      <p class="card-text"><%= t('status')%>: <%= t("news_tickers1.status.#{news_ticker.status}") %></p>
                     </div>
                     <div class="card-body">
-                      <p class="card-text" style="margin-left:30px;">Content: <%= news_ticker.content %></p>
+                      <p class="card-text" style="margin-left:30px;"><%= t('content')%>: <%= news_ticker.content %></p>
                     </div>
                   </div>
                 </div>
@@ -46,7 +45,7 @@
             <ul class="pagination justify-content-center">
               <% if @news_tickers.prev_page %>
                 <li class="page-news_ticker">
-                  <%= link_to '« Prev', { page: @news_tickers.prev_page }, class: 'page-link' %>
+                  <%= link_to '« '+t('prev'), { page: @news_tickers.prev_page }, class: 'page-link' %>
                 </li>
               <% end %>
 
@@ -58,7 +57,7 @@
 
               <% if @news_tickers.next_page %>
                 <li class="page-news_ticker">
-                  <%= link_to 'Next »', { page: @news_tickers.next_page }, class: 'page-link' %>
+                  <%= link_to t('next')+' »', { page: @news_tickers.next_page }, class: 'page-link' %>
                 </li>
               <% end %>
             </ul>

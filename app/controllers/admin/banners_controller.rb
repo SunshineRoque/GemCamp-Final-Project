@@ -14,10 +14,10 @@ class Admin::BannersController < ApplicationController
   def create
     @banner = Banner.new(banner_params)
     if @banner.save
-      flash[:notice] = 'Banner created successfully'
+      flash[:notice] = t('banner_created_successfully')
       redirect_to admin_banners_path
     else
-      flash.now[:alert] = 'Banner create failed'
+      flash.now[:alert] = t('banner_create_failed')
       render :new, status: :unprocessable_entity
     end
   end
@@ -26,17 +26,17 @@ class Admin::BannersController < ApplicationController
 
   def update
     if @banner.update(banner_params)
-      flash[:notice] = 'Banner updated successfully'
+      flash[:notice] = t('banner_updated_successfully')
       redirect_to admin_banners_path
     else
-      flash.now[:alert] = 'Banner update failed'
+      flash.now[:alert] = t('banner_update_failed')
       render :edit, status: :unprocessable_entity
     end
   end
 
   def destroy
     if @banner.destroy
-      flash[:notice] = 'Banner destroyed successfully'
+      flash[:notice] = t('banner_destroyed_successfully')
     end
     redirect_to admin_banners_path
   end

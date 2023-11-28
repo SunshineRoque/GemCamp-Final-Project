@@ -5,12 +5,12 @@
   </div>
   <div class="col-10">
     <div class="row">
-      <h1 style='text-decoration: none;'>ITEMS <%= link_to '+', class: 'btn btn-primary' %></h1>
+      <h1 style='text-decoration: none;'><%= t('items')%> <%= link_to '+', class: 'btn btn-primary' %></h1>
       <div class="container">
         <%= form_with model: item, url: url, local: true do |form| %>
           <% if item.errors.any? %>
             <div id="error_explanation" class="alert alert-danger">
-              <h2><%= pluralize(item.errors.count, "error") %> prohibited this item from being saved:</h2>
+              <h2><%= pluralize(item.errors.count, "error") %> <%=t('prohibited_this_item_fro_being_saved')%>:</h2>
               <ul>
                 <% item.errors.full_messages.each do |msg| %>
                   <li><%= msg %></li>
@@ -22,39 +22,39 @@
           <!-- Your existing form fields... -->
 
           <div class="mb-3">
-            <%= form.label :name %>
+            <%= form.label t('name') %>
             <%= form.text_field :name, class: 'form-control' %>
           </div>
 
           <div class="mb-3">
-            <%= form.label :quantity %>
+            <%= form.label t('quantity') %>
             <%= form.text_field :quantity, class: 'form-control' %>
           </div>
 
           <div class="mb-3">
-            <%= form.label :minimum_tickets %>
+            <%= form.label t('minimum_tickets') %>
             <%= form.text_field :minimum_tickets, class: 'form-control' %>
           </div>
           <div class="mb-3">
-            <%= form.label :batch_count %>
+            <%= form.label t('batch_count') %>
             <%= form.text_field :batch_count, class: 'form-control' %>
           </div>
           <div class="field">
-            <%= form.label 'Status' %>
-            <%= form.select :status, options_for_select(Item.statuses.keys.map { |status| [status.humanize, status] }) %>
+            <%= form.label t('status') %>
+            <%= form.select :status, options_for_select(Item.statuses.keys.map { |status| [I18n.t("items1.status.#{status}"), status] }) %>
           </div>
           <p></p>
           <p></p>
           <div class="field">
-            <%= form.label 'Online At' %>
+            <%= form.label t('online_at') %>
             <%= form.date_field :online_at, value: params[:online_at], class: 'form-control' %>
           </div>
           <div class="field">
-            <%= form.label 'Offline At' %>
+            <%= form.label t('offline_at') %>
             <%= form.date_field :offline_at, value: params[:offline_at], class: 'form-control' %>
           </div>
           <div class="field">
-            <%= form.label 'Start At' %>
+            <%= form.label t('start_at') %>
             <%= form.date_field :start_at, value: params[:start_at], class: 'form-control' %>
           </div>
           <p></p>
@@ -75,8 +75,8 @@
           <p></p>
           <p></p>
           <div style="margin-bottom: 10px;">
-            <%= form.submit class: 'btn btn-primary' %>
-            <%= link_to 'Back', admin_items_path, class: "btn btn-primary", 'aria-current': 'page', style: 'background-color: lightblue; border: none;' %>
+            <%= form.submit t('create_item'), class: 'btn btn-primary' %>
+            <%= link_to t('back'), admin_items_path, class: "btn btn-primary", 'aria-current': 'page', style: 'background-color: lightblue; border: none;' %>
           </div>
         <% end %>
       </div>

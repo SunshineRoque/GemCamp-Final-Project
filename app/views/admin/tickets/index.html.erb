@@ -6,7 +6,7 @@
   <div class="col-10">
     <div class="row">
       <p></p>
-      <h3 class="container" style="background-color: #8bb9fe; text-align: center; align-items: center; justify-content: center">TICKET LIST</h3>
+      <h3 class="container" style="background-color: #8bb9fe; text-align: center; align-items: center; justify-content: center"><%= t('ticket_list2') %></h3>
       <p></p>
     </div>
     <div class="row">
@@ -18,7 +18,7 @@
               <%= f.text_field :serial_number, value: params[:serial_number], class: 'form-control' %>
             </div>
             <div class="col-md-4">
-              <%= f.label :item_name, class: 'form-label' %>
+              <%= f.label t('item_name'), class: 'form-label' %>
               <%= f.text_field :name, value: params[:name], class: 'form-control' %>
             </div>
             <div class="col-md-4">
@@ -29,15 +29,15 @@
 
           <div class="row mb-3">
             <div class="col-md-4">
-              <%= f.label :state, class: 'form-label' %>
-              <%= f.select :state, Ticket.aasm.states.map(&:name), { include_blank: true, selected: params[:state] }, class: 'form-select' %>
+              <%= f.label t('state'), class: 'form-label' %>
+              <%= f.select :state, Ticket.aasm.states.map{ |s| [t("tickets.states.#{s.name}"), s.name] }, { include_blank: true, selected: params[:state] }, class: 'form-select' %>
             </div>
             <div class="col-md-4">
-              <%= f.label :start_date, class: 'form-label' %>
+              <%= f.label t('start_date'), class: 'form-label' %>
               <%= f.date_field :start_date, value: params[:start_date], class: 'form-control' %>
             </div>
             <div class="col-md-4">
-              <%= f.label :end_date, class: 'form-label' %>
+              <%= f.label t('end_date'), class: 'form-label' %>
               <%= f.date_field :end_date, value: params[:end_date], class: 'form-control' %>
             </div>
           </div>
@@ -54,17 +54,17 @@
                     <div class="card-body">
                       <h5>
                         <div class="card-footer text-muted">
-                          <p class="card-text"><strong>ITEM: </strong><%= ticket.item&.name %></p>
+                          <p class="card-text"><strong><%= t('item')%>: </strong><%= ticket.item&.name %></p>
                         </div>
                       </h5>
                       <ul class="list-group list-group-flush">
-                        <li class="list-group-item"><strong>Client Email:</strong> <%= ticket.user&.email %></li>
-                        <li class="list-group-item"><strong>Batch Count:</strong> <%= ticket.batch_count %></li>
-                        <li class="list-group-item"><strong>Coins:</strong> <%= ticket.coins %></li>
+                        <li class="list-group-item"><strong><%= t('client_email')%>:</strong> <%= ticket.user&.email %></li>
+                        <li class="list-group-item"><strong><%= t('batch_count')%>:</strong> <%= ticket.batch_count %></li>
+                        <li class="list-group-item"><strong><%= t('coins')%>:</strong> <%= ticket.coins %></li>
                         <li class="list-group-item"><strong>Serial Number:</strong> <%= ticket.serial_number %></li>
-                        <li class="list-group-item"><strong>State:</strong> <%= ticket.state %>
+                        <li class="list-group-item"><strong><%= t('state')%>:</strong> <%= ticket.state %>
                           <% if ticket.may_cancel? %>
-                            <%= button_to 'Cancel', cancel_admin_ticket_path(id: ticket), method: :post, class: 'btn btn-danger' %>
+                            <%= button_to t('cancel'), cancel_admin_ticket_path(id: ticket), method: :post, class: 'btn btn-danger' %>
                           <% end %>
                         </li>
                       </ul>
@@ -79,7 +79,7 @@
           <ul class="pagination justify-content-center">
             <% if @tickets.prev_page %>
               <li class="page-item">
-                <%= link_to '« Prev', { page: @tickets.prev_page }, class: 'page-link' %>
+                <%= link_to '« '+t('prev'), { page: @tickets.prev_page }, class: 'page-link' %>
               </li>
             <% end %>
 
@@ -91,7 +91,7 @@
 
             <% if @tickets.next_page %>
               <li class="page-item">
-                <%= link_to 'Next »', { page: @tickets.next_page }, class: 'page-link' %>
+                <%= link_to t('next')+' »', { page: @tickets.next_page }, class: 'page-link' %>
               </li>
             <% end %>
           </ul>

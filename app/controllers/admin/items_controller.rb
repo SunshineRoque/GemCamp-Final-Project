@@ -14,10 +14,10 @@ class Admin::ItemsController < ApplicationController
   def create
     @item = Item.new(item_params)
     if @item.save
-      flash[:notice] = 'Item created successfully'
+      flash[:notice] = t('item_created_successfully')
       redirect_to admin_items_path
     else
-      flash.now[:alert] = 'Item create failed'
+      flash.now[:alert] = t('item_create_failed')
       render :new, status: :unprocessable_entity
     end
   end
@@ -26,19 +26,19 @@ class Admin::ItemsController < ApplicationController
 
   def update
     if @item.update(item_params)
-      flash[:notice] = 'Item updated successfully'
+      flash[:notice] = t('item_updated_successfully')
       redirect_to admin_items_path
     else
-      flash.now[:alert] = 'Item update failed'
+      flash.now[:alert] = t('item_update_failed')
       render :edit, status: :unprocessable_entity
     end
   end
 
   def destroy
     if @item.destroy
-      flash[:notice] = 'Item destroyed successfully'
+      flash[:notice] = t('item_destroyed_successfully')
     else
-      flash[:alert] = 'Cannot delete record of Item because it has Ticket records'
+      flash[:alert] = t('cannot_delete_record_of_item_because_it_has_ticket_records')
     end
     redirect_to admin_items_path
   end

@@ -6,8 +6,7 @@
   <div class="col-10">
     <div class="row">
       <p></p>
-      <h3 class="container" style="background-color: #8bb9fe; text-align: center; align-items: center; justify-content: center">WINNER
-        LIST</h3>
+      <h3 class="container" style="background-color: #8bb9fe; text-align: center; align-items: center; justify-content: center"><%= t('winner_list2') %></h3>
       <p></p>
     </div>
     <div class="row">
@@ -26,20 +25,20 @@
 
           <div class="row mb-3">
             <div class="col-md-4">
-              <%= f.label :state, class: 'form-label' %>
-              <%= f.select :state, Ticket.aasm.states.map(&:name), { include_blank: true, selected: params[:state] }, class: 'form-select' %>
+              <%= f.label t('state'), class: 'form-label' %>
+              <%= f.select :state, Winner.aasm.states.map{ |s| [t("winners.states.#{s.name}"), s.name] }, { include_blank: true, selected: params[:state] }, class: 'form-select' %>
             </div>
             <div class="col-md-4">
-              <%= f.label :start_date, class: 'form-label' %>
+              <%= f.label t('start_date'), class: 'form-label' %>
               <%= f.date_field :start_date, value: params[:start_date], class: 'form-control' %>
             </div>
             <div class="col-md-4">
-              <%= f.label :end_date, class: 'form-label' %>
+              <%= f.label t('end_date'), class: 'form-label' %>
               <%= f.date_field :end_date, value: params[:end_date], class: 'form-control' %>
             </div>
           </div>
 
-          <%= f.submit 'Search', class: 'btn btn-primary' %>
+          <%= f.submit t('search'), class: 'btn btn-primary' %>
         <% end %>
 
         <% @winners.each_slice(4) do |winner_slice| %>
@@ -51,35 +50,35 @@
                     <div class="card-body">
                       <h5>
                         <div class="card-footer text-muted">
-                          <p class="card-text"><strong>Winner Information</strong></p>
+                          <p class="card-text"><strong><%= t('winner_information') %></strong></p>
                         </div>
                       </h5>
                       <ul class="list-group list-group-flush">
-                        <li class="list-group-item"><strong>Admin Name:</strong> <%= winner.admin&.name %></li>
-                        <li class="list-group-item"><strong>Item:</strong> <%= winner.item&.name %></li>
-                        <li class="list-group-item"><strong>Winner's Email:</strong> <%= winner.user&.email %></li>
-                        <li class="list-group-item"><strong>Address:</strong>
+                        <li class="list-group-item"><strong><%= t('admin_name') %>:</strong> <%= winner.admin&.name %></li>
+                        <li class="list-group-item"><strong><%= t('item') %>:</strong> <%= winner.item&.name %></li>
+                        <li class="list-group-item"><strong><%= t('winners_email') %>:</strong> <%= winner.user&.email %></li>
+                        <li class="list-group-item"><strong><%= t('address') %>:</strong>
                           <% if winner.address.present? %>
-                            <p class="card-title">Address: <%= "#{winner.address&.region&.name}, #{winner.address&.province&.name}, #{winner.address&.city&.name}, #{winner.address&.barangay&.name}, #{winner.address&.street_address}" %></p>
+                            <p class="card-title"><%= "#{winner.address&.region&.name}, #{winner.address&.province&.name}, #{winner.address&.city&.name}, #{winner.address&.barangay&.name}, #{winner.address&.street_address}" %></p>
                           <% else %>
-                            <p class="card-title">No address available</p>
+                            <p class="card-title"><%= t('no_address_available') %></p>
                           <% end %>
                         </li>
-                        <li class="list-group-item"><strong>Batch Count:</strong> <%= winner.item&.batch_count %></li>
+                        <li class="list-group-item"><strong><%= t('batch_count') %>:</strong> <%= winner.item&.batch_count %></li>
                         <li class="list-group-item">
-                          <strong>Ticket's Serial Number:</strong>
+                          <strong><%= t('tickets_serial_number') %>:</strong>
                           <p><%= winner.ticket&.serial_number %></p></li>
-                        <li class="list-group-item"><strong>Price:</strong> <%= winner.price %></li>
+                        <li class="list-group-item"><strong><%= t('price') %>:</strong> <%= winner.price %></li>
                         <li class="list-group-item">
                           <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#winningHistoryModal" style="width: 100%;">
-                            <strong>View Comment</strong>
+                            <strong><%= t('view_comment') %></strong>
                           </button>
                         </li>
                         <div class="modal fade" id="winningHistoryModal" tabindex="-1" role="dialog" aria-labelledby="winningHistoryModalTitle" aria-hidden="true">
                           <div class="modal-dialog" role="document">
                             <div class="modal-content">
                               <div class="modal-header">
-                                <h5 class="modal-title" id="modalWinningTitle">Shared Feedback by <span style="color:darkviolet"><%=winner.user&.username%></span></h5>
+                                <h5 class="modal-title" id="modalWinningTitle"><%= t('shared_feedback_by') %> <span style="color:darkviolet"><%=winner.user&.username%></span></h5>
                                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                   <span aria-hidden="true">&times;</span>
                                 </button>
@@ -88,11 +87,11 @@
                                 <% if winner.picture.present? %>
                                   <%= image_tag winner.picture.url, class: 'img-fluid', alt: 'Winner Picture' %>
                                 <% end %>
-                                <p><span style="color: blue;%>;"><strong>Shared Comment</strong></span></p>
+                                <p><span style="color: blue;%>;"><strong><%= t('shared_comment') %></strong></span></p>
                                 <%= winner.comment %>
                               </div>
                               <div class="modal-footer">
-                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                <button type="button" class="btn btn-secondary" data-dismiss="modal"><%= t('close') %></button>
                               </div>
                             </div>
                           </div>
@@ -100,27 +99,27 @@
                         <div class="container border border-black">
                           <p></p>
                           <div class="card-footer text-muted">
-                            <p class="card-text">State: <%= winner.state %></p>
+                            <p class="card-text"><%= t('state') %>: <%= t("winners.states.#{ winner.state}") %></p>
                           </div>
                           <div class="card-body">
                             <div class="btn-group justify-content-center" role="group">
                               <% if winner.may_submit? %>
-                                <%= button_to 'Submit', submit_admin_winner_path(id: winner), method: :post, class: 'btn btn-warning mr-2' %>
+                                <%= button_to t('submit'), submit_admin_winner_path(id: winner), method: :post, class: 'btn btn-warning mr-2' %>
                               <% end %>
                               <% if winner.may_pay? %>
-                                <%= button_to 'Pay', pay_admin_winner_path(id: winner), method: :post, class: 'btn btn-success mr-2' %>
+                                <%= button_to t('pay'), pay_admin_winner_path(id: winner), method: :post, class: 'btn btn-success mr-2' %>
                               <% end %>
                               <% if winner.may_ship? %>
-                                <%= button_to 'Ship', ship_admin_winner_path(id: winner), method: :post, class: 'btn btn-danger mr-2' %>
+                                <%= button_to t('ship'), ship_admin_winner_path(id: winner), method: :post, class: 'btn btn-danger mr-2' %>
                               <% end %>
                               <% if winner.may_deliver? %>
-                                <%= button_to 'Deliver', deliver_admin_winner_path(id: winner), method: :post, class: 'btn btn-danger mr-2' %>
+                                <%= button_to t('deliver'), deliver_admin_winner_path(id: winner), method: :post, class: 'btn btn-danger mr-2' %>
                               <% end %>
                               <% if winner.may_publish? %>
-                                <%= button_to 'Publish', publish_admin_winner_path(id: winner), method: :post, class: 'btn btn-danger mr-2' %>
+                                <%= button_to t('publish'), publish_admin_winner_path(id: winner), method: :post, class: 'btn btn-danger mr-2' %>
                               <% end %>
                               <% if winner.may_remove_publish? %>
-                                <%= button_to 'Remove Publish', remove_publish_admin_winner_path(id: winner), method: :post, class: 'btn btn-danger mr-2' %>
+                                <%= button_to t('remove_publish'), remove_publish_admin_winner_path(id: winner), method: :post, class: 'btn btn-danger mr-2' %>
                               <% end %>
                             </div>
                           </div>
@@ -137,7 +136,7 @@
           <ul class="pagination justify-content-center">
             <% if @winners.prev_page %>
               <li class="page-item">
-                <%= link_to '« Prev', { page: @winners.prev_page }, class: 'page-link' %>
+                <%= link_to '« '+t('prev'), { page: @winners.prev_page }, class: 'page-link' %>
               </li>
             <% end %>
 
@@ -149,7 +148,7 @@
 
             <% if @winners.next_page %>
               <li class="page-item">
-                <%= link_to 'Next »', { page: @winners.next_page }, class: 'page-link' %>
+                <%= link_to t('next')+' »', { page: @winners.next_page }, class: 'page-link' %>
               </li>
             <% end %>
           </ul>

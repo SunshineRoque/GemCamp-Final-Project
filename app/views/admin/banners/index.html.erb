@@ -5,7 +5,7 @@
   </div>
   <div class="col-10">
     <div class="row">
-      <h1 style='text-decoration: none;'>BANNERS <%= link_to '+', new_admin_banner_path, class: 'btn btn-primary' %></h1>
+      <h1 style='text-decoration: none;'><%= t('banners')%> <%= link_to '+', new_admin_banner_path, class: 'btn btn-primary' %></h1>
       <div class="container">
         <div class="row">
           <% @banners.each do |banner| %>
@@ -21,8 +21,8 @@
                   <div class="btn-group" role="group">
                     <div class="row">
                       <div class="col-1"></div>
-                      <div class="col"><%= link_to 'Edit', edit_admin_banner_path(banner), class: 'btn btn-warning', style:'width:80px;' %></div>
-                      <div class="col"><%= button_to 'Delete', admin_banner_path(banner), method: :delete, class: 'btn btn-danger', style:'width:80px;' %></div>
+                      <div class="col"><%= link_to t('edit'), edit_admin_banner_path(banner), class: 'btn btn-warning', style:'width:80px;' %></div>
+                      <div class="col"><%= button_to t('delete'), admin_banner_path(banner), method: :delete, class: 'btn btn-danger', style:'width:100%;' %></div>
                       <div class="col-1"></div>
                     </div>
                   </div>
@@ -31,11 +31,9 @@
                   <div class="container border border-black">
                     <p></p>
                     <div class="card-body">
-                      <p class="card-text" style="text-align: left; margin-left:30px;">Online
-                        at: <%= banner.online_at&.strftime("%m/%d/%Y") %></p>
-                      <p class="card-text" style="text-align: left; margin-left:30px;">Offline
-                        at: <%= banner.offline_at&.strftime("%m/%d/%Y") %></p>
-                      <p class="card-text" style="text-align: left; margin-left:30px;">Status: <%= banner.status %></p>
+                      <p class="card-text" style="text-align: left; margin-left:30px;"><%= t('online_at')%>: <%= banner.online_at&.strftime("%m/%d/%Y") %></p>
+                      <p class="card-text" style="text-align: left; margin-left:30px;"><%= t('offline_at')%>: <%= banner.offline_at&.strftime("%m/%d/%Y") %></p>
+                      <p class="card-text" style="text-align: left; margin-left:30px;"><%= t('status')%>: <%= t("banners1.status.#{banner.status}") %>
                     </div>
                   </div>
                 </div>
@@ -46,7 +44,7 @@
             <ul class="pagination justify-content-center">
               <% if @banners.prev_page %>
                 <li class="page-banner">
-                  <%= link_to '« Prev', { page: @banners.prev_page }, class: 'page-link' %>
+                  <%= link_to '« '+t('prev'), { page: @banners.prev_page }, class: 'page-link' %>
                 </li>
               <% end %>
 
@@ -58,7 +56,7 @@
 
               <% if @banners.next_page %>
                 <li class="page-banner">
-                  <%= link_to 'Next »', { page: @banners.next_page }, class: 'page-link' %>
+                  <%= link_to t('next')+' »', { page: @banners.next_page }, class: 'page-link' %>
                 </li>
               <% end %>
             </ul>

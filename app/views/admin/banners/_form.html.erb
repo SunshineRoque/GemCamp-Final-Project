@@ -5,12 +5,12 @@
   </div>
   <div class="col-10">
     <div class="row">
-      <h1 style='text-decoration: none;'>BANNERS <%= link_to '+', class: 'btn btn-primary' %></h1>
+      <h1 style='text-decoration: none;'><%= t('banners')%> <%= link_to '+', class: 'btn btn-primary' %></h1>
       <div class="container">
         <%= form_with model: banner, url: url, local: true do |form| %>
           <% if banner.errors.any? %>
             <div id="error_explanation" class="alert alert-danger">
-              <h2><%= pluralize(banner.errors.count, "error") %> prohibited this banner from being saved:</h2>
+              <h2><%= pluralize(banner.errors.count, "error") %></h2>
               <ul>
                 <% banner.errors.full_messages.each do |msg| %>
                   <li><%= msg %></li>
@@ -26,24 +26,24 @@
           <p></p>
           <p></p>
           <div class="field">
-            <%= form.label 'Status' %>
-            <%= form.select :status, options_for_select(Banner.statuses.keys.map { |status| [status.humanize, status] }) %>
+            <%= form.label t('status') %>
+            <%= form.select :status, options_for_select(Banner.statuses.keys.map { |status| [I18n.t("banners1.status.#{status}"), status] }) %>
           </div>
           <p></p>
           <p></p>
           <div class="field">
-            <%= form.label 'Online At' %>
+            <%= form.label t('online_at') %>
             <%= form.date_field :online_at, value: params[:online_at], class: 'form-control' %>
           </div>
           <div class="field">
-            <%= form.label 'Offline At' %>
+            <%= form.label t('offline_at') %>
             <%= form.date_field :offline_at, value: params[:offline_at], class: 'form-control' %>
           </div>
           <p></p>
           <p></p>
           <div style="margin-bottom: 10px;">
-            <%= form.submit class: 'btn btn-primary' %>
-            <%= link_to 'Back', admin_banners_path, class: "btn btn-primary", 'aria-current': 'page', style: 'background-color: lightblue; border: none;' %>
+            <%= form.submit t('create_banner'), class: 'btn btn-primary' %>
+            <%= link_to t('back'), admin_banners_path, class: "btn btn-primary", 'aria-current': 'page', style: 'background-color: lightblue; border: none;' %>
           </div>
         <% end %>
       </div>
