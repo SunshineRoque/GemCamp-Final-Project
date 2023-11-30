@@ -15,7 +15,7 @@
             <div class="row" style="margin-left: 5vh"><%= t('coins') %>: <%= @user.coins %></div>
             <div class="row mb-4"></div>
             <div class="row" style="padding:0; margin: auto; text-align: center; align-items: center; justify-content: center ">
-              <%= link_to t('cash_in_now'), edit_client_cash_in_path(@user), class: "btn btn-primary-light #{'active' if action_name == 'index' }", 'aria-current': 'page',
+              <%= link_to t('cash_in_now'), client_shop_index_path, class: "btn btn-primary-light #{'active' if action_name == 'index' }", 'aria-current': 'page',
                           style: "border: 1px solid black; width: 95%; height: 30px; margin: auto; padding: 0;" %>
             </div>
             <div class="row mb-4"></div>

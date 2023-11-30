@@ -46,11 +46,13 @@ Rails.application.routes.draw do
           resources :increase, only: [:new, :create]
           resources :deduct, only: [:new, :create]
           resources :bonus, only: [:new, :create]
+          resources :member_levels, only: [:new, :create]
         end
       end
       resources :invites, only: :index
       resources :news_tickers, except: :show
       resources :banners, except: :show
+      resources :member_levels, except: :show
     end
 
     devise_for :users, as: :admin, path: 'admin', controllers: {
@@ -60,7 +62,7 @@ Rails.application.routes.draw do
 
   constraints(ClientDomainConstraint.new) do
     namespace :client do
-      root "home#index"
+      root 'home#index'
       resources :menu, only: :index
       resources :me, only: [:index, :show, :update] do
         member do
@@ -77,7 +79,6 @@ Rails.application.routes.draw do
           post 'share'
         end
       end
-      resources :cash_in, only: [:edit, :update]
     end
 
     devise_for :users, as: :client, path: 'client', controllers: {

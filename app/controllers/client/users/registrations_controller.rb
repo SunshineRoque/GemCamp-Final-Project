@@ -25,6 +25,16 @@ class Client::Users::RegistrationsController < Devise::RegistrationsController
     end
   end
 
+  def update
+    super do |resource|
+      if resource.errors.empty?
+        redirect_to client_me_index_path and return
+      else
+        render :edit, status: :unprocessable_entity and return
+      end
+    end
+  end
+
   def configure_sign_up_params
     devise_parameter_sanitizer.permit(:sign_up, keys: [:username, :parent_id])
   end
