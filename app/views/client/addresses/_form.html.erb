@@ -69,6 +69,6 @@
     <%= form.select :genre, options_for_select(Address.genres.keys.map { |genre| [I18n.t("genre.#{genre}"), genre] }) %>
   </div>
   <p></p>
-  <%= form.submit t('create_address'), class: 'btn btn-primary' %> <%= link_to t('back'), client_addresses_path, class: 'btn btn-secondary' %>
+  <%= form.submit t('submit'), class: 'btn btn-primary' %> <%= link_to t('back'), client_addresses_path, class: 'btn btn-secondary' %>
 <% end %>
 <p></p>

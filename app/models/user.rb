@@ -20,19 +20,6 @@ class User < ApplicationRecord
   before_create :set_member_level_id
   validate :validate_address_limit, on: :create
   after_create :increment_parent_children_members
-  # after_create :update_member_level_if_required
-  #
-  # def update_member_level_if_required
-  #   return unless member_level.level == 'basic'
-  #   basic_1_level = MemberLevel.find_by(level: :basic_1)
-  #
-  #   if basic_1_level.present?
-  #     if children_members >= basic_1_level.required_members
-  #       update_columns(member_level_id: basic_1_level.id, coins: coins + basic_1_level.coins)
-  #       end
-  #   end
-  # end
-  #
 
   private
 
