@@ -90,12 +90,15 @@
                         <li class="list-group-item"><strong>Genre:</strong> <%= t("genre.orders.#{order.genre}") %></li>
                         <li class="list-group-item"><strong><%= t('state') %>:</strong> <%= t("orders.states.#{order.state}") %></li>
                         <p></p>
-                        <% if order.may_pay? %>
-                          <%= button_to t('pay)'), pay_admin_order_path(id: order), method: :post, class: 'btn btn-danger' %>
-                        <% end %>
-                        <% if order.may_cancel? %>
-                          <%= button_to t('cancel'), cancel_admin_order_path(id: order), method: :post, class: 'btn btn-danger' %>
-                        <% end %>
+                        <div class="d-flex">
+                          <% if order.may_pay? %>
+                            <%= button_to t('pay'), pay_admin_order_path(id: order), method: :post, class: 'btn btn-danger mr-2' %>
+                          <% end %>
+                            &nbsp;
+                          <% if order.may_cancel? %>
+                            <%= button_to t('cancel'), cancel_admin_order_path(id: order), method: :post, class: 'btn btn-danger' %>
+                          <% end %>
+                        </div>
                       </ul>
                     </div>
                   </div>

@@ -1,6 +1,6 @@
 class Order < ApplicationRecord
   validates :coin, presence: true
-  validates :remarks, presence: true, unless: :deposit?
+  validates :remarks, presence: true,  if: -> { deposit? && member_level? }
   validates :amount, presence: true, if: :deposit?
   validates :amount, numericality: { greater_than: 0 }, if: -> { deposit? && amount.present? }
   validates :offer, presence: true, if: :deposit?
@@ -8,7 +8,7 @@ class Order < ApplicationRecord
   belongs_to :user
   after_create :generate_serial_number
 
-  enum genre: { deposit: 0, increase: 1, deduct: 2, bonus: 3, share: 4 }
+  enum genre: { deposit: 0, increase: 1, deduct: 2, bonus: 3, share: 4, member_level: 5 }
 
   include AASM
 

@@ -232,7 +232,23 @@ en:
               blank: 'The Coin field cannot be blank.'
             remarks:
               blank: 'The Remarks field cannot be blank.'
-
+  member_level_created_successfully: Member Level Created Successfully!
+  member_level_create_failed: Member Level Create Failed!
+  member_level_updated_successfully: Member Level Updated Successfully!
+  member_level_update_failed: Member Level Update Failed!
+  member_level_destroyed_successfully: Member Level Destroyed Successfully!
+  member_levels: MEMBER LEVELS
+  member_levels1:
+    level:
+      basic:  Basic
+      basic_1: Basic 1
+      standard:  Standard
+      premium:  Premium
+      silver:  Silver
+      gold: Gold
+  create_member_level: Create Member Level
+  required_members: Required Members
+  level: Level
 
 
 

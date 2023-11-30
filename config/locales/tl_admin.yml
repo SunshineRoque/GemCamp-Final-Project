@@ -203,3 +203,20 @@ tl:
               blank: 'Ang Coin field ay kailangang puno.'
             remarks:
               blank: 'Ang Remarks field ay kailangang puno.'
+  member_level_created_successfully: Matagumpay na Nagawa ang Level ng Miyembro!
+  member_level_create_failed: Hindi Nagawa ang Level ng Miyembro!
+  member_level_updated_successfully: Matagumpay na Na-update ang Antas ng Miyembro!
+  member_level_update_failed: Hindi Na-update ang Antas ng Miyembro!
+  member_level_destroyed_successfully: Matagumpay na Nabura ang Antas ng Miyembro!
+  member_levels: MGA ANTAS NG MIYEMBRO
+  member_levels1:
+    level:
+      basic: Basic
+      basic_1: Basic 1
+      standard: Pamantayan
+      premium: Premium
+      silver: Pilak
+      gold: Ginto
+  create_member_level: Lumikha ng Antas ng Miyembro
+  required_members: Mga Kinakailangang Miyembro
+  level: Antas
