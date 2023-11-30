@@ -1,0 +1,50 @@
+<%= render 'admin/partial/top_nav' %>
+<div class="row">
+  <div class="col-2  border border-black border-top-o">
+    <%= render 'admin/partial/left_nav' %>
+  </div>
+  <div class="col-10">
+    <div class="row">
+      <h1 style='text-decoration: none;'><%= t('member_levels')%> <%= link_to '+', class: 'btn btn-primary' %></h1>
+      <div class="container">
+        <%= form_with model: member_level, url: url, local: true do |form| %>
+          <% if member_level.errors.any? %>
+            <div id="error_explanation" class="alert alert-danger">
+              <h2><%= pluralize(member_level.errors.count, "error") %></h2>
+              <ul>
+                <% member_level.errors.full_messages.each do |msg| %>
+                  <li><%= msg %></li>
+                <% end %>
+              </ul>
+            </div>
+          <% end %>
+          <p></p>
+          <p></p>
+          <div class="field">
+            <%= form.label t('level') %>
+            <%= form.select :level, options_for_select(MemberLevel.levels.keys.map { |level| [I18n.t("member_levels1.level.#{level}"), level] }) %>
+          </div>
+          <p></p>
+          <p></p>
+          <div class="mb-3">
+            <%= form.label t('coins') %>
+            <%= form.text_field :coins, class: 'form-control' %>
+          </div>
+
+          <div class="mb-3">
+            <%= form.label t('required_members') %>
+            <%= form.text_field :required_members, class: 'form-control' %>
+          </div>
+          <p></p>
+          <p></p>
+          <div style="margin-bottom: 10px;">
+            <%= form.submit t('create_member_level'), class: 'btn btn-primary' %>
+            <%= link_to t('back'), admin_member_levels_path, class: "btn btn-primary", 'aria-current': 'page', style: 'background-color: lightblue; border: none;' %>
+          </div>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="row border border-black"></div>
+

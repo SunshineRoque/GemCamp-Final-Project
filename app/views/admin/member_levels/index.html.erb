@@ -1,0 +1,67 @@
+<%= render 'admin/partial/top_nav' %>
+<div class="row">
+  <div class="col-2  border border-black border-top-o">
+    <%= render 'admin/partial/left_nav' %>
+  </div>
+  <div class="col-10">
+    <div class="row">
+      <h1 style='text-decoration: none;'><%= t('member_levels')%> <%= link_to '+', new_admin_member_level_path, class: 'btn btn-primary' %></h1>
+      <div class="container">
+        <div class="row">
+          <% @member_levels.each do |member_level| %>
+            <div class="col-4 mb-4">
+              <div class="card h-100" style="width: 100%;">
+                <p></p>
+                <td class="button">
+                  <div class="btn-group" role="group">
+                    <div class="row">
+                      <div class="col-1"></div>
+                      <% unless member_level.users.exists? %> <!-- Check if there are no associated users -->
+                        <div class="col"><%= link_to t('edit'), edit_admin_member_level_path(member_level), class: 'btn btn-warning', style:'width:80px;' %></div>
+                      <% end %>
+                      <div class="col"><%= button_to t('delete'), admin_member_level_path(member_level), method: :delete, class: 'btn btn-danger', style:'width:100%;' %></div>
+                      <div class="col-1"></div>
+                    </div>
+                  </div>
+                </td>
+                <div class="card-body">
+                  <div class="container border border-black">
+                    <p></p>
+                    <div class="card-body">
+                      <p class="card-text" style="text-align: left; margin-left:30px;"><%= t('required_members')%>: <%= member_level.required_members%></p>
+                      <p class="card-text" style="text-align: left; margin-left:30px;"><%= t('coins')%>: <%= member_level.coins%></p>
+                      <p class="card-text" style="text-align: left; margin-left:30px;"><%= t('level')%>: <%= t("member_levels1.level.#{member_level.level}") %>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          <% end %>
+          <nav aria-label="Page navigation">
+            <ul class="pagination justify-content-center">
+              <% if @member_levels.prev_page %>
+                <li class="page-member_level">
+                  <%= link_to '« '+t('prev'), { page: @member_levels.prev_page }, class: 'page-link' %>
+                </li>
+              <% end %>
+
+              <% (1..@member_levels.total_pages).each do |page| %>
+                <li class="page-member_level <%= 'active' if page == @member_levels.current_page %>">
+                  <%= link_to page, { page: page }, class: 'page-link' %>
+                </li>
+              <% end %>
+
+              <% if @member_levels.next_page %>
+                <li class="page-member_level">
+                  <%= link_to t('next')+' »', { page: @member_levels.next_page }, class: 'page-link' %>
+                </li>
+              <% end %>
+            </ul>
+          </nav>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="row border border-black"></div>

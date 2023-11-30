@@ -249,11 +249,15 @@ en:
   create_member_level: Create Member Level
   required_members: Required Members
   level: Level
-
-
-
-
-
+  cant_delete: Cannot delete the protected member level because it is the default level.
+  claimed_reward: 'Claimed Reward successfully'
+  member_level: Member Level
+  share_to: Share to
+  share_to_more: Share to more
+  friends: friends and get
+  Congrats: Congratulations, you have
+  invited: invited friends already, please claim your coins!
+  claim_coins: Claim Coins
 
 
 

@@ -70,7 +70,13 @@ Rails.application.routes.draw do
           post 'cancel'
         end
       end
-      resources :invite, only: [:index], constraints: {}
+      resources :invite, only: [:index], constraints: {} do
+        patch 'update_member_level_basic_1', on: :member
+        patch 'update_member_level_standard', on: :member
+        patch 'update_member_level_premium', on: :member
+        patch 'update_member_level_silver', on: :member
+        patch 'update_member_level_gold', on: :member
+      end
       resources :addresses
       resources :lottery, only: [:index, :show, :create]
       resources :shop, only: [:index, :show, :create]
@@ -87,6 +93,9 @@ Rails.application.routes.draw do
     }
   end
 
+  resources :users do
+    post 'update_member_level', on: :member
+  end
 
   namespace :api do
     namespace :v1 do

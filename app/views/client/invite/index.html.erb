@@ -1,3 +1,33 @@
+<style>
+    /* Custom styles for the container */
+    .dance-container {
+        overflow: hidden;
+        white-space: nowrap;
+    }
+
+    /* Custom styles for the text inside the container */
+    .dance-text {
+        display: inline-block;
+        font-size: 24px;
+        animation: danceAnimation 5s infinite alternate, colorChangeAnimation 5s infinite alternate;
+    }
+
+    /* Keyframes for the dancing animation */
+    @keyframes danceAnimation {
+        0% { transform: translateY(0); }
+        50% { transform: translateY(-10px); }
+        100% { transform: translateY(0); }
+    }
+
+    /* Keyframes for the color change animation */
+    @keyframes colorChangeAnimation {
+        0% { color: purple; }
+        50% { color: mediumpurple; }
+        100% { color: violet; }
+    }
+</style>
+
+
 <div class="container-fluid border border-black">
   <%= render 'client/partial/application_up' %>
   <div class="row">
@@ -26,6 +56,129 @@
     </div>
     <div class="col-2"></div>
   </div>
+  <div class="row mb-4"></div>
+  <div class="row">
+    <div class="col-2"></div>
+    <div class="col-8">
+
+      <% basic_1_level = MemberLevel.find_by(level: :basic_1) %>
+      <% standard_level = MemberLevel.find_by(level: :standard) %>
+      <% premium_level = MemberLevel.find_by(level: :premium) %>
+      <% silver_level = MemberLevel.find_by(level: :silver) %>
+      <% gold_level = MemberLevel.find_by(level: :gold) %>
+
+      <% if @user.member_level&.level == 'basic' %>
+        <% if basic_1_level.present? %>
+          <div class="container" style="height: 50px; text-align: center; justify-content: center; align-items: center ">
+            <div class="container dance-container">
+              <p class="dance-text"><%= t('share_to') %> <%= basic_1_level.required_members %> <%= t('friends') %> <%= basic_1_level.coins %> <%= t('coins') %></p>
+            </div>
+          </div>
+          <p></p>
+          <% if @user.children_members >= basic_1_level.required_members %>
+            <%= form_with model: @user, url: update_member_level_basic_1_client_invite_path(@user), method: :patch, remote: true, data: { turbo: false } do |f| %>
+              <div class="container text-center">
+                <div class="h3 font-italic font-weight-bold text-dark">
+                  <%= t('Congrats') %> <%= @user.children_members %> <%= t('invited') %>
+                </div>
+                <p></p>
+                <%= f.submit t('claim_coins'), class: 'btn btn-primary', id: 'submit-button' %>
+              </div>
+            <% end %>
+          <% end %>
+        <% end %>
+      <% end %>
+
+      <% if @user.member_level&.level == 'basic_1' %>
+        <% if standard_level.present?%>
+          <div class="container" style="height: 50px; text-align: center; justify-content: center; align-items: center ">
+            <div class="container dance-container">
+              <p class="dance-text"><%= t('share_to_more') %> <%= standard_level.required_members %> <%= t('friends') %> <%= standard_level.coins %> <%= t('coins') %></p>
+            </div>
+          </div>
+          <p></p>
+          <% if @user.children_members >= standard_level.required_members + basic_1_level.required_members %>
+            <%= form_with model: @user, url: update_member_level_standard_client_invite_path(@user), method: :patch, remote: true, data: { turbo: false } do |f| %>
+              <div class="container text-center">
+                <div class="h3 font-italic font-weight-bold text-dark">
+                  <%= t('Congrats') %> <%= @user.children_members %> <%= t('invited') %>
+                </div>
+                <p></p>
+                <%= f.submit t('claim_coins'), class: 'btn btn-primary', id: 'submit-button' %>
+              </div>
+            <% end %>
+          <% end %>
+        <% end %>
+      <% end %>
+
+      <% if @user.member_level&.level == 'standard' %>
+        <% if premium_level.present? %>
+          <div class="container" style="height: 50px; text-align: center; justify-content: center; align-items: center ">
+            <div class="container dance-container">
+              <p class="dance-text"><%= t('share_to_more') %> <%= premium_level.required_members %> <%= t('friends') %> <%= premium_level.coins %> <%= t('coins') %></p>
+            </div>
+          </div>
+          <p></p>
+          <% if @user.children_members >= premium_level.required_members + standard_level.required_members + basic_1_level.required_members %>
+            <%= form_with model: @user, url: update_member_level_premium_client_invite_path(@user), method: :patch, remote: true, data: { turbo: false } do |f| %>
+              <div class="container text-center">
+                <div class="h3 font-italic font-weight-bold text-dark">
+                  <%= t('Congrats') %> <%= @user.children_members %> <%= t('invited') %>
+                </div>
+                <p></p>
+                <%= f.submit t('claim_coins'), class: 'btn btn-primary', id: 'submit-button' %>
+              </div>
+            <% end %>
+          <% end %>
+        <% end %>
+      <% end %>
+
+      <% if @user.member_level&.level == 'premium' %>
+        <% if silver_level.present? %>
+          <div class="container" style="height: 50px; text-align: center; justify-content: center; align-items: center ">
+            <div class="container dance-container">
+              <p class="dance-text"><%= t('share_to_more') %> <%= silver_level.required_members %> <%= t('friends') %> <%= silver_level.coins %> <%= t('coins') %></p>
+            </div>
+          </div>
+          <p></p>
+          <% if @user.children_members >= premium_level.required_members + standard_level.required_members + basic_1_level.required_members + silver_level.required_members%>
+            <%= form_with model: @user, url: update_member_level_silver_client_invite_path(@user), method: :patch, remote: true, data: { turbo: false } do |f| %>
+              <div class="container text-center">
+                <div class="h3 font-italic font-weight-bold text-dark">
+                  <%= t('Congrats') %> <%= @user.children_members %> <%= t('invited') %>
+                </div>
+                <p></p>
+                <%= f.submit t('claim_coins'), class: 'btn btn-primary', id: 'submit-button' %>
+              </div>
+            <% end %>
+          <% end %>
+        <% end %>
+      <% end %>
+
+      <% if @user.member_level&.level == 'silver' %>
+        <% if gold_level.present? %>
+          <div class="container" style="height: 50px; text-align: center; justify-content: center; align-items: center ">
+            <div class="container dance-container">
+              <p class="dance-text"><%= t('share_to_more') %> <%=gold_level.required_members %> <%= t('friends') %> <%=gold_level.coins %> <%= t('coins') %></p>
+            </div>
+          </div>
+          <p></p>
+          <% if @user.children_members >= gold_level.required_members + premium_level.required_members + standard_level.required_members + basic_1_level.required_members + silver_level.required_members%>
+            <%= form_with model: @user, url: update_member_level_gold_client_invite_path(@user), method: :patch, remote: true, data: { turbo: false } do |f| %>
+              <div class="container text-center">
+                <div class="h3 font-italic font-weight-bold text-dark">
+                  <%= t('Congrats') %> <%= @user.children_members %> <%= t('invited') %>
+                </div>
+                <p></p>
+                <%= f.submit t('claim_coins'), class: 'btn btn-primary', id: 'submit-button' %>
+              </div>
+            <% end %>
+          <% end %>
+        <% end %>
+      <% end %>
+    </div>
+    <div class="col-2"></div>
+  </div>
   <div>
     <div class="row mb-4"></div>
     <div class="row mb-4"></div>
@@ -49,7 +202,9 @@
 
 
 
-
+<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
 
 
 

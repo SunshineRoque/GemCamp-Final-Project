@@ -59,7 +59,8 @@ class Order < ApplicationRecord
   end
 
   def enough_coins_to_cancel_increase?
-    return true if deduct? || (!deduct? && user.coins >= coin)
+    return true if deduct? || (user&.coins.to_i >= coin)
+
     errors.add(:base, 'User does not have enough coins.')
     false
   end

@@ -220,3 +220,12 @@ tl:
   create_member_level: Lumikha ng Antas ng Miyembro
   required_members: Mga Kinakailangang Miyembro
   level: Antas
+  cant_delete: Hindi matanggal ang protektadong antas ng miyembro dahil ito ang default na antas.
+  claimed_reward: Matagumpay na na-claim ang Gantimpala
+  member_level: Antas ng Miyembro
+  share_to: Ibahagi sa
+  share_to_more: Ibahagi sa higit pa
+  friends: kaibigan at makakuha
+  Congrats: Binabati kita, mayroon kang
+  invited: na inimbitahan na mga kaibigan, paki-claim ang iyong mga barya!
+  claim_coins: Mag-claim ng mga barya
