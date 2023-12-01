@@ -282,10 +282,50 @@
             incrementQuantity();
         });
 
+        $('#incrementQuantity1').on('click', function () {
+            incrementQuantity1();
+        });
+
+        $('#incrementQuantity5').on('click', function () {
+            incrementQuantity5();
+        });
+
+        $('#incrementQuantity10').on('click', function () {
+            incrementQuantity10();
+        });
+
+        $('#incrementQuantity20').on('click', function () {
+            incrementQuantity20();
+        });
+
         function incrementQuantity() {
             var quantityField = $('#ticket_quantity');
             var currentValue = parseInt(quantityField.val());
             quantityField.val(currentValue + 1);
+        }
+
+        function incrementQuantity1() {
+            var quantityField = $('#ticket_quantity');
+            var currentValue = parseInt(quantityField.val());
+            quantityField.val(currentValue + 1);
+        }
+
+        function incrementQuantity5() {
+            var quantityField = $('#ticket_quantity');
+            var currentValue = parseInt(quantityField.val());
+            quantityField.val(currentValue + 5);
+        }
+
+        function incrementQuantity10() {
+            var quantityField = $('#ticket_quantity');
+            var currentValue = parseInt(quantityField.val());
+            quantityField.val(currentValue + 10);
+        }
+
+        function incrementQuantity20() {
+            var quantityField = $('#ticket_quantity');
+            var currentValue = parseInt(quantityField.val());
+            quantityField.val(currentValue + 20);
         }
 
         function decrementQuantity() {

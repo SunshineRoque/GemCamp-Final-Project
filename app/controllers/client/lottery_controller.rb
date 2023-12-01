@@ -31,14 +31,14 @@ class Client::LotteryController < ApplicationController
         Ticket.create(item: @item, user: current_client_user)
       end
       flash[:notice] = t('successfully_bought', quantity: quantity)
-
+      redirect_to client_lottery_path(@item)
     elsif quantity <= 0
       flash[:alert] = t('quantity_positive')
+      redirect_to client_lottery_path(@item)
     else
       flash[:alert] = t("not_enough_coins")
+      redirect_to client_shop_index_path
     end
-
-    redirect_to client_lottery_path(@item)
   end
 
   private

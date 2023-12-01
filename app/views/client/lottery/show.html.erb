@@ -96,6 +96,27 @@
         </div>
       </div>
       <%= form_with model: @ticket, url: client_lottery_index_path, method: :post, data: { turbo: false } do |form| %>
+
+        <div class="row mt-4">
+          <div class="col-md-8 mx-auto">
+            <div class="container">
+              <div class="row">
+                <div class="col" style="margin:5px; padding:0">
+                  <button type="button" id="incrementQuantity1" class="btn btn-secondary" style="background-color: #9400D3; border:none; width:100%; height:100%; text-align:center; color:white;">1</button>
+                </div>
+                <div class="col" style="margin:5px; padding:0">
+                  <button type="button" id="incrementQuantity5" class="btn btn-secondary" style="background-color: #7C00B8; border:none; width:100%; height:100%; text-align:center; color:white;">5</button>
+                </div>
+                <div class="col" style="margin:5px; padding:0">
+                  <button type="button" id="incrementQuantity10" class="btn btn-secondary" style="background-color: #64009D; border:none; width:100%; height:100%; text-align:center; color:white;">10</button>
+                </div>
+                <div class="col" style="margin:5px; padding:0">
+                  <button type="button" id="incrementQuantity20" class="btn btn-secondary" style="background-color: #4B0081; border:none; width:100%; height:100%; text-align:center; color:white;">20 </button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
         <div class="row mt-4">
           <div class="col-md-8 mx-auto">
             <div class="container border border-gray">
@@ -159,3 +180,4 @@
 
   <%= render 'client/partial/application_down' %>
 </div>
+
