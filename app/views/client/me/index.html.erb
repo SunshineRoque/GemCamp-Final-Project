@@ -56,7 +56,7 @@
                       <span aria-hidden="true">&times;</span>
                     </button>
                   </div>
-                  <div class="modal-body" id="modalOrderBody">
+                  <div class="modal-body" id="modalOrderBody" style="max-height: 700px; overflow-y: auto;">
                     <% if current_client_user %>
                       <% current_user_orders = Order.where(user_id: current_client_user.id) %>
 
@@ -107,7 +107,7 @@
                       <span aria-hidden="true">&times;</span>
                     </button>
                   </div>
-                  <div class="modal-body" id="modalLotteryBody">
+                  <div class="modal-body" id="modalLotteryBody" style="max-height: 700px; overflow-y: auto;">
                     <% if current_client_user %>
                       <% current_user_tickets = Ticket.where(user_id: current_client_user.id) %>
 
@@ -154,7 +154,7 @@
                       <span aria-hidden="true">&times;</span>
                     </button>
                   </div>
-                  <div class="modal-body" id="modalWinningBody">
+                  <div class="modal-body" id="modalWinningBody" style="max-height: 700px; overflow-y: auto;">
                     <% if current_client_user %>
                       <% current_user_winners = Winner.where(user_id: current_client_user.id) %>
 
@@ -210,7 +210,7 @@
                       <span aria-hidden="true">&times;</span>
                     </button>
                   </div>
-                  <div class="modal-body" id="modalInvitationBody">
+                  <div class="modal-body" id="modalInvitationBody" style="max-height: 700px; overflow-y: auto;">
                     <% if current_client_user %>
                       <% current_user_children = current_client_user.users %>
 

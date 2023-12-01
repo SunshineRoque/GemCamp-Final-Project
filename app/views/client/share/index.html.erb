@@ -94,19 +94,30 @@
           </div>
           <div class="row mb-4"></div>
         <% end %>
+      <nav aria-label="Page navigation">
+        <ul class="pagination justify-content-center">
+          <% if @winners.prev_page %>
+            <li class="page-item">
+              <%= link_to '« '+t('prev'), { page: @winners.prev_page }, class: 'page-link' %>
+            </li>
+          <% end %>
+
+          <% (1..@winners.total_pages).each do |page| %>
+            <li class="page-item <%= 'active' if page == @winners.current_page %>">
+              <%= link_to page, { page: page }, class: 'page-link' %>
+            </li>
+          <% end %>
+
+          <% if @winners.next_page %>
+            <li class="page-item">
+              <%= link_to t('next')+' »', { page: @winners.next_page }, class: 'page-link' %>
+            </li>
+          <% end %>
+        </ul>
+      </nav>
     </div>
     <div class="col-2"></div>
   </div>
-  <div class="row mb-4"></div>
-  <div class="row mb-4"></div>
-  <div class="row mb-4"></div>
-  <div class="row mb-4"></div>
-  <div class="row mb-4"></div>
-  <div class="row mb-4"></div>
-  <div class="row mb-4"></div>
-  <div class="row mb-4"></div>
-  <div class="row mb-4"></div>
-  <div class="row mb-4"></div>
   <div class="row mb-4"></div>
   <div class="row mb-4"></div>
   <%= render 'client/partial/application_down' %>

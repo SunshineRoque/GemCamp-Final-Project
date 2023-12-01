@@ -4,7 +4,7 @@ class Client::ShareController < ApplicationController
 
   def index
     @user = current_client_user
-    @winners = Winner.includes(:item).where(state: 'published')
+    @winners = Winner.includes(:item).where(state: 'published').page(params[:page]).per(5)
     @banners = Banner.where("online_at <= ? AND offline_at > ? AND status = ?", Time.current, Time.current, 'active')
     @news_tickers = NewsTicker.where("status = ?",'active').limit(5)
   end

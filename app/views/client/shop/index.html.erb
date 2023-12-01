@@ -75,6 +75,27 @@
           <% end %>
         </div>
       </div>
+      <nav aria-label="Page navigation">
+        <ul class="pagination justify-content-center">
+          <% if @offers.prev_page %>
+            <li class="page-ticket">
+              <%= link_to '« '+t('prev'), { page: @offers.prev_page }, class: 'page-link' %>
+            </li>
+          <% end %>
+
+          <% (1..@offers.total_pages).each do |page| %>
+            <li class="page-ticket <%= 'active' if page == @offers.current_page %>">
+              <%= link_to page, { page: page }, class: 'page-link' %>
+            </li>
+          <% end %>
+
+          <% if @offers.next_page %>
+            <li class="page-ticket">
+              <%= link_to t('next')+' »', { page: @offers.next_page }, class: 'page-link' %>
+            </li>
+          <% end %>
+        </ul>
+      </nav>
     </div>
   </div>
   <div class="row mb-2"></div>

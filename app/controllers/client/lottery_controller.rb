@@ -6,7 +6,7 @@ class Client::LotteryController < ApplicationController
     @user = current_client_user
     @categories = Category.all
     @selected_category = params[:category_id] ? Category.find(params[:category_id]) : nil
-    @items = @selected_category ? @selected_category.items : Item.includes(:categories).all
+    @items = @selected_category ? @selected_category.items : Item.includes(:categories).all.page(params[:page]).per(10)
     @banners = Banner.where("online_at <= ? AND offline_at > ? AND status = ?", Time.current, Time.current, 'active')
     @news_tickers = NewsTicker.where("status = ?",'active').limit(5)
   end
@@ -15,6 +15,7 @@ class Client::LotteryController < ApplicationController
     @ticket = Ticket.new
     @user = current_client_user
     @progress_percentage = (Ticket.where(batch_count: @item.batch_count).count.to_f / @item.minimum_tickets) * 100
+    @tickets = Ticket.where(user_id: current_client_user.id, item_id: @item.id, batch_count: @item.batch_count).page(params[:page]).per(10)
   end
 
   def search

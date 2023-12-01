@@ -155,8 +155,7 @@
               <h5 class="card-title">Serial Numbers</h5>
               <% if current_client_user %>
                 <ul class="list-group list-group-flush">
-                  <% current_user_tickets = Ticket.where(user_id: current_client_user.id, item_id: @item.id, batch_count: @item.batch_count) %>
-                  <% current_user_tickets.each do |ticket| %>
+                  <% @tickets.each do |ticket| %>
                     <li class="list-group-item border d-flex justify-content-between align-items-center">
                       <%= ticket.serial_number %>
                       <% if ticket.cancelled? %>
@@ -168,6 +167,27 @@
               <% end %>
             </div>
           </div>
+          <nav aria-label="Page navigation">
+            <ul class="pagination justify-content-center">
+              <% if @tickets.prev_page %>
+                <li class="page-ticket">
+                  <%= link_to '« '+t('prev'), { page: @tickets.prev_page }, class: 'page-link' %>
+                </li>
+              <% end %>
+
+              <% (1..@tickets.total_pages).each do |page| %>
+                <li class="page-ticket <%= 'active' if page == @tickets.current_page %>">
+                  <%= link_to page, { page: page }, class: 'page-link' %>
+                </li>
+              <% end %>
+
+              <% if @tickets.next_page %>
+                <li class="page-ticket">
+                  <%= link_to t('next')+' »', { page: @tickets.next_page }, class: 'page-link' %>
+                </li>
+              <% end %>
+            </ul>
+          </nav>
         </div>
       </div>
       <p></p>
